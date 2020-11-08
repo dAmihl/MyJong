@@ -33,7 +33,7 @@ func _ready():
 	# TODO RAND SEED
 	RNG.randomize()
 	rngseed = RNG.seed
-	rngseed = -2933868046714981133 #unsolvable?
+	#rngseed = -2933868046714981133 #unsolvable?
 	print("Seed:"+str(rngseed))
 	load_json()
 	pass # Replace with function body.
@@ -230,7 +230,7 @@ func try_solve_bruteforce():
 			break
 		else:
 			print("Not solved this time. Trying again!")
-			
+			restart()
 	pass
 	
 func restart():
