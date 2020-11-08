@@ -1,16 +1,14 @@
-extends Node2D
+extends Spatial
 
+onready var gameboard = $"/root/Board/GameBoard"
 
-var selection:Node
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+var selection
 
 func _input(event):
 	if event.is_action_pressed("hint"):
-		GameBoard.get_random_hint()
-	
+		gameboard.get_random_hint()
+	if event.is_action_pressed("autosolve"):
+		$"../LayoutGenerator".try_solve_bruteforce()
 
 func block_clicked(block):
 	if !is_instance_valid(selection):
@@ -35,7 +33,7 @@ func deselect_block(block):
 	
 func remove_block(block):
 	block.remove()
-	GameBoard.remove_tile(block)
+	gameboard.remove_tile(block)
 	selection=null
 	return
 	
@@ -46,4 +44,3 @@ func eval_selection(sel1, sel2):
 	else:
 		deselect_block(sel1)
 		select_block(sel2)
-

@@ -33,7 +33,7 @@ func is_free() -> bool:
 
 func on_clicked():
 	if (is_free()):
-		GameManager.block_clicked(self)
+		$"/root/Board/Controls".block_clicked(self)
 	else:
 		$AnimationPlayer.play("NotFree")
 	pass
@@ -59,7 +59,6 @@ func set_texture(t):
 	if !has_node("MeshGroup"):
 		return
 	$MeshGroup/Symbol.texture = load(tex_path)
-
 
 func _on_Tile_input_event(camera, event, click_position, click_normal, shape_idx):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:

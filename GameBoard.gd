@@ -1,12 +1,11 @@
-extends Node2D
+extends Spatial
 
 var board = []
 var hints = []
 
 func add_tile(tile, pos, layer):
 	board.append(tile)
-	if board.size() > 140:
-		print("Added: "+str(tile)+", at "+str(pos)+" on layer "+str(layer))
+	add_child(tile)
 	pass
 
 func board_ready():
@@ -25,7 +24,8 @@ func check_win():
 
 func check_move():
 	if hints.size() == 0:
-		print("No Moves Left!!")
+		#print("No Moves Left!!")
+		pass
 
 func get_perfect_hint():
 	var b = board[board.size()-1]
@@ -69,5 +69,10 @@ func calculate_hints():
 				if TileType.types_match(b.type, b2.type):
 					hints.append([b, b2])
 
+func clear():
+	hints.clear()
+	board.clear()
+	for c in get_children():
+		self.remove_child(c)
 
 

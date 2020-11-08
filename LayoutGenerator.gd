@@ -10,6 +10,7 @@ var layout = []
 var rngseed = 424242
 
 onready var RNG = RandomNumberGenerator.new()
+onready var gameboard = $"/root/Board/GameBoard"
 
 func load_json():
 	var file = File.new()
@@ -32,41 +33,16 @@ func _ready():
 	# TODO RAND SEED
 	RNG.randomize()
 	rngseed = RNG.seed
-	# debug
-	rngseed = 4945715921690443365 #unsolvable???
 	print("Seed:"+str(rngseed))
 	load_json()
 	pass # Replace with function body.
-
-func _input(event):
-	if event.is_action_pressed("autosolve"):
-		try_solve_bruteforce()
 
 func draw_layout():
 	#distribute_random()
 	RNG.seed = rngseed
 	distribute_random_solvable()
-	GameBoard.board_ready()
+	gameboard.board_ready()
 	return
-	var layerNum = 0
-	for layer in layout:
-		draw_layer(layer, layerNum)
-		layerNum+=1
-		pass
-	pass
-
-func draw_layer(layerData, layerNum):
-	for tile in layerData:
-		draw_block(tile, layerNum)
-
-func draw_block(pos, layerNum):
-	var new_block = block_scn.instance()
-	var pos_x:float = (pos[0] * tile_height)
-	var pos_z:float = (pos[1] * tile_width)
-	var pos_y = layerNum * tile_depth
-	new_block.translation = Vector3(pos_x, pos_y, pos_z)
-	GameBoard.add_tile(new_block, pos, 0)
-	add_child(new_block)
 	
 func draw_tile(pos, layerNum, type):
 	var new_tile = block_scn.instance()
@@ -75,8 +51,7 @@ func draw_tile(pos, layerNum, type):
 	var pos_y = layerNum * tile_depth
 	new_tile.translation = Vector3(pos_x, pos_y, pos_z)
 	new_tile.set_type(type)
-	GameBoard.add_tile(new_tile, pos, 0)
-	add_child(new_tile)
+	gameboard.add_tile(new_tile, pos, 0)
 	
 func distribute_random():
 	var typeNumberTmp = TileType.TypeNumber.duplicate(true)
@@ -150,13 +125,6 @@ func distribute_random_solvable():
 			var layer_switch:bool = nBlock > 0 and chosen_layer != current_layer
 			current_layer = chosen_layer
 		
-			# if the layer is full, go to next and make layer switch
-#			if layoutTmp[current_layer].size() == 0: # all positions used
-#				current_layer += 1
-#				layer_switch = true
-#				if current_layer >= layoutTmp.size():
-#					break
-		
 			# (2) Choose random row on current layer
 			var rows = layoutTmp[current_layer]
 			var available_rows = []
@@ -221,8 +189,8 @@ func try_solve_bruteforce():
 	var solved = false
 	
 	for i in range(0, num_tries):
-		while GameBoard.board.size() > 0:
-			var hint = GameBoard.get_random_hint()
+		while gameboard.board.size() > 0:
+			var hint = gameboard.get_random_hint()
 			if hint.empty():
 				break
 			else:
@@ -232,15 +200,13 @@ func try_solve_bruteforce():
 				b2.on_clicked()
 			yield(get_tree().create_timer(0.1), "timeout")
 			
-		if GameBoard.board.size() == 0:
+		if gameboard.board.size() == 0:
 			print("Solved!!")
 			solved = true
 			break
 		else:
 			print("Not solved this time. Trying again!")
-			GameBoard.board.clear()
-			for c in get_children():
-				self.remove_child(c)
+			gameboard.board.clear()
 			load_json()
 			yield(get_tree().create_timer(1.0), "timeout")
 		
