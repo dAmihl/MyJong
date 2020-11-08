@@ -79,15 +79,28 @@ func clear():
 	hints.clear()
 	board.clear()
 	for c in get_children():
-		self.remove_child(c)
+		if c.is_in_group("tiles"):
+			self.remove_child(c)
 
 func is_paused():
 	return paused
 
 func pause_board():
 	get_tree().call_group("controllables", "set_process_input", false)
+	pause_timer()
 	paused = true
 
 func unpause_board():
 	get_tree().call_group("controllables", "set_process_input", true)
+	start_timer()
 	paused = false
+
+func start_timer():
+	$GameTimer.start()
+	
+func pause_timer():
+	$GameTimer.stop()
+
+func _on_GameTimer_timeout():
+	gamestats.add_time_passed_second()
+	pass # Replace with function body.

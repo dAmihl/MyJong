@@ -4,3 +4,7 @@
 
 [node name="GameBoard" type="Spatial"]
 script = ExtResource( 1 )
+
+[node name="GameTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]

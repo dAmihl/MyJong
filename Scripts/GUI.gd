@@ -1,5 +1,4 @@
-
-extends CanvasLayer
+extends MarginContainer
 
 # It seems best that GUI is the first child in the scene
 # because nothing should be dependant on GUI, whereas GUI is dependant on
@@ -26,6 +25,8 @@ func _on_GameStatistics_stats_points_changed(p):
 	pass # Replace with function body.
 
 
-func _on_GameStatistics_stats_time_passed(t):
-	time_data.text = str(t)
+func _on_GameStatistics_stats_time_passed(t:int):
+	var minutes = t / 60
+	var seconds = t % 60
+	time_data.text = str(minutes)+":"+("%02d"%seconds)
 	pass # Replace with function body.
