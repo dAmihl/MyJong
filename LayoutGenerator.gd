@@ -33,6 +33,7 @@ func _ready():
 	# TODO RAND SEED
 	RNG.randomize()
 	rngseed = RNG.seed
+	#rngseed = -7205498689132951990 #unsolvable?
 	print("Seed:"+str(rngseed))
 	load_json()
 	pass # Replace with function body.
@@ -179,6 +180,10 @@ func distribute_random_solvable():
 			# (5) Remove pos from layout
 			layoutTmp[current_layer].erase(chosen_edge)
 			
+			typeNumberTmp[type] -= 1
+			if typeNumberTmp[type] <= 0:
+				typeNumberTmp.erase(type)
+			
 			# (6) Draw Tile 
 			draw_tile(chosen_edge, current_layer,type)
 	pass
@@ -198,7 +203,7 @@ func try_solve_bruteforce():
 				var b2 = hint[1]
 				b.on_clicked()
 				b2.on_clicked()
-			yield(get_tree().create_timer(0.1), "timeout")
+			yield(get_tree().create_timer(0.05), "timeout")
 			
 		if gameboard.board.size() == 0:
 			print("Solved!!")
@@ -206,7 +211,7 @@ func try_solve_bruteforce():
 			break
 		else:
 			print("Not solved this time. Trying again!")
-			gameboard.board.clear()
+			gameboard.clear()
 			load_json()
 			yield(get_tree().create_timer(1.0), "timeout")
 		

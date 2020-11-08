@@ -9,6 +9,7 @@ const Man6 = "Man6"
 const Man7 = "Man7"
 const Man8 = "Man8"
 const Man9 = "Man9"
+
 const Pin1 = "Pin1"
 const Pin2 = "Pin2"
 const Pin3 = "Pin3"
@@ -18,32 +19,43 @@ const Pin6 = "Pin6"
 const Pin7 = "Pin7"
 const Pin8 = "Pin8"
 const Pin9 = "Pin9"
+
 const Sou1 = "Sou1"
 const Sou2 = "Sou2"
 const Sou3 = "Sou3"
 const Sou4 = "Sou4"
 const Sou5 = "Sou5"
 const Sou6 = "Sou6"
+const Sou7 = "Sou7"
 const Sou8 = "Sou8"
 const Sou9 = "Sou9"
+
 const Ton = "Ton"
 const Nan = "Nan"
 const Pei = "Pei"
 const Shaa = "Shaa"
+
 const Chun = "Chun"
 const Haku = "Haku"
 const Hatsu = "Hatsu"
 
+# Seasons (all 4 match)
+const Blank = "Blank"
+# Flowers (all 4 match)
+const Flowers = "BlackBlank"
+
 const TypeNumber = {
-	"Man1":6,
-	"Man2":6,
-	"Man3":6,
-	"Man4":6,
-	"Man5":6,
-	"Man6":6,
-	"Man7":6,
-	"Man8":6,
-	"Man9":6,
+	# Suits Dots
+	"Man1":4,
+	"Man2":4,
+	"Man3":4,
+	"Man4":4,
+	"Man5":4,
+	"Man6":4,
+	"Man7":4,
+	"Man8":4,
+	"Man9":4,
+	# Suits Bamboo
 	"Pin1":4,
 	"Pin2":4,
 	"Pin3":4,
@@ -53,21 +65,29 @@ const TypeNumber = {
 	"Pin7":4,
 	"Pin8":4,
 	"Pin9":4,
+	# Suits Characters
 	"Sou1":4,
 	"Sou2":4,
 	"Sou3":4,
 	"Sou4":4,
 	"Sou5":4,
 	"Sou6":4,
+	"Sou7":4,
 	"Sou8":4,
 	"Sou9":4,
+	# Honors Winds
 	"Ton":4,
 	"Nan":4,
 	"Pei":4,
 	"Shaa":4,
-	"Chun":2,
-	"Haku":2,
-	"Hatsu":2
+	# Honors Dragons
+	"Chun":4,
+	"Haku":4,
+	"Hatsu":4,
+	
+	# Bonus Seasons and Flowers
+	"Seasons":4,
+	"Flowers":4
 }
 
 const group_winds = [Ton, Nan, Pei, Shaa]
