@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://assets/new_arraymesh2.tres" type="ArrayMesh" id=1]
+[ext_resource path="res://assets/new_arraymesh3.tres" type="ArrayMesh" id=1]
 [ext_resource path="res://assets/fremd/Regular/Man3.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Tile.gd" type="Script" id=4]
 

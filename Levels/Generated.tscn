@@ -9,14 +9,14 @@
 [ext_resource path="res://Scenes/PauseMenu.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ProceduralSky" id=1]
-sky_top_color = Color( 0.486275, 0.764706, 0.92549, 1 )
 sky_energy = 0.5
-ground_bottom_color = Color( 0.176471, 0.192157, 0.188235, 1 )
-ground_horizon_color = Color( 0.87451, 0.811765, 0.811765, 1 )
+ground_bottom_color = Color( 0.372549, 0.435294, 0.431373, 1 )
+ground_horizon_color = Color( 0.894118, 0.870588, 0.85098, 1 )
 
 [sub_resource type="Environment" id=2]
 background_mode = 2
 background_sky = SubResource( 1 )
+background_color = Color( 0.486275, 0.764706, 0.92549, 1 )
 
 [sub_resource type="PlaneMesh" id=3]
 size = Vector2( 50, 50 )
@@ -56,7 +56,8 @@ visible = false
 script = ExtResource( 5 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -1.25371e-07, 0.995707, -0.0925615, 1.04045e-07, 0.0925615, 0.995707, 1, 1.15202e-07, -1.15203e-07, 1.62676, 17.9889, 10.0506 )
+transform = Transform( -1.62921e-07, 0.906308, -0.422618, 0, 0.422618, 0.906308, 1, 1.47656e-07, -6.88533e-08, -1.79165, 13.6025, 10.0506 )
+projection = 1
 current = true
 fov = 90.0
 size = 30.0
@@ -76,6 +77,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, -7 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.362666, 0.931919, 0, -0.931919, 0.362666, 0, 79.2429, 5.35862 )
