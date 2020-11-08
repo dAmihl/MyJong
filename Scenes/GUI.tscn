@@ -34,101 +34,101 @@ margin_right = 1820.0
 [node name="Center" type="MarginContainer" parent="Margin/VBoxContainer"]
 margin_top = 4.0
 margin_right = 1820.0
-margin_bottom = 918.0
+margin_bottom = 880.0
 mouse_filter = 2
 size_flags_vertical = 3
 
 [node name="BottomBar" type="VBoxContainer" parent="Margin/VBoxContainer"]
-margin_top = 922.0
+margin_top = 884.0
 margin_right = 1820.0
 margin_bottom = 980.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Margin/VBoxContainer/BottomBar"]
 margin_right = 1820.0
-margin_bottom = 58.0
+margin_bottom = 96.0
 
 [node name="Points" type="MarginContainer" parent="Margin/VBoxContainer/BottomBar/HBoxContainer"]
 margin_right = 604.0
-margin_bottom = 58.0
+margin_bottom = 96.0
 size_flags_horizontal = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="Margin/VBoxContainer/BottomBar/HBoxContainer/Points"]
 margin_right = 604.0
-margin_bottom = 58.0
+margin_bottom = 96.0
 
 [node name="HBoxContainer" type="VBoxContainer" parent="Margin/VBoxContainer/BottomBar/HBoxContainer/Points/CenterContainer"]
-margin_left = 248.0
-margin_right = 356.0
-margin_bottom = 58.0
+margin_left = 234.0
+margin_right = 370.0
+margin_bottom = 96.0
 
 [node name="PointsData" type="Label" parent="Margin/VBoxContainer/BottomBar/HBoxContainer/Points/CenterContainer/HBoxContainer"]
-margin_right = 108.0
-margin_bottom = 27.0
+margin_right = 136.0
+margin_bottom = 46.0
 theme = ExtResource( 1 )
 text = "0"
 align = 1
 
 [node name="PointsLabel" type="Label" parent="Margin/VBoxContainer/BottomBar/HBoxContainer/Points/CenterContainer/HBoxContainer"]
-margin_top = 31.0
-margin_right = 108.0
-margin_bottom = 58.0
+margin_top = 50.0
+margin_right = 136.0
+margin_bottom = 96.0
 theme = ExtResource( 1 )
 text = "Points"
 
 [node name="Time" type="MarginContainer" parent="Margin/VBoxContainer/BottomBar/HBoxContainer"]
 margin_left = 608.0
 margin_right = 1212.0
-margin_bottom = 58.0
+margin_bottom = 96.0
 size_flags_horizontal = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="Margin/VBoxContainer/BottomBar/HBoxContainer/Time"]
 margin_right = 604.0
-margin_bottom = 58.0
+margin_bottom = 96.0
 
 [node name="HBoxContainer" type="VBoxContainer" parent="Margin/VBoxContainer/BottomBar/HBoxContainer/Time/CenterContainer"]
-margin_left = 265.0
-margin_right = 339.0
-margin_bottom = 58.0
+margin_left = 252.0
+margin_right = 351.0
+margin_bottom = 96.0
 
 [node name="TimeData" type="Label" parent="Margin/VBoxContainer/BottomBar/HBoxContainer/Time/CenterContainer/HBoxContainer"]
-margin_right = 74.0
-margin_bottom = 27.0
+margin_right = 99.0
+margin_bottom = 46.0
 theme = ExtResource( 1 )
 text = "0"
 align = 1
 
 [node name="TimeLabel" type="Label" parent="Margin/VBoxContainer/BottomBar/HBoxContainer/Time/CenterContainer/HBoxContainer"]
-margin_top = 31.0
-margin_right = 74.0
-margin_bottom = 58.0
+margin_top = 50.0
+margin_right = 99.0
+margin_bottom = 96.0
 theme = ExtResource( 1 )
 text = "Time"
 
 [node name="Moves" type="MarginContainer" parent="Margin/VBoxContainer/BottomBar/HBoxContainer"]
 margin_left = 1216.0
 margin_right = 1820.0
-margin_bottom = 58.0
+margin_bottom = 96.0
 size_flags_horizontal = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="Margin/VBoxContainer/BottomBar/HBoxContainer/Moves"]
 margin_right = 604.0
-margin_bottom = 58.0
+margin_bottom = 96.0
 
 [node name="HBoxContainer" type="VBoxContainer" parent="Margin/VBoxContainer/BottomBar/HBoxContainer/Moves/CenterContainer"]
-margin_left = 249.0
-margin_right = 355.0
-margin_bottom = 58.0
+margin_left = 241.0
+margin_right = 362.0
+margin_bottom = 96.0
 
 [node name="MovesData" type="Label" parent="Margin/VBoxContainer/BottomBar/HBoxContainer/Moves/CenterContainer/HBoxContainer"]
-margin_right = 106.0
-margin_bottom = 27.0
+margin_right = 121.0
+margin_bottom = 46.0
 theme = ExtResource( 1 )
 text = "0"
 align = 1
 
 [node name="MovesLabel" type="Label" parent="Margin/VBoxContainer/BottomBar/HBoxContainer/Moves/CenterContainer/HBoxContainer"]
-margin_top = 31.0
-margin_right = 106.0
-margin_bottom = 58.0
+margin_top = 50.0
+margin_right = 121.0
+margin_bottom = 96.0
 theme = ExtResource( 1 )
 text = "Moves"
