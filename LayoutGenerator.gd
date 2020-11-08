@@ -7,7 +7,9 @@ var tile_height:float = 3.5
 var tile_depth:float = 1.1
 
 var layout = []
-var rngseed = 424242
+var rngseed = 4242
+export var fixed_rngseed = 7715046466232329341
+export var use_seed:bool = true
 
 onready var RNG = RandomNumberGenerator.new()
 onready var gameboard = $"/root/Board/GameBoard"
@@ -33,7 +35,8 @@ func _ready():
 	# TODO RAND SEED
 	RNG.randomize()
 	rngseed = RNG.seed
-	#rngseed = -2933868046714981133 #unsolvable?
+	if use_seed:
+		rngseed = fixed_rngseed #unsolvable?
 	print("Seed:"+str(rngseed))
 	load_json()
 	pass # Replace with function body.

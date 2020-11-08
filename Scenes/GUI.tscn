@@ -44,20 +44,20 @@ size_flags_vertical = 3
 
 [node name="Points" type="MarginContainer" parent="VBoxContainer/Center/VBoxContainer"]
 margin_right = 136.0
-margin_bottom = 321.0
+margin_bottom = 240.0
 mouse_filter = 2
 size_flags_horizontal = 2
 size_flags_vertical = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/Center/VBoxContainer/Points"]
 margin_right = 136.0
-margin_bottom = 321.0
+margin_bottom = 240.0
 mouse_filter = 2
 
 [node name="HBoxContainer" type="VBoxContainer" parent="VBoxContainer/Center/VBoxContainer/Points/CenterContainer"]
-margin_top = 112.0
+margin_top = 72.0
 margin_right = 136.0
-margin_bottom = 208.0
+margin_bottom = 168.0
 
 [node name="PointsData" type="Label" parent="VBoxContainer/Center/VBoxContainer/Points/CenterContainer/HBoxContainer"]
 margin_right = 136.0
@@ -74,22 +74,22 @@ theme = ExtResource( 1 )
 text = "Points"
 
 [node name="Time" type="MarginContainer" parent="VBoxContainer/Center/VBoxContainer"]
-margin_top = 325.0
+margin_top = 244.0
 margin_right = 136.0
-margin_bottom = 646.0
+margin_bottom = 484.0
 mouse_filter = 2
 size_flags_vertical = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/Center/VBoxContainer/Time"]
 margin_right = 136.0
-margin_bottom = 321.0
+margin_bottom = 240.0
 mouse_filter = 2
 
 [node name="HBoxContainer" type="VBoxContainer" parent="VBoxContainer/Center/VBoxContainer/Time/CenterContainer"]
 margin_left = 18.0
-margin_top = 112.0
+margin_top = 72.0
 margin_right = 117.0
-margin_bottom = 208.0
+margin_bottom = 168.0
 
 [node name="TimeData" type="Label" parent="VBoxContainer/Center/VBoxContainer/Time/CenterContainer/HBoxContainer"]
 margin_right = 99.0
@@ -106,22 +106,22 @@ theme = ExtResource( 1 )
 text = "Time"
 
 [node name="Moves" type="MarginContainer" parent="VBoxContainer/Center/VBoxContainer"]
-margin_top = 650.0
+margin_top = 488.0
 margin_right = 136.0
-margin_bottom = 972.0
+margin_bottom = 728.0
 mouse_filter = 2
 size_flags_vertical = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/Center/VBoxContainer/Moves"]
 margin_right = 136.0
-margin_bottom = 322.0
+margin_bottom = 240.0
 mouse_filter = 2
 
 [node name="HBoxContainer" type="VBoxContainer" parent="VBoxContainer/Center/VBoxContainer/Moves/CenterContainer"]
 margin_left = 7.0
-margin_top = 113.0
+margin_top = 72.0
 margin_right = 128.0
-margin_bottom = 209.0
+margin_bottom = 168.0
 
 [node name="MovesData" type="Label" parent="VBoxContainer/Center/VBoxContainer/Moves/CenterContainer/HBoxContainer"]
 margin_right = 121.0
@@ -136,6 +136,38 @@ margin_right = 121.0
 margin_bottom = 96.0
 theme = ExtResource( 1 )
 text = "Moves"
+
+[node name="TilesLeft" type="MarginContainer" parent="VBoxContainer/Center/VBoxContainer"]
+margin_top = 732.0
+margin_right = 136.0
+margin_bottom = 972.0
+mouse_filter = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/Center/VBoxContainer/TilesLeft"]
+margin_right = 136.0
+margin_bottom = 240.0
+mouse_filter = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="VBoxContainer/Center/VBoxContainer/TilesLeft/CenterContainer"]
+margin_left = 11.0
+margin_top = 72.0
+margin_right = 125.0
+margin_bottom = 168.0
+
+[node name="TilesLeftData" type="Label" parent="VBoxContainer/Center/VBoxContainer/TilesLeft/CenterContainer/HBoxContainer"]
+margin_right = 114.0
+margin_bottom = 46.0
+theme = ExtResource( 1 )
+text = "0"
+align = 1
+
+[node name="TilesLeftLabel" type="Label" parent="VBoxContainer/Center/VBoxContainer/TilesLeft/CenterContainer/HBoxContainer"]
+margin_top = 50.0
+margin_right = 114.0
+margin_bottom = 96.0
+theme = ExtResource( 1 )
+text = "Tiles"
 
 [node name="BottomBar" type="VBoxContainer" parent="VBoxContainer"]
 margin_top = 980.0

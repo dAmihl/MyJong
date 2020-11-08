@@ -33,9 +33,10 @@ func is_free() -> bool:
 
 func on_clicked():
 	if (is_free()):
-		$"/root/Board/Controls".block_clicked(self)
+		$"/root/Board/Controls".tile_clicked(self)
 	else:
 		$AnimationPlayer.play("NotFree")
+		$"/root/Board/Controls".tile_not_free_clicked(self)
 	pass
 
 func selected():

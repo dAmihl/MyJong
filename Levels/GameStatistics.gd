@@ -4,11 +4,13 @@ var moves:int = 0 setget set_moves
 var hints_used:int = 0 setget set_hints_used
 var time_passed:float = 0 setget set_time_passed
 var points:int = 0 setget set_points
+var tiles_left:int = 0 setget set_tiles_left
 
 signal stats_moves_changed
 signal stats_hints_used_changed
 signal stats_points_changed
 signal stats_time_passed
+signal stats_tiles_left_changed
 
 func _ready():
 	clear_data()
@@ -32,7 +34,11 @@ func set_moves(m):
 func set_hints_used(h):
 	hints_used = h
 	emit_signal("stats_hints_used_changed", hints_used)
-	
+
+func set_tiles_left(tl):
+	tiles_left = tl
+	emit_signal("stats_tiles_left_changed", tiles_left)
+
 func set_time_passed(t):
 	time_passed = t
 	emit_signal("stats_time_passed", time_passed)
@@ -46,3 +52,4 @@ func clear_data():
 	set_hints_used(0)
 	set_time_passed(0)
 	set_points(0)
+	set_tiles_left(0)

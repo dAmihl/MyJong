@@ -43,6 +43,18 @@ normal_texture = SubResource( 5 )
 
 [node name="Board" type="Spatial"]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource( 6 )
+
+[node name="GUI" parent="CanvasLayer" instance=ExtResource( 4 )]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 7 )]
+pause_mode = 2
+visible = false
+
+[node name="GameStatistics" type="Spatial" parent="."]
+script = ExtResource( 5 )
+
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -1.25371e-07, 0.995707, -0.0925615, 1.04045e-07, 0.0925615, 0.995707, 1, 1.15202e-07, -1.15203e-07, 1.62676, 17.9889, 10.0506 )
 current = true
@@ -56,6 +68,8 @@ script = ExtResource( 1 )
 [node name="Controls" type="Spatial" parent="."]
 pause_mode = 2
 script = ExtResource( 2 )
+
+[node name="AudioClick" type="AudioStreamPlayer" parent="Controls"]
 
 [node name="GameBoard" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, -7 )
@@ -75,24 +89,13 @@ visible = false
 mesh = SubResource( 3 )
 material = SubResource( 6 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-script = ExtResource( 6 )
-
-[node name="GUI" parent="CanvasLayer" instance=ExtResource( 4 )]
-
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 7 )]
-pause_mode = 2
-visible = false
-
-[node name="GameStatistics" type="Spatial" parent="."]
-script = ExtResource( 5 )
-
-[connection signal="pause_game" from="Controls" to="CanvasLayer" method="_on_Controls_pause_game"]
-[connection signal="unpause_game" from="Controls" to="CanvasLayer" method="_on_Controls_unpause_game"]
 [connection signal="new_game" from="CanvasLayer/PauseMenu" to="CanvasLayer" method="_on_PauseMenu_new_game"]
 [connection signal="restart_game" from="CanvasLayer/PauseMenu" to="CanvasLayer" method="_on_PauseMenu_restart_game"]
 [connection signal="resume_game" from="CanvasLayer/PauseMenu" to="CanvasLayer" method="_on_PauseMenu_resume_game"]
 [connection signal="stats_hints_used_changed" from="GameStatistics" to="CanvasLayer/GUI" method="_on_GameStatistics_stats_hints_used_changed"]
 [connection signal="stats_moves_changed" from="GameStatistics" to="CanvasLayer/GUI" method="_on_GameStatistics_stats_moves_changed"]
 [connection signal="stats_points_changed" from="GameStatistics" to="CanvasLayer/GUI" method="_on_GameStatistics_stats_points_changed"]
+[connection signal="stats_tiles_left_changed" from="GameStatistics" to="CanvasLayer/GUI" method="_on_GameStatistics_stats_tiles_left_changed"]
 [connection signal="stats_time_passed" from="GameStatistics" to="CanvasLayer/GUI" method="_on_GameStatistics_stats_time_passed"]
+[connection signal="pause_game" from="Controls" to="CanvasLayer" method="_on_Controls_pause_game"]
+[connection signal="unpause_game" from="Controls" to="CanvasLayer" method="_on_Controls_unpause_game"]

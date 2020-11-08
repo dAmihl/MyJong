@@ -10,6 +10,7 @@ extends MarginContainer
 onready var points_data = find_node("PointsData")
 onready var moves_data = find_node("MovesData")
 onready var time_data = find_node("TimeData")
+onready var tiles_left_data = find_node("TilesLeftData")
 
 func _on_GameStatistics_stats_hints_used_changed(h):
 	pass # Replace with function body.
@@ -29,4 +30,9 @@ func _on_GameStatistics_stats_time_passed(t:int):
 	var minutes = t / 60
 	var seconds = t % 60
 	time_data.text = str(minutes)+":"+("%02d"%seconds)
+	pass # Replace with function body.
+
+
+func _on_GameStatistics_stats_tiles_left_changed(tl):
+	tiles_left_data.text = str(tl)
 	pass # Replace with function body.

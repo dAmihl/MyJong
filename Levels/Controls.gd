@@ -7,6 +7,15 @@ var selection
 signal pause_game
 signal unpause_game
 
+var audio_clicks = [
+	preload("res://assets/ui/Bonus/click1.ogg"), 
+	preload("res://assets/ui/Bonus/click2.ogg")
+]
+
+var audio_locked = [
+	preload("res://assets/ui/Bonus/rollover2.ogg")
+]
+
 func _input(event):
 	if event.is_action_pressed("pause"):
 		pause_game()
@@ -20,19 +29,27 @@ func _input(event):
 	if event.is_action_pressed("restart"):
 		restart_board()
 
-func block_clicked(block):
+func tile_clicked(block):
 	if gameboard.is_paused():
 		return
 	if !is_instance_valid(selection):
 		select_block(block)
+		$AudioClick.stream = audio_clicks[0]
+		$AudioClick.play()
 		return
 	else:
 		if selection == block:
 			deselect_block(selection)
+			$AudioClick.stream = audio_clicks[1]
+			$AudioClick.play()
 		else:
 			eval_selection(selection,block)
 	return
-	
+
+func tile_not_free_clicked(tile):
+	$AudioClick.stream = audio_locked[0]
+	$AudioClick.play()
+
 func select_block(block):
 	selection = block
 	block.selected()
@@ -55,9 +72,13 @@ func eval_selection(sel1, sel2):
 		remove_block(sel2)
 		gamestats.add_move()
 		gamestats.add_points(150)
+		$AudioClick.stream = audio_clicks[1]
+		$AudioClick.play()
 	else:
 		deselect_block(sel1)
 		select_block(sel2)
+		$AudioClick.stream = audio_clicks[0]
+		$AudioClick.play()
 
 func pause_game():
 	if !gameboard.is_paused():

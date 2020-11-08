@@ -6,6 +6,9 @@ var hints = []
 var paused: bool = false
 onready var gamestats = $"/root/Board/GameStatistics"
 
+func _ready():
+	gamestats.set_tiles_left(board.size())
+
 func add_tile(tile, pos, layer):
 	board.append(tile)
 	add_child(tile)
@@ -19,6 +22,7 @@ func board_ready():
 func remove_tile(tile):
 	board.erase(tile)
 	calculate_hints()
+	gamestats.set_tiles_left(board.size())
 	check_move()
 	check_win()
 	
@@ -52,6 +56,9 @@ func get_random_hint() -> Array:
 
 func get_hint() -> Array:
 	calculate_hints()
+	if hints.size() == 0:
+		print("no hints")
+		return []
 	var hint = hints[0]
 	var b = hint[0]
 	var b2 = hint[1]
