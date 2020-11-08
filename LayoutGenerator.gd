@@ -33,7 +33,7 @@ func _ready():
 	# TODO RAND SEED
 	RNG.randomize()
 	rngseed = RNG.seed
-	#rngseed = -7205498689132951990 #unsolvable?
+	rngseed = -2933868046714981133 #unsolvable?
 	print("Seed:"+str(rngseed))
 	load_json()
 	pass # Replace with function body.
@@ -137,7 +137,7 @@ func distribute_random_solvable():
 			# Edge is a pos which has either nothing left or right
 			var edges = []
 			for pos1 in rows:
-				if pos1[0] != chosen_row:
+				if abs(pos1[0] - chosen_row) >= 1:
 					continue
 				var is_edge:bool = true
 				var left_neighbour_found:bool = false
@@ -145,7 +145,7 @@ func distribute_random_solvable():
 				for pos2 in rows:
 					if pos1 == pos2:
 						continue
-					if pos2[0] != chosen_row:
+					if abs(pos2[0] - chosen_row) >= 1:
 						continue
 					if left_neighbour_found and right_neighbour_found:
 						is_edge = false
@@ -166,6 +166,9 @@ func distribute_random_solvable():
 					is_edge = false
 				if is_edge:
 					edges.append(pos1)
+			
+			if type == "Sou1":
+				print(edges)
 			
 			if edges.size() == 0:
 				print("ERROR!! NO EDGES!! Something went terribly wrong")
@@ -205,10 +208,11 @@ func distribute_random_solvable():
 
 
 func try_solve_bruteforce():
-	var num_tries = 100
+	var num_tries = 500
 	var solved = false
 	
 	for i in range(0, num_tries):
+		randomize()
 		while gameboard.board.size() > 0:
 			var hint = gameboard.get_random_hint()
 			if hint.empty():
@@ -226,8 +230,10 @@ func try_solve_bruteforce():
 			break
 		else:
 			print("Not solved this time. Trying again!")
-			gameboard.clear()
-			load_json()
-			yield(get_tree().create_timer(1.0), "timeout")
-		
+			
 	pass
+	
+func restart():
+	gameboard.clear()
+	load_json()
+	yield(get_tree().create_timer(1.0), "timeout")
