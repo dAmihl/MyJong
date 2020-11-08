@@ -10,7 +10,6 @@ func add_tile(tile, pos, layer):
 	pass
 
 func board_ready():
-	randomize()
 	print("Number Tiles: "+ str(board.size()))
 	calculate_hints()
 

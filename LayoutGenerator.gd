@@ -7,6 +7,9 @@ var tile_height:float = 3.5
 var tile_depth:float = 1.1
 
 var layout = []
+var rngseed = 424242
+
+onready var RNG = RandomNumberGenerator.new()
 
 func load_json():
 	var file = File.new()
@@ -27,7 +30,11 @@ func load_json():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# TODO RAND SEED
-	randomize()
+	RNG.randomize()
+	rngseed = RNG.seed
+	# debug
+	rngseed = 4945715921690443365 #unsolvable???
+	print("Seed:"+str(rngseed))
 	load_json()
 	pass # Replace with function body.
 
@@ -37,6 +44,7 @@ func _input(event):
 
 func draw_layout():
 	#distribute_random()
+	RNG.seed = rngseed
 	distribute_random_solvable()
 	GameBoard.board_ready()
 	return
@@ -77,7 +85,7 @@ func distribute_random():
 
 	while(typeNumberTmp.size() > 0 && current_layer < layoutTmp.size()):
 		#pick a type
-		var ixType = randi() % typeNumberTmp.keys().size()
+		var ixType = RNG.randi() % typeNumberTmp.keys().size()
 		var type = typeNumberTmp.keys()[ixType]
 		var numType = typeNumberTmp[type]
 		
@@ -93,7 +101,7 @@ func distribute_random():
 				current_layer += 1
 				if current_layer >= layoutTmp.size():
 					break
-			var pos_idx = randi() % layoutTmp[current_layer].size()
+			var pos_idx = RNG.randi() % layoutTmp[current_layer].size()
 			var pos = layoutTmp[current_layer][pos_idx]
 			layoutTmp[current_layer].erase(pos)
 			draw_tile(pos, current_layer,type)
@@ -111,7 +119,7 @@ func distribute_random_solvable():
 	# While there are tile types left and we dont overshoot the available layers..
 	while(typeNumberTmp.size() > 0 && current_layer < layoutTmp.size()):
 		# (1) pick a remaining random type at random
-		var ixType = randi() % typeNumberTmp.keys().size()
+		var ixType = RNG.randi() % typeNumberTmp.keys().size()
 		var type = typeNumberTmp.keys()[ixType]
 		var numType = typeNumberTmp[type]
 		
@@ -137,7 +145,7 @@ func distribute_random_solvable():
 			if available_layers.size() == 0:
 				# No layers available
 				return
-			var chosen_layer = available_layers[randi()%available_layers.size()]
+			var chosen_layer = available_layers[RNG.randi()%available_layers.size()]
 		
 			var layer_switch:bool = nBlock > 0 and chosen_layer != current_layer
 			current_layer = chosen_layer
@@ -156,7 +164,7 @@ func distribute_random_solvable():
 				if !available_rows.has(pos[0]):
 					available_rows.append(pos[0])
 			
-			var chosen_row = available_rows[randi() % available_rows.size()]
+			var chosen_row = available_rows[RNG.randi() % available_rows.size()]
 			
 			# (3) Get edges on chosen row, including half-steps (+- 0.5).
 			# Edge is a pos which has either nothing left or right
@@ -197,7 +205,7 @@ func distribute_random_solvable():
 				return
 			
 			# (4) Choose random edge
-			var chosen_edge = edges[randi() % edges.size()]
+			var chosen_edge = edges[RNG.randi() % edges.size()]
 			previous_chosen_edge = chosen_edge
 			
 			# (5) Remove pos from layout
@@ -209,7 +217,7 @@ func distribute_random_solvable():
 
 
 func try_solve_bruteforce():
-	var num_tries = 10
+	var num_tries = 100
 	var solved = false
 	
 	for i in range(0, num_tries):
