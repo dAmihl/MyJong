@@ -167,9 +167,6 @@ func distribute_random_solvable():
 				if is_edge:
 					edges.append(pos1)
 			
-			if type == "Sou1":
-				print(edges)
-			
 			if edges.size() == 0:
 				print("ERROR!! NO EDGES!! Something went terribly wrong")
 				return

@@ -1,5 +1,6 @@
 class_name TileType
 
+# Suits Dots
 const Man1 = "Man1"
 const Man2 = "Man2"
 const Man3 = "Man3"
@@ -9,7 +10,7 @@ const Man6 = "Man6"
 const Man7 = "Man7"
 const Man8 = "Man8"
 const Man9 = "Man9"
-
+# Suits Characters
 const Pin1 = "Pin1"
 const Pin2 = "Pin2"
 const Pin3 = "Pin3"
@@ -19,7 +20,7 @@ const Pin6 = "Pin6"
 const Pin7 = "Pin7"
 const Pin8 = "Pin8"
 const Pin9 = "Pin9"
-
+# Suits Bamboo
 const Sou1 = "Sou1"
 const Sou2 = "Sou2"
 const Sou3 = "Sou3"
@@ -29,16 +30,15 @@ const Sou6 = "Sou6"
 const Sou7 = "Sou7"
 const Sou8 = "Sou8"
 const Sou9 = "Sou9"
-
+# Honors Winds
 const Ton = "Ton"
 const Nan = "Nan"
 const Pei = "Pei"
 const Shaa = "Shaa"
-
+# Honors Dragons
 const Chun = "Chun"
 const Haku = "Haku"
 const Hatsu = "Hatsu"
-
 # Seasons (all 4 match)
 const Seasons1 = "Seasons1"
 const Seasons2 = "Seasons2"
@@ -51,55 +51,105 @@ const Flowers3 = "Flowers3"
 const Flowers4 = "Flowers4"
 
 const TypeNumber = {
-	# Suits Dots
-	"Man1":4,
-	"Man2":4,
-	"Man3":4,
-	"Man4":4,
-	"Man5":4,
-	"Man6":4,
-	"Man7":4,
-	"Man8":4,
-	"Man9":4,
-	# Suits Bamboo
-	"Pin1":4,
-	"Pin2":4,
-	"Pin3":4,
-	"Pin4":4,
-	"Pin5":4,
-	"Pin6":4,
-	"Pin7":4,
-	"Pin8":4,
-	"Pin9":4,
-	# Suits Characters
-	"Sou1":4,
-	"Sou2":4,
-	"Sou3":4,
-	"Sou4":4,
-	"Sou5":4,
-	"Sou6":4,
-	"Sou7":4,
-	"Sou8":4,
-	"Sou9":4,
-	# Honors Winds
-	"Ton":4,
-	"Nan":4,
-	"Pei":4,
-	"Shaa":4,
-	# Honors Dragons
-	"Chun":4,
-	"Haku":4,
-	"Hatsu":4,
+	Man1:4,
+	Man2:4,
+	Man3:4,
+	Man4:4,
+	Man5:4,
+	Man6:4,
+	Man7:4,
+	Man8:4,
+	Man9:4,
+
+	Pin1:4,
+	Pin2:4,
+	Pin3:4,
+	Pin4:4,
+	Pin5:4,
+	Pin6:4,
+	Pin7:4,
+	Pin8:4,
+	Pin9:4,
+
+	Sou1:4,
+	Sou2:4,
+	Sou3:4,
+	Sou4:4,
+	Sou5:4,
+	Sou6:4,
+	Sou7:4,
+	Sou8:4,
+	Sou9:4,
+
+	Ton:4,
+	Nan:4,
+	Pei:4,
+	Shaa:4,
+
+	Chun:4,
+	Haku:4,
+	Hatsu:4,
 	
-	# Bonus Seasons and Flowers
-	"Seasons1":1,
-	"Seasons2":1,
-	"Seasons3":1,
-	"Seasons4":1,
-	"Flowers1":1,
-	"Flowers2":1,
-	"Flowers3":1,
-	"Flowers4":1,
+	Seasons1:1,
+	Seasons2:1,
+	Seasons3:1,
+	Seasons4:1,
+	
+	Flowers1:1,
+	Flowers2:1,
+	Flowers3:1,
+	Flowers4:1,
+}
+
+const TypeTexture = {
+	Man1:"Man1",
+	Man2:"Man2",
+	Man3:"Man3",
+	Man4:"Man4",
+	Man5:"Man5",
+	Man6:"Man6",
+	Man7:"Man7",
+	Man8:"Man8",
+	Man9:"Man9",
+
+	Pin1:"Pin1",
+	Pin2:"Pin2",
+	Pin3:"Pin3",
+	Pin4:"Pin4",
+	Pin5:"Pin5",
+	Pin6:"Pin6",
+	Pin7:"Pin7",
+	Pin8:"Pin8",
+	Pin9:"Pin9",
+
+	Sou1:"Sou1",
+	Sou2:"Sou2",
+	Sou3:"Sou3",
+	Sou4:"Sou4",
+	Sou5:"Sou5",
+	Sou6:"Sou6",
+	Sou7:"Sou7",
+	Sou8:"Sou8",
+	Sou9:"Sou9",
+
+	Ton:"Ton",
+	Nan:"Nan",
+	Pei:"Pei",
+	Shaa:"Shaa",
+
+	Chun:"Chun",
+	Haku:"Haku",
+	Hatsu:"Hatsu",
+
+	Seasons1:"BlackBlank",
+	Seasons2:"BlackBlank",
+	Seasons3:"BlackBlank",
+	Seasons4:"BlackBlank",
+
+	Flowers1:"Blank",
+	Flowers2:"Blank",
+	Flowers3:"Blank",
+	Flowers4:"Blank",
 }
 
 const group_winds = [Ton, Nan, Pei, Shaa]
@@ -134,4 +184,5 @@ static func get_types_from_same_group(type:String)->Array:
 	return ret
 
 static func type_texture_path(type):
-	return "res://assets/fremd/Regular/"+type+".png"
+	var textureName = TypeTexture[type]
+	return "res://assets/fremd/Regular/"+textureName+".png"
