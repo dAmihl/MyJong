@@ -4,10 +4,10 @@
 [ext_resource path="res://assets/fremd/Regular/Man3.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Tile.gd" type="Script" id=4]
 
-[sub_resource type="BoxShape" id=6]
+[sub_resource type="BoxShape" id=1]
 extents = Vector3( 1.5414, 0.618122, 1.06495 )
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=2]
 resource_name = "HintHighlight"
 length = 0.5
 loop = true
@@ -19,7 +19,7 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.1, 1, 0, 0, 0, 0, 0, 0, 1, 1.1, 1.1, 1.1, 0.4, 1, 0, 0, 0, 0, -30, 0, 1, 0.7, 0.7, 0.7, 0.5, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=3]
 resource_name = "NotFree"
 length = 0.3
 tracks/0/type = "transform"
@@ -30,7 +30,7 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.1, 1, 0, 0, -0.1, 0, 0, 0, 1, 1, 1, 1, 0.2, 1, 0, 0, 0.1, 0, 0, 0, 1, 1, 1, 1, 0.3, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=4]
 resource_name = "Selected"
 loop = true
 tracks/0/type = "transform"
@@ -48,14 +48,14 @@ type = "Man3"
 
 [node name="CollissionShapeBody" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.663949, -0.388883, 0 )
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 
 [node name="Area" type="Area" parent="."]
 collision_layer = 0
 
 [node name="CollisionShapeArea" type="CollisionShape" parent="Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.663949, -0.388883, 0 )
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 
 [node name="MeshGroup" type="Spatial" parent="."]
 
@@ -65,14 +65,14 @@ material/0 = null
 material/1 = null
 
 [node name="Symbol" type="Sprite3D" parent="MeshGroup"]
-transform = Transform( -5.0711e-08, 0, 0.311262, 0, 0.311262, 0, -0.311262, 0, -5.0711e-08, -0.632217, -0.0951115, 0 )
+transform = Transform( -5.0711e-08, 0, -0.311262, 0, 0.311262, 0, 0.311262, 0, -5.0711e-08, -0.632217, -0.0951115, 0 )
 axis = 1
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/HintHighlight = SubResource( 9 )
-anims/NotFree = SubResource( 8 )
-anims/Selected = SubResource( 7 )
+anims/HintHighlight = SubResource( 2 )
+anims/NotFree = SubResource( 3 )
+anims/Selected = SubResource( 4 )
 
 [connection signal="input_event" from="." to="." method="_on_Tile_input_event"]
 [connection signal="input_event" from="Area" to="." method="_on_Area_input_event"]

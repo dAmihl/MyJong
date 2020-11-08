@@ -99,17 +99,15 @@ func distribute_random_solvable():
 		var type = typeNumberTmp.keys()[ixType]
 		var numType = typeNumberTmp[type]
 		
-		# Pairwise means the tile type needs a pair
-		# we also have to generate those in pairs to satisfy solvability
-		var bPairwise = numType % 2 == 0
-		var num_blocks = 1
-		if bPairwise:
-			num_blocks = 2
-	
+		# Pairwise means the tile type has a pair of the exact same type
+		# if not pairwise, then the tile is in a group
+		# we then have to choose a new type from the same group for the 2nd
+		# tile
+		var typeGrouped = numType % 2 == 1
 		var previous_chosen_edge
 	
-		# Do this for the amount of blocks we need:
-		for nBlock in range(0, num_blocks):
+		# Do this for the amount of blocks we need: always pairwise
+		for nBlock in range(0, 2):
 		
 			# (1.5) Choose layer at random from all with space
 			# Get all layers with space
@@ -186,6 +184,23 @@ func distribute_random_solvable():
 			
 			# (6) Draw Tile 
 			draw_tile(chosen_edge, current_layer,type)
+			
+			# (7) If the Tile is in a group and has not another tile from the
+			# same type, we have to choose a tile from the same group for the 
+			# second tile
+			if (nBlock == 0 and typeGrouped):
+				# we choose the next tile in after the first tile
+				var second_types = TileType.get_types_from_same_group(type)
+				var available_second_types = []
+				for st in second_types:
+					if typeNumberTmp.has(st):
+						available_second_types.append(st)
+				if available_second_types.empty():
+					print("No other Type in Group found!!")
+					return
+				# now choose next type as random type from list
+				type = available_second_types[randi()%available_second_types.size()]
+				
 	pass
 
 

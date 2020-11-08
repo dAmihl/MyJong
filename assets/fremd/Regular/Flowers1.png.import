@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/BlackBlank.png-7e714b46c9a9d8636224e1a88bfcc6d1.stex"
+path="res://.import/Flowers1.png-dbd014a1257365801ca90eeeb1cf7a17.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/fremd/Regular/BlackBlank.png"
-dest_files=[ "res://.import/BlackBlank.png-7e714b46c9a9d8636224e1a88bfcc6d1.stex" ]
+source_file="res://assets/fremd/Regular/Flowers1.png"
+dest_files=[ "res://.import/Flowers1.png-dbd014a1257365801ca90eeeb1cf7a17.stex" ]
 
 [params]
 

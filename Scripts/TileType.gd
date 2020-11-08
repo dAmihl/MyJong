@@ -40,9 +40,15 @@ const Haku = "Haku"
 const Hatsu = "Hatsu"
 
 # Seasons (all 4 match)
-const Blank = "Blank"
+const Seasons1 = "Seasons1"
+const Seasons2 = "Seasons2"
+const Seasons3 = "Seasons3"
+const Seasons4 = "Seasons4"
 # Flowers (all 4 match)
-const Flowers = "BlackBlank"
+const Flowers1 = "Flowers1"
+const Flowers2 = "Flowers2"
+const Flowers3 = "Flowers3"
+const Flowers4 = "Flowers4"
 
 const TypeNumber = {
 	# Suits Dots
@@ -86,12 +92,20 @@ const TypeNumber = {
 	"Hatsu":4,
 	
 	# Bonus Seasons and Flowers
-	"Seasons":4,
-	"Flowers":4
+	"Seasons1":1,
+	"Seasons2":1,
+	"Seasons3":1,
+	"Seasons4":1,
+	"Flowers1":1,
+	"Flowers2":1,
+	"Flowers3":1,
+	"Flowers4":1,
 }
 
 const group_winds = [Ton, Nan, Pei, Shaa]
 const group_dragons = [Chun, Haku, Hatsu]
+const group_seasons = [Seasons1, Seasons2, Seasons3, Seasons4]
+const group_flowers = [Flowers1, Flowers2, Flowers3, Flowers4]
 
 static func types_match(t1, t2):
 	if t1 == t2:
@@ -100,6 +114,24 @@ static func types_match(t1, t2):
 		return true
 	if t1 in group_dragons and t2 in group_dragons:
 		return true
+	if t1 in group_seasons and t2 in group_seasons:
+		return true
+	if t1 in group_flowers and t2 in group_flowers:
+		return true
+
+# Given a type, return a new type from the same group
+static func get_types_from_same_group(type:String)->Array:
+	var ret = []
+	if type in group_winds:
+		ret = group_winds.duplicate()
+	if type in group_dragons:
+		ret = group_dragons.duplicate()
+	if type in group_seasons:
+		ret = group_seasons.duplicate()
+	if type in group_flowers:
+		ret = group_flowers.duplicate()
+	ret.erase(type)
+	return ret
 
 static func type_texture_path(type):
 	return "res://assets/fremd/Regular/"+type+".png"
