@@ -41,7 +41,10 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.5, 1, 0, 0.3, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
 
-[node name="Tile" type="StaticBody"]
+[node name="Tile" type="StaticBody" groups=[
+"controllables",
+"tiles",
+]]
 collision_mask = 0
 script = ExtResource( 4 )
 type = "Man3"

@@ -3,6 +3,8 @@ extends Spatial
 var board = []
 var hints = []
 
+var paused: bool = false
+
 func add_tile(tile, pos, layer):
 	board.append(tile)
 	add_child(tile)
@@ -11,6 +13,7 @@ func add_tile(tile, pos, layer):
 func board_ready():
 	print("Number Tiles: "+ str(board.size()))
 	calculate_hints()
+	unpause_board()
 
 func remove_tile(tile):
 	board.erase(tile)
@@ -70,9 +73,19 @@ func calculate_hints():
 					hints.append([b, b2])
 
 func clear():
+	pause_board()
 	hints.clear()
 	board.clear()
 	for c in get_children():
 		self.remove_child(c)
 
+func is_paused():
+	return paused
 
+func pause_board():
+	get_tree().call_group("controllables", "set_process_input", false)
+	paused = true
+
+func unpause_board():
+	get_tree().call_group("controllables", "set_process_input", true)
+	paused = false

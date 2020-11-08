@@ -49,7 +49,9 @@ size = 30.0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.96185, 0, -7.36276 )
 script = ExtResource( 1 )
 
-[node name="Controls" type="Spatial" parent="."]
+[node name="Controls" type="Spatial" parent="." groups=[
+"controllables",
+]]
 script = ExtResource( 2 )
 
 [node name="GameBoard" parent="." instance=ExtResource( 3 )]
