@@ -65,6 +65,7 @@ size = 30.0
 [node name="LayoutGenerator" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.96185, 0, -7.36276 )
 script = ExtResource( 1 )
+use_seed = false
 
 [node name="Controls" type="Spatial" parent="."]
 pause_mode = 2

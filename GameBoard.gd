@@ -18,6 +18,8 @@ func board_ready():
 	print("Number Tiles: "+ str(board.size()))
 	calculate_hints()
 	unpause_board()
+	if (is_instance_valid(gamestats)):
+		gamestats.set_tiles_left(board.size())
 
 func remove_tile(tile):
 	board.erase(tile)
