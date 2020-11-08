@@ -1,7 +1,7 @@
 extends Spatial
 
 onready var gameboard = $"/root/Board/GameBoard"
-
+onready var gamestats = $"/root/Board/GameStatistics"
 var selection
 
 func _input(event):
@@ -48,6 +48,8 @@ func eval_selection(sel1, sel2):
 	if (TileType.types_match(sel1.type, sel2.type)):
 		remove_block(sel1)
 		remove_block(sel2)
+		gamestats.add_move()
+		gamestats.add_points(150)
 	else:
 		deselect_block(sel1)
 		select_block(sel2)

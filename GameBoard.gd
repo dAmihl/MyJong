@@ -4,6 +4,7 @@ var board = []
 var hints = []
 
 var paused: bool = false
+onready var gamestats = $"/root/Board/GameStatistics"
 
 func add_tile(tile, pos, layer):
 	board.append(tile)
@@ -56,6 +57,7 @@ func get_hint() -> Array:
 	var b2 = hint[1]
 	b.hint_highlight()
 	b2.hint_highlight()
+	gamestats.add_hint_used()
 	return hint
 
 func calculate_hints():

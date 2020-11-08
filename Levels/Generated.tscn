@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://LayoutGenerator.gd" type="Script" id=1]
 [ext_resource path="res://Levels/Controls.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/GameBoard.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/GUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Levels/GameStatistics.gd" type="Script" id=5]
 
 [sub_resource type="ProceduralSky" id=1]
 sky_top_color = Color( 0.486275, 0.764706, 0.92549, 1 )
@@ -40,7 +42,7 @@ normal_texture = SubResource( 5 )
 [node name="Board" type="Spatial"]
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -1.25371e-07, 0.995707, -0.0925615, 1.04045e-07, 0.0925615, 0.995707, 1, 1.15202e-07, -1.15203e-07, 2.48157, 17.2178, 10.0506 )
+transform = Transform( -1.25371e-07, 0.995707, -0.0925615, 1.04045e-07, 0.0925615, 0.995707, 1, 1.15202e-07, -1.15203e-07, 1.62676, 17.9889, 10.0506 )
 current = true
 fov = 90.0
 size = 30.0
@@ -70,3 +72,13 @@ directional_shadow_mode = 0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.421515, 0, 9.91558 )
 mesh = SubResource( 3 )
 material = SubResource( 6 )
+
+[node name="GUI" parent="." instance=ExtResource( 4 )]
+
+[node name="GameStatistics" type="Spatial" parent="."]
+script = ExtResource( 5 )
+
+[connection signal="stats_hints_used_changed" from="GameStatistics" to="GUI" method="_on_GameStatistics_stats_hints_used_changed"]
+[connection signal="stats_moves_changed" from="GameStatistics" to="GUI" method="_on_GameStatistics_stats_moves_changed"]
+[connection signal="stats_points_changed" from="GameStatistics" to="GUI" method="_on_GameStatistics_stats_points_changed"]
+[connection signal="stats_time_passed" from="GameStatistics" to="GUI" method="_on_GameStatistics_stats_time_passed"]
