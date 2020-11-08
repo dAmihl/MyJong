@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/new_arraymesh2.tres" type="ArrayMesh" id=1]
+[ext_resource path="res://assets/fremd/Regular/Man3.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Tile.gd" type="Script" id=4]
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 1.5414, 0.618122, 1.06495 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "HintHighlight"
+length = 0.5
+loop = true
+tracks/0/type = "transform"
+tracks/0/path = NodePath("MeshGroup")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.1, 1, 0, 0, 0, 0, 0, 0, 1, 1.1, 1.1, 1.1, 0.4, 1, 0, 0, 0, 0, -30, 0, 1, 0.7, 0.7, 0.7, 0.5, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "NotFree"
+length = 0.3
+tracks/0/type = "transform"
+tracks/0/path = NodePath("MeshGroup")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.1, 1, 0, 0, -0.1, 0, 0, 0, 1, 1, 1, 1, 0.2, 1, 0, 0, 0.1, 0, 0, 0, 1, 1, 1, 1, 0.3, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "Selected"
+loop = true
+tracks/0/type = "transform"
+tracks/0/path = NodePath("MeshGroup")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.5, 1, 0, 0.3, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
+
+[node name="Tile" type="StaticBody"]
+collision_mask = 0
+script = ExtResource( 4 )
+type = "Man3"
+
+[node name="CollissionShapeBody" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.663949, -0.388883, 0 )
+shape = SubResource( 6 )
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 0
+
+[node name="CollisionShapeArea" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.663949, -0.388883, 0 )
+shape = SubResource( 6 )
+
+[node name="MeshGroup" type="Spatial" parent="."]
+
+[node name="Tile" type="MeshInstance" parent="MeshGroup"]
+mesh = ExtResource( 1 )
+material/0 = null
+material/1 = null
+
+[node name="Symbol" type="Sprite3D" parent="MeshGroup"]
+transform = Transform( -5.0711e-08, 0, 0.311262, 0, 0.311262, 0, -0.311262, 0, -5.0711e-08, -0.632217, -0.0951115, 0 )
+axis = 1
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/HintHighlight = SubResource( 9 )
+anims/NotFree = SubResource( 8 )
+anims/Selected = SubResource( 7 )
+
+[connection signal="input_event" from="." to="." method="_on_Tile_input_event"]
+[connection signal="input_event" from="Area" to="." method="_on_Area_input_event"]

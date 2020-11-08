@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://LayoutGenerator.gd" type="Script" id=1]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -1.51928e-07, 0.914734, -0.404056, 5.88313e-08, 0.404056, 0.914734, 1, 1.15202e-07, -1.15202e-07, -16.4532, 44.8203, 7.29806 )
+current = true
+fov = 30.0
+size = 30.0
+
+[node name="LayoutGenerator" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.96185, 0, -7.36276 )
+script = ExtResource( 1 )
