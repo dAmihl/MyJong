@@ -1,10 +1,16 @@
-[gd_resource type="ArrayMesh" load_steps=7 format=2]
+[gd_resource type="ArrayMesh" load_steps=8 format=2]
 
 [ext_resource path="res://assets/Back.png" type="Texture" id=1]
 [ext_resource path="res://assets/Front.png" type="Texture" id=2]
 
-[sub_resource type="Shader" id=1]
-resource_name = "Shader Nodetree"
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+params_cull_mode = 1
+params_grow = true
+params_grow_amount = 0.05
+albedo_color = Color( 0.2, 0.0196078, 0.0196078, 1 )
+
+[sub_resource type="Shader" id=2]
 code = "shader_type spatial;
 render_mode blend_mix, depth_draw_always, cull_back, diffuse_burley, specular_schlick_ggx;
 
@@ -126,12 +132,12 @@ void fragment () {
 }
 "
 
-[sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
+[sub_resource type="ShaderMaterial" id=3]
+next_pass = SubResource( 1 )
+shader = SubResource( 2 )
 shader_param/texture_0 = ExtResource( 2 )
 
-[sub_resource type="Shader" id=3]
-resource_name = "Shader Nodetree"
+[sub_resource type="Shader" id=4]
 code = "shader_type spatial;
 render_mode blend_mix, depth_draw_always, cull_back, diffuse_burley, specular_schlick_ggx;
 
@@ -253,8 +259,8 @@ void fragment () {
 }
 "
 
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 3 )
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
 shader_param/texture_0 = ExtResource( 1 )
 
 [resource]
@@ -266,7 +272,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 126,
-"material": SubResource( 2 ),
+"material": SubResource( 3 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 122
@@ -278,7 +284,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 126,
-"material": SubResource( 4 ),
+"material": SubResource( 5 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 110

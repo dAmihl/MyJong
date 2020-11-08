@@ -1,15 +1,48 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://LayoutGenerator.gd" type="Script" id=1]
 [ext_resource path="res://Levels/Controls.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/GameBoard.tscn" type="PackedScene" id=3]
 
+[sub_resource type="ProceduralSky" id=1]
+sky_top_color = Color( 0.486275, 0.764706, 0.92549, 1 )
+sky_energy = 0.5
+ground_bottom_color = Color( 0.176471, 0.192157, 0.188235, 1 )
+ground_horizon_color = Color( 0.87451, 0.811765, 0.811765, 1 )
+
+[sub_resource type="Environment" id=2]
+background_mode = 2
+background_sky = SubResource( 1 )
+
+[sub_resource type="PlaneMesh" id=3]
+size = Vector2( 50, 50 )
+subdivide_width = 32
+subdivide_depth = 32
+
+[sub_resource type="OpenSimplexNoise" id=4]
+seed = 12334
+period = 95.6
+persistence = 1.0
+lacunarity = 2.22
+
+[sub_resource type="NoiseTexture" id=5]
+as_normalmap = true
+bump_strength = 10.4
+noise = SubResource( 4 )
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.133333, 0.592157, 0.411765, 1 )
+metallic = 0.1
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = SubResource( 5 )
+
 [node name="Board" type="Spatial"]
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -1.51928e-07, 0.914734, -0.404056, 5.88313e-08, 0.404056, 0.914734, 1, 1.15202e-07, -1.15202e-07, -16.4532, 44.8203, 7.29806 )
+transform = Transform( -1.25371e-07, 0.995707, -0.0925615, 1.04045e-07, 0.0925615, 0.995707, 1, 1.15202e-07, -1.15203e-07, 2.48157, 17.2178, 10.0506 )
 current = true
-fov = 30.0
+fov = 90.0
 size = 30.0
 
 [node name="LayoutGenerator" type="Spatial" parent="."]
@@ -20,4 +53,18 @@ script = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="GameBoard" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -7 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, -7 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.362666, 0.931919, 0, -0.931919, 0.362666, 0, 79.2429, 5.35862 )
+light_energy = 0.5
+shadow_enabled = true
+directional_shadow_mode = 0
+
+[node name="BoardMesh" type="CSGMesh" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.421515, 0, 9.91558 )
+mesh = SubResource( 3 )
+material = SubResource( 6 )

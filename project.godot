@@ -24,6 +24,11 @@ config/name="MyJong"
 run/main_scene="res://Levels/Generated.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=1920
+window/size/height=1080
+
 [input]
 
 hint={
@@ -49,4 +54,5 @@ limits/debugger_stdout/max_messages_per_frame=30
 
 [rendering]
 
+quality/filters/msaa=2
 environment/default_environment="res://default_env.tres"

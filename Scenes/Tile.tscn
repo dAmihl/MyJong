@@ -65,8 +65,11 @@ material/0 = null
 material/1 = null
 
 [node name="Symbol" type="Sprite3D" parent="MeshGroup"]
-transform = Transform( -5.0711e-08, 0, -0.311262, 0, 0.311262, 0, 0.311262, 0, -5.0711e-08, -0.632217, -0.0951115, 0 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -0.632217, -0.0951115, 0 )
+cast_shadow = 0
+pixel_size = 0.003
 axis = 1
+double_sided = false
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

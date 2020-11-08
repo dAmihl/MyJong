@@ -6,7 +6,7 @@ var selection
 
 func _input(event):
 	if event.is_action_pressed("hint"):
-		gameboard.get_random_hint()
+		gameboard.get_hint()
 	if event.is_action_pressed("autosolve"):
 		$"../LayoutGenerator".try_solve_bruteforce()
 	if event.is_action_pressed("restart"):
