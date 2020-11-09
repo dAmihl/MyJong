@@ -14,9 +14,11 @@ ground_bottom_color = Color( 0.372549, 0.435294, 0.431373, 1 )
 ground_horizon_color = Color( 0.894118, 0.870588, 0.85098, 1 )
 
 [sub_resource type="Environment" id=2]
-background_mode = 2
+background_mode = 1
 background_sky = SubResource( 1 )
-background_color = Color( 0.486275, 0.764706, 0.92549, 1 )
+background_color = Color( 0.72549, 0.866667, 0.945098, 1 )
+ambient_light_color = Color( 1, 0.988235, 0.988235, 1 )
+ambient_light_energy = 0.5
 
 [sub_resource type="PlaneMesh" id=3]
 size = Vector2( 50, 50 )
@@ -106,3 +108,4 @@ material = SubResource( 6 )
 [connection signal="stats_time_passed" from="GameStatistics" to="CanvasLayer/GUI" method="_on_GameStatistics_stats_time_passed"]
 [connection signal="pause_game" from="Controls" to="CanvasLayer" method="_on_Controls_pause_game"]
 [connection signal="unpause_game" from="Controls" to="CanvasLayer" method="_on_Controls_unpause_game"]
+[connection signal="game_win" from="GameBoard" to="CanvasLayer" method="_on_GameBoard_game_win"]

@@ -68,10 +68,10 @@ func remove_block(block):
 	
 func eval_selection(sel1, sel2):
 	if (TileType.types_match(sel1.type, sel2.type)):
-		remove_block(sel1)
-		remove_block(sel2)
 		gamestats.add_move()
 		gamestats.add_points(150)
+		remove_block(sel1)
+		remove_block(sel2)
 		$AudioClick.stream = audio_clicks[1]
 		$AudioClick.play()
 	else:

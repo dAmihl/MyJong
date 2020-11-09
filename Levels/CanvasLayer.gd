@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+var win_scn = preload("res://Scenes/WinMenu.tscn")
 
 func _on_Controls_pause_game():
 	$GUI.visible = false
@@ -45,4 +46,16 @@ func _on_GUI_pause_btn():
 
 func _on_GUI_restart_btn():
 	$"/root/Board/Controls".restart_board()
+	pass # Replace with function body.
+
+
+func _on_GameBoard_game_win(points,time,hints,moves):
+	self.remove_child($GUI)
+	self.remove_child($PauseMenu)
+	var win_gui = win_scn.instance()
+	self.add_child(win_gui)
+	win_gui.set_points(points)
+	win_gui.set_time(time)
+	win_gui.set_hints(hints)
+	win_gui.set_moves(moves)
 	pass # Replace with function body.

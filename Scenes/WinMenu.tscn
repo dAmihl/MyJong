@@ -1,0 +1,272 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Theme/DefaultTheme.tres" type="Theme" id=1]
+[ext_resource path="res://assets/ui/PNG/grey_panel.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/PNG/green_button01.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/PNG/green_button02.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/Font/Fonts/Kenney Blocks.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Scenes/WinMenu.gd" type="Script" id=6]
+[ext_resource path="res://assets/ui/PNG/green_button00.png" type="Texture" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 120
+font_data = ExtResource( 5 )
+
+[node name="WinMenu" type="MarginContainer"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+margin_right = 551.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
+margin_left = 555.0
+margin_right = 1365.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer3"]
+visible = false
+margin_right = 810.0
+margin_bottom = 1080.0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer3"]
+margin_right = 810.0
+margin_bottom = 1080.0
+
+[node name="Title" type="MarginContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer"]
+margin_right = 810.0
+margin_bottom = 290.0
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer/Title"]
+margin_right = 810.0
+margin_bottom = 290.0
+
+[node name="PausedLabel" type="Label" parent="HBoxContainer/MarginContainer3/VBoxContainer/Title/CenterContainer"]
+margin_top = 55.0
+margin_right = 810.0
+margin_bottom = 235.0
+theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 1, 0.34902, 1 )
+text = "All Clear!"
+
+[node name="Stats" type="MarginContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer"]
+margin_top = 294.0
+margin_right = 810.0
+margin_bottom = 490.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer/Stats"]
+margin_right = 810.0
+margin_bottom = 196.0
+
+[node name="Points" type="MarginContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer/Stats/VBoxContainer"]
+margin_right = 810.0
+margin_bottom = 96.0
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer/Stats/VBoxContainer/Points"]
+margin_right = 810.0
+margin_bottom = 96.0
+
+[node name="HBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer/Stats/VBoxContainer/Points/CenterContainer"]
+margin_left = 348.0
+margin_right = 461.0
+margin_bottom = 96.0
+
+[node name="PointsData" type="Label" parent="HBoxContainer/MarginContainer3/VBoxContainer/Stats/VBoxContainer/Points/CenterContainer/HBoxContainer"]
+margin_right = 113.0
+margin_bottom = 46.0
+theme = ExtResource( 1 )
+text = "133"
+align = 1
+
+[node name="PointsLabel" type="Label" parent="HBoxContainer/MarginContainer3/VBoxContainer/Stats/VBoxContainer/Points/CenterContainer/HBoxContainer"]
+margin_top = 50.0
+margin_right = 113.0
+margin_bottom = 96.0
+theme = ExtResource( 1 )
+text = "Score"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer/Stats/VBoxContainer"]
+margin_top = 100.0
+margin_right = 810.0
+margin_bottom = 196.0
+
+[node name="Moves" type="MarginContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer/Stats/VBoxContainer/HBoxContainer"]
+margin_right = 267.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer/Stats/VBoxContainer/HBoxContainer/Moves"]
+margin_right = 267.0
+margin_bottom = 96.0
+
+[node name="HBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer/Stats/VBoxContainer/HBoxContainer/Moves/CenterContainer"]
+margin_left = 73.0
+margin_right = 194.0
+margin_bottom = 96.0
+
+[node name="MovesData" type="Label" parent="HBoxContainer/MarginContainer3/VBoxContainer/Stats/VBoxContainer/HBoxContainer/Moves/CenterContainer/HBoxContainer"]
+margin_right = 121.0
+margin_bottom = 46.0
+theme = ExtResource( 1 )
+text = "25"
+align = 1
+
+[node name="MovesLabel" type="Label" parent="HBoxContainer/MarginContainer3/VBoxContainer/Stats/VBoxContainer/HBoxContainer/Moves/CenterContainer/HBoxContainer"]
+margin_top = 50.0
+margin_right = 121.0
+margin_bottom = 96.0
+theme = ExtResource( 1 )
+text = "Moves"
+align = 1
+
+[node name="Hints" type="MarginContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer/Stats/VBoxContainer/HBoxContainer"]
+margin_left = 271.0
+margin_right = 538.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer/Stats/VBoxContainer/HBoxContainer/Hints"]
+margin_right = 267.0
+margin_bottom = 96.0
+
+[node name="HBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer/Stats/VBoxContainer/HBoxContainer/Hints/CenterContainer"]
+margin_left = 76.0
+margin_right = 190.0
+margin_bottom = 96.0
+
+[node name="HintsData" type="Label" parent="HBoxContainer/MarginContainer3/VBoxContainer/Stats/VBoxContainer/HBoxContainer/Hints/CenterContainer/HBoxContainer"]
+margin_right = 114.0
+margin_bottom = 46.0
+theme = ExtResource( 1 )
+text = "42"
+align = 1
+
+[node name="HintsLabel" type="Label" parent="HBoxContainer/MarginContainer3/VBoxContainer/Stats/VBoxContainer/HBoxContainer/Hints/CenterContainer/HBoxContainer"]
+margin_top = 50.0
+margin_right = 114.0
+margin_bottom = 96.0
+theme = ExtResource( 1 )
+text = "Hints"
+align = 1
+
+[node name="Time" type="MarginContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer/Stats/VBoxContainer/HBoxContainer"]
+margin_left = 542.0
+margin_right = 810.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer/Stats/VBoxContainer/HBoxContainer/Time"]
+margin_right = 268.0
+margin_bottom = 96.0
+
+[node name="HBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer/Stats/VBoxContainer/HBoxContainer/Time/CenterContainer"]
+margin_left = 84.0
+margin_right = 183.0
+margin_bottom = 96.0
+
+[node name="TimeData" type="Label" parent="HBoxContainer/MarginContainer3/VBoxContainer/Stats/VBoxContainer/HBoxContainer/Time/CenterContainer/HBoxContainer"]
+margin_right = 99.0
+margin_bottom = 46.0
+theme = ExtResource( 1 )
+text = "42"
+align = 1
+
+[node name="TimeLabel" type="Label" parent="HBoxContainer/MarginContainer3/VBoxContainer/Stats/VBoxContainer/HBoxContainer/Time/CenterContainer/HBoxContainer"]
+margin_top = 50.0
+margin_right = 99.0
+margin_bottom = 96.0
+theme = ExtResource( 1 )
+text = "Time"
+align = 1
+
+[node name="Menu" type="VBoxContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer"]
+margin_top = 494.0
+margin_right = 810.0
+margin_bottom = 785.0
+size_flags_vertical = 3
+
+[node name="NewBoard" type="CenterContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer/Menu"]
+margin_right = 810.0
+margin_bottom = 143.0
+size_flags_vertical = 3
+
+[node name="NewButton" type="TextureButton" parent="HBoxContainer/MarginContainer3/VBoxContainer/Menu/NewBoard"]
+margin_left = 310.0
+margin_top = 47.0
+margin_right = 500.0
+margin_bottom = 96.0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer3/VBoxContainer/Menu/NewBoard"]
+margin_left = 367.0
+margin_top = 48.0
+margin_right = 443.0
+margin_bottom = 94.0
+theme = ExtResource( 1 )
+text = "New"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="CenterContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer/Menu"]
+pause_mode = 2
+margin_top = 147.0
+margin_right = 810.0
+margin_bottom = 291.0
+size_flags_vertical = 3
+
+[node name="QuitButton" type="TextureButton" parent="HBoxContainer/MarginContainer3/VBoxContainer/Menu/Quit"]
+margin_left = 310.0
+margin_top = 47.0
+margin_right = 500.0
+margin_bottom = 96.0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer3/VBoxContainer/Menu/Quit"]
+margin_left = 359.0
+margin_top = 49.0
+margin_right = 450.0
+margin_bottom = 95.0
+theme = ExtResource( 1 )
+text = "Quit"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bottom" type="MarginContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer"]
+margin_top = 789.0
+margin_right = 810.0
+margin_bottom = 1080.0
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+margin_left = 1369.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="HBoxContainer/MarginContainer3/VBoxContainer/Menu/NewBoard/NewButton" to="." method="_on_NewButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer3/VBoxContainer/Menu/Quit/QuitButton" to="." method="_on_QuitButton_pressed"]

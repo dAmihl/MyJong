@@ -5,6 +5,8 @@ var hints = []
 
 var paused: bool = false
 onready var gamestats = $"/root/Board/GameStatistics"
+signal game_win
+signal game_over
 
 func _ready():
 	gamestats.set_tiles_left(board.size())
@@ -26,11 +28,15 @@ func remove_tile(tile):
 	calculate_hints()
 	gamestats.set_tiles_left(board.size())
 	check_move()
-	check_win()
+	check_state()
 	
-func check_win():
+func check_state():
 	if board.size() == 0:
-		print("WIN!!")
+		on_win()
+		return
+	if hints.size() == 0:
+		on_no_moves()
+		return
 
 func check_move():
 	if hints.size() == 0:
@@ -113,3 +119,13 @@ func pause_timer():
 func _on_GameTimer_timeout():
 	gamestats.add_time_passed_second()
 	pass # Replace with function body.
+	
+func on_win():
+	print("Win!")
+	emit_signal("game_win", gamestats.points, gamestats.time_passed, gamestats.hints_used, gamestats.moves)
+	pass
+	
+func on_no_moves():
+	print("No more moves!")
+	emit_signal("game_over")
+	pass
