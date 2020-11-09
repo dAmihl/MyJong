@@ -1,9 +1,10 @@
 extends Spatial
 
+#var block_scn = preload("res://Scenes/CustomTile.tscn")
 var block_scn = preload("res://Scenes/Tile.tscn")
 
-var tile_width:float = 2.1
-var tile_height:float = 3.5
+var tile_width:float = 2.2
+var tile_height:float = 3.6
 var tile_depth:float = 1.1
 
 var layout = []

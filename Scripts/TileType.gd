@@ -152,6 +152,57 @@ const TypeTexture = {
 	Flowers4:"Blank",
 }
 
+const TypeCustomBg = {
+	Man1:"stockcouple1",
+	Man2:"stockcouple1",
+	Man3:"stockcouple1",
+	Man4:"stockcouple1",
+	Man5:"stockcouple1",
+	Man6:"stockcouple1",
+	Man7:"stockcouple1",
+	Man8:"stockcouple1",
+	Man9:"stockcouple1",
+	
+	Pin1:"stockcouple2",
+	Pin2:"stockcouple2",
+	Pin3:"stockcouple2",
+	Pin4:"stockcouple2",
+	Pin5:"stockcouple2",
+	Pin6:"stockcouple2",
+	Pin7:"stockcouple2",
+	Pin8:"stockcouple2",
+	Pin9:"stockcouple2",
+
+	Sou1:"stockcouple3",
+	Sou2:"stockcouple3",
+	Sou3:"stockcouple3",
+	Sou4:"stockcouple3",
+	Sou5:"stockcouple3",
+	Sou6:"stockcouple3",
+	Sou7:"stockcouple3",
+	Sou8:"stockcouple3",
+	Sou9:"stockcouple3",
+
+	Ton:"stockcouple4",
+	Nan:"stockcouple4",
+	Pei:"stockcouple4",
+	Shaa:"stockcouple4",
+
+	Chun:"stockcouple5",
+	Haku:"stockcouple5",
+	Hatsu:"stockcouple5",
+
+	Seasons1:"stockcouple6",
+	Seasons2:"stockcouple6",
+	Seasons3:"stockcouple6",
+	Seasons4:"stockcouple6",
+
+	Flowers1:"stockcouple7",
+	Flowers2:"stockcouple7",
+	Flowers3:"stockcouple7",
+	Flowers4:"stockcouple7",
+}
+
 const group_winds = [Ton, Nan, Pei, Shaa]
 const group_dragons = [Chun, Haku, Hatsu]
 const group_seasons = [Seasons1, Seasons2, Seasons3, Seasons4]
@@ -186,3 +237,10 @@ static func get_types_from_same_group(type:String)->Array:
 static func type_texture_path(type):
 	var textureName = TypeTexture[type]
 	return "res://assets/fremd/Regular/"+textureName+".png"
+
+static func type_custombg_path(type):
+		var textureName = TypeCustomBg.get(type)
+		if textureName:
+			return "res://assets/customtiles/"+textureName+".jpg"
+		else:
+			return null
