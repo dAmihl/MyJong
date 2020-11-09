@@ -17,6 +17,7 @@ func set_custom_texture(t):
 	var customBgPath = TileType.type_custombg_path(t)
 	if customBgPath:
 		var tex = load(customBgPath)
-		var custom_mat:SpatialMaterial = load("res://Shader/tile_customtexture.tres").duplicate()
-		custom_mat.albedo_texture = tex
+		var custom_mat:ShaderMaterial = load("res://Shader/tile_customtex_shadermat.tres").duplicate()
+		#custom_mat.albedo_texture = tex
+		custom_mat.set_shader_param("tex", tex)
 		$MeshGroup/Tile.set_surface_material(0, custom_mat)
