@@ -31,3 +31,18 @@ func _on_PauseMenu_resume_game():
 	$"/root/Board/Controls".pause_game()
 	_on_Controls_unpause_game()
 	pass # Replace with function body.
+
+
+func _on_PauseMenu_quit_game():
+	get_tree().quit()
+	pass # Replace with function body.
+
+
+func _on_GUI_pause_btn():
+	$"/root/Board/Controls".pause_game()
+	pass # Replace with function body.
+
+
+func _on_GUI_restart_btn():
+	$"/root/Board/Controls".restart_board()
+	pass # Replace with function body.

@@ -49,7 +49,6 @@ script = ExtResource( 6 )
 [node name="GUI" parent="CanvasLayer" instance=ExtResource( 4 )]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 7 )]
-pause_mode = 2
 visible = false
 
 [node name="GameStatistics" type="Spatial" parent="."]
@@ -94,7 +93,10 @@ visible = false
 mesh = SubResource( 3 )
 material = SubResource( 6 )
 
+[connection signal="pause_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_pause_btn"]
+[connection signal="restart_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_restart_btn"]
 [connection signal="new_game" from="CanvasLayer/PauseMenu" to="CanvasLayer" method="_on_PauseMenu_new_game"]
+[connection signal="quit_game" from="CanvasLayer/PauseMenu" to="CanvasLayer" method="_on_PauseMenu_quit_game"]
 [connection signal="restart_game" from="CanvasLayer/PauseMenu" to="CanvasLayer" method="_on_PauseMenu_restart_game"]
 [connection signal="resume_game" from="CanvasLayer/PauseMenu" to="CanvasLayer" method="_on_PauseMenu_resume_game"]
 [connection signal="stats_hints_used_changed" from="GameStatistics" to="CanvasLayer/GUI" method="_on_GameStatistics_stats_hints_used_changed"]

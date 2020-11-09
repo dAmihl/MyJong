@@ -1,17 +1,19 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Theme/DefaultTheme.tres" type="Theme" id=1]
-[ext_resource path="res://assets/ui/PNG/blue_button01.png" type="Texture" id=2]
-[ext_resource path="res://assets/ui/PNG/blue_button00.png" type="Texture" id=3]
-[ext_resource path="res://assets/ui/PNG/blue_button02.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/PNG/grey_panel.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/PNG/green_button01.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/PNG/green_button02.png" type="Texture" id=4]
 [ext_resource path="res://assets/ui/Font/Fonts/Kenney Blocks.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Scenes/PauseMenu.gd" type="Script" id=6]
+[ext_resource path="res://assets/ui/PNG/green_button00.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 120
 font_data = ExtResource( 5 )
 
 [node name="PauseMenu" type="MarginContainer"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 6 )
@@ -19,117 +21,175 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_right = 1920.0
 margin_bottom = 1080.0
 
-[node name="Title" type="MarginContainer" parent="VBoxContainer"]
-margin_right = 1920.0
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+margin_right = 637.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
+margin_left = 641.0
+margin_right = 1278.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer3"]
+margin_right = 637.0
+margin_bottom = 1080.0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer3"]
+margin_right = 637.0
+margin_bottom = 1080.0
+
+[node name="Title" type="MarginContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer"]
+margin_right = 637.0
 margin_bottom = 357.0
 size_flags_vertical = 3
 
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/Title"]
-margin_right = 1920.0
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer/Title"]
+margin_right = 637.0
 margin_bottom = 357.0
 
-[node name="PausedLabel" type="Label" parent="VBoxContainer/Title/CenterContainer"]
-margin_left = 690.0
+[node name="PausedLabel" type="Label" parent="HBoxContainer/MarginContainer3/VBoxContainer/Title/CenterContainer"]
+margin_left = 48.0
 margin_top = 88.0
-margin_right = 1230.0
+margin_right = 588.0
 margin_bottom = 268.0
 theme = ExtResource( 1 )
 custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "Paused"
 
-[node name="Menu" type="VBoxContainer" parent="VBoxContainer"]
+[node name="Menu" type="VBoxContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer"]
 margin_top = 361.0
-margin_right = 1920.0
+margin_right = 637.0
 margin_bottom = 718.0
 size_flags_vertical = 3
 
-[node name="Resume" type="CenterContainer" parent="VBoxContainer/Menu"]
-margin_right = 1920.0
-margin_bottom = 116.0
+[node name="Resume" type="CenterContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer/Menu"]
+margin_right = 637.0
+margin_bottom = 86.0
 size_flags_vertical = 3
 
-[node name="ResumeButton" type="TextureButton" parent="VBoxContainer/Menu/Resume"]
-margin_left = 865.0
-margin_top = 33.0
-margin_right = 1055.0
-margin_bottom = 82.0
-texture_normal = ExtResource( 3 )
+[node name="ResumeButton" type="TextureButton" parent="HBoxContainer/MarginContainer3/VBoxContainer/Menu/Resume"]
+margin_left = 223.0
+margin_top = 18.0
+margin_right = 413.0
+margin_bottom = 67.0
+texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 4 )
-texture_hover = ExtResource( 2 )
+texture_hover = ExtResource( 3 )
 
-[node name="Label" type="Label" parent="VBoxContainer/Menu/Resume"]
-margin_left = 888.0
-margin_top = 35.0
-margin_right = 1032.0
-margin_bottom = 81.0
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer3/VBoxContainer/Menu/Resume"]
+margin_left = 246.0
+margin_top = 20.0
+margin_right = 390.0
+margin_bottom = 66.0
 theme = ExtResource( 1 )
 text = "Resume"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Restart" type="CenterContainer" parent="VBoxContainer/Menu"]
-margin_top = 120.0
-margin_right = 1920.0
-margin_bottom = 236.0
+[node name="Restart" type="CenterContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer/Menu"]
+margin_top = 90.0
+margin_right = 637.0
+margin_bottom = 176.0
 size_flags_vertical = 3
 
-[node name="RestartButton" type="TextureButton" parent="VBoxContainer/Menu/Restart"]
-margin_left = 865.0
-margin_top = 33.0
-margin_right = 1055.0
-margin_bottom = 82.0
-texture_normal = ExtResource( 3 )
+[node name="RestartButton" type="TextureButton" parent="HBoxContainer/MarginContainer3/VBoxContainer/Menu/Restart"]
+margin_left = 223.0
+margin_top = 18.0
+margin_right = 413.0
+margin_bottom = 67.0
+texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 4 )
-texture_hover = ExtResource( 2 )
+texture_hover = ExtResource( 3 )
 
-[node name="Label" type="Label" parent="VBoxContainer/Menu/Restart"]
-margin_left = 880.0
-margin_top = 35.0
-margin_right = 1040.0
-margin_bottom = 81.0
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer3/VBoxContainer/Menu/Restart"]
+margin_left = 238.0
+margin_top = 20.0
+margin_right = 398.0
+margin_bottom = 66.0
 theme = ExtResource( 1 )
 text = "Restart"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NewBoard" type="CenterContainer" parent="VBoxContainer/Menu"]
-margin_top = 240.0
-margin_right = 1920.0
-margin_bottom = 357.0
+[node name="NewBoard" type="CenterContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer/Menu"]
+margin_top = 180.0
+margin_right = 637.0
+margin_bottom = 266.0
 size_flags_vertical = 3
 
-[node name="NewButton" type="TextureButton" parent="VBoxContainer/Menu/NewBoard"]
-margin_left = 865.0
-margin_top = 34.0
-margin_right = 1055.0
-margin_bottom = 83.0
-texture_normal = ExtResource( 3 )
+[node name="NewButton" type="TextureButton" parent="HBoxContainer/MarginContainer3/VBoxContainer/Menu/NewBoard"]
+margin_left = 223.0
+margin_top = 18.0
+margin_right = 413.0
+margin_bottom = 67.0
+texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 4 )
-texture_hover = ExtResource( 2 )
+texture_hover = ExtResource( 3 )
 
-[node name="Label" type="Label" parent="VBoxContainer/Menu/NewBoard"]
-margin_left = 922.0
-margin_top = 35.0
-margin_right = 998.0
-margin_bottom = 81.0
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer3/VBoxContainer/Menu/NewBoard"]
+margin_left = 280.0
+margin_top = 20.0
+margin_right = 356.0
+margin_bottom = 66.0
 theme = ExtResource( 1 )
 text = "New"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Bottom" type="MarginContainer" parent="VBoxContainer"]
+[node name="Quit" type="CenterContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer/Menu"]
+pause_mode = 2
+margin_top = 270.0
+margin_right = 637.0
+margin_bottom = 357.0
+size_flags_vertical = 3
+
+[node name="QuitButton" type="TextureButton" parent="HBoxContainer/MarginContainer3/VBoxContainer/Menu/Quit"]
+margin_left = 223.0
+margin_top = 19.0
+margin_right = 413.0
+margin_bottom = 68.0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer3/VBoxContainer/Menu/Quit"]
+margin_left = 273.0
+margin_top = 20.0
+margin_right = 364.0
+margin_bottom = 66.0
+theme = ExtResource( 1 )
+text = "Quit"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bottom" type="MarginContainer" parent="HBoxContainer/MarginContainer3/VBoxContainer"]
 margin_top = 722.0
-margin_right = 1920.0
+margin_right = 637.0
 margin_bottom = 1080.0
 size_flags_vertical = 3
 
-[connection signal="pressed" from="VBoxContainer/Menu/Resume/ResumeButton" to="." method="_on_ResumeButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/Menu/Restart/RestartButton" to="." method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/Menu/NewBoard/NewButton" to="." method="_on_NewButton_pressed"]
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+margin_left = 1282.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="HBoxContainer/MarginContainer3/VBoxContainer/Menu/Resume/ResumeButton" to="." method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer3/VBoxContainer/Menu/Restart/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer3/VBoxContainer/Menu/NewBoard/NewButton" to="." method="_on_NewButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer3/VBoxContainer/Menu/Quit/QuitButton" to="." method="_on_QuitButton_pressed"]

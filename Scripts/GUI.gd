@@ -1,4 +1,4 @@
-extends MarginContainer
+extends Control
 
 # It seems best that GUI is the first child in the scene
 # because nothing should be dependant on GUI, whereas GUI is dependant on
@@ -11,6 +11,9 @@ onready var points_data = find_node("PointsData")
 onready var moves_data = find_node("MovesData")
 onready var time_data = find_node("TimeData")
 onready var tiles_left_data = find_node("TilesLeftData")
+
+signal restart_btn
+signal pause_btn
 
 func _on_GameStatistics_stats_hints_used_changed(h):
 	pass # Replace with function body.
@@ -35,4 +38,14 @@ func _on_GameStatistics_stats_time_passed(t:int):
 
 func _on_GameStatistics_stats_tiles_left_changed(tl):
 	tiles_left_data.text = str(tl)
+	pass # Replace with function body.
+
+
+func _on_RestartButton_pressed():
+	emit_signal("restart_btn")
+	pass # Replace with function body.
+
+
+func _on_PauseButton_pressed():
+	emit_signal("pause_btn")
 	pass # Replace with function body.
