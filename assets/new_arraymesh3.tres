@@ -1,8 +1,7 @@
-[gd_resource type="ArrayMesh" load_steps=8 format=2]
+[gd_resource type="ArrayMesh" load_steps=7 format=2]
 
 [ext_resource path="res://assets/Back.png" type="Texture" id=1]
 [ext_resource path="res://assets/Front.png" type="Texture" id=2]
-[ext_resource path="res://Shader/TileOutlineMat.tres" type="Material" id=3]
 
 [sub_resource type="Shader" id=1]
 resource_name = "Shader Nodetree"
@@ -128,7 +127,6 @@ void fragment () {
 "
 
 [sub_resource type="ShaderMaterial" id=2]
-next_pass = ExtResource( 3 )
 shader = SubResource( 1 )
 shader_param/texture_0 = ExtResource( 2 )
 
@@ -256,7 +254,6 @@ void fragment () {
 "
 
 [sub_resource type="ShaderMaterial" id=4]
-next_pass = ExtResource( 3 )
 shader = SubResource( 3 )
 shader_param/texture_0 = ExtResource( 1 )
 

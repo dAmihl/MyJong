@@ -8,6 +8,7 @@ var bSelected = false
 var free_distance_threshold_lr = 0.5
 var free_distance_threshold_ud = 0.4
 
+
 func _ready():
 	set_texture(type)
 	pass
@@ -71,3 +72,20 @@ func hint_highlight():
 	yield(get_tree().create_timer(1.0), "timeout")
 	$AnimationPlayer.seek(0,true)
 	$AnimationPlayer.stop()
+
+func add_outline():
+	$MeshGroup/Tile/Outline.get_active_material(0).albedo_color = Color.lightgreen
+	pass
+
+func remove_outline():
+	$MeshGroup/Tile/Outline.get_active_material(0).albedo_color = Color.black
+	pass
+
+func _on_Tile_mouse_entered():
+	add_outline()
+	pass # Replace with function body.
+
+
+func _on_Tile_mouse_exited():
+	remove_outline()
+	pass # Replace with function body.

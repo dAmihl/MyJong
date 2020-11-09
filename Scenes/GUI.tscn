@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Theme/DefaultTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/GUI.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/ui/PNG/green_button01.png" type="Texture" id=5]
 [ext_resource path="res://assets/ui/PNG/green_button02.png" type="Texture" id=6]
 [ext_resource path="res://assets/ui/PNG/green_button00.png" type="Texture" id=7]
+[ext_resource path="res://assets/ui/PNG/green_panel.png" type="Texture" id=8]
 
 [node name="GameGui" type="Control"]
 anchor_right = 1.0
@@ -61,6 +62,12 @@ mouse_filter = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
 
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Points"]
+margin_right = 136.0
+margin_bottom = 265.0
+texture = ExtResource( 8 )
+expand = true
+
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Points"]
 margin_right = 136.0
 margin_bottom = 265.0
@@ -91,6 +98,12 @@ margin_right = 136.0
 margin_bottom = 534.0
 mouse_filter = 2
 size_flags_vertical = 3
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Time"]
+margin_right = 136.0
+margin_bottom = 265.0
+texture = ExtResource( 8 )
+expand = true
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Time"]
 margin_right = 136.0
@@ -124,6 +137,12 @@ margin_bottom = 803.0
 mouse_filter = 2
 size_flags_vertical = 3
 
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Moves"]
+margin_right = 136.0
+margin_bottom = 265.0
+texture = ExtResource( 8 )
+expand = true
+
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Moves"]
 margin_right = 136.0
 margin_bottom = 265.0
@@ -155,6 +174,12 @@ margin_right = 136.0
 margin_bottom = 1072.0
 mouse_filter = 2
 size_flags_vertical = 3
+
+[node name="TextureRect4" type="TextureRect" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/TilesLeft"]
+margin_right = 136.0
+margin_bottom = 265.0
+texture = ExtResource( 8 )
+expand = true
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/TilesLeft"]
 margin_right = 136.0
