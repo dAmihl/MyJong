@@ -148,10 +148,7 @@ func distribute_random_solvable():
 						available_rows.append(pos[0])
 				
 				var chosen_row = available_rows[RNG.randi() % available_rows.size()]
-				
-				if type == "Man3":
-					pass
-				
+
 				# (3) Get edges on chosen row, including half-steps (+- 0.5).
 				# Edge is a pos which has either nothing left or right
 				# (+) and has tiles on bottom
@@ -163,14 +160,17 @@ func distribute_random_solvable():
 					var left_neighbour_found:bool = false
 					var right_neighbour_found:bool = false
 					
+					if type == "Shaa" and pos1[0] == 4 and pos1[1] == 1: #3.5,2 left
+						pass
+					
 					for pos2 in rows:
+						if left_neighbour_found and right_neighbour_found:
+							is_edge = false
+							break
 						if pos1 == pos2:
 							continue
 						if abs(pos2[0] - chosen_row) >= 1:
 							continue
-						if left_neighbour_found and right_neighbour_found:
-							is_edge = false
-							break
 						if pos1[1] == pos2[1] - 1:
 							# there is a position right to pos1
 							right_neighbour_found = true
@@ -205,24 +205,25 @@ func distribute_random_solvable():
 					if is_edge:
 						edges.append(pos1)
 				
+					
+				if edges.size() > 1 or available_layers.size() > 1:
+					for e in edges:
+						# if the second block is next to the previous chosen one
+						# dont use that; except its the only one
+						if nBlock > 0 and previous_chosen_layer == current_layer:
+							var delta_dist_x = abs(e[0] - previous_chosen_edge[0])
+							var delta_dist_y = abs(e[1] - previous_chosen_edge[1])
+							if (delta_dist_x <= 1.0 and
+								delta_dist_y <= 1.0 
+								and not (delta_dist_x == 1.0 and delta_dist_y == 1.0)):
+									edges.erase(e)
+				
 				if edges.size() == 0:
 					available_layers.erase(current_layer)
 			
 			if edges.size() == 0 and available_layers.size() == 0:
 				print("ERROR!! NO EDGES! NO LAYERS LEFT! Something went terribly wrong")
 				return
-			
-			if edges.size() > 1:
-				for e in edges:
-					# if the second block is next to the previous chosen one
-					# dont use that; except its the only one
-					if nBlock > 0 and previous_chosen_layer == current_layer:
-						var delta_dist_x = abs(e[0] - previous_chosen_edge[0])
-						var delta_dist_y = abs(e[1] - previous_chosen_edge[1])
-						if (delta_dist_x <= 1.0 and
-							delta_dist_y <= 1.0 
-							and not (delta_dist_x == 1.0 and delta_dist_y == 1.0)):
-								edges.erase(e)
 			
 			# (4) Choose random edge
 			var chosen_edge = edges[RNG.randi() % edges.size()]

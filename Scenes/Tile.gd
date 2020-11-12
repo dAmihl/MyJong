@@ -9,6 +9,11 @@ var free_distance_threshold_lr = 0.5
 var free_distance_threshold_ud = 0.4
 var free_distance_threshold_topside = 1.0
 
+#TEMP
+var tile_width:float = 2.2
+var tile_height:float = 3.6
+var tile_depth:float = 1.1
+
 func _ready():
 	set_texture(type)
 	pass
@@ -33,6 +38,7 @@ func is_free() -> bool:
 	pass
 
 func on_clicked():
+	print([translation.x / tile_height,translation.z / tile_width])
 	if (is_free()):
 		$"/root/Board/Controls".tile_clicked(self)
 	else:
