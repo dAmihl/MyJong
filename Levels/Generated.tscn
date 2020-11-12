@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://LayoutGenerator.gd" type="Script" id=1]
 [ext_resource path="res://Levels/Controls.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Levels/GameStatistics.gd" type="Script" id=5]
 [ext_resource path="res://Levels/CanvasLayer.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/PauseMenu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://BoardCamera.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ProceduralSky" id=1]
 sky_energy = 0.5
@@ -56,17 +57,13 @@ visible = false
 [node name="GameStatistics" type="Spatial" parent="."]
 script = ExtResource( 5 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( -1.62921e-07, 0.906308, -0.422618, 0, 0.422618, 0.906308, 1, 1.47656e-07, -6.88533e-08, -1.79165, 13.6025, 10.0506 )
-projection = 1
-current = true
-fov = 90.0
-size = 30.0
+[node name="Camera" parent="." instance=ExtResource( 8 )]
 
 [node name="LayoutGenerator" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.96185, 0, -7.36276 )
 script = ExtResource( 1 )
 use_seed = false
+layout_json_name = "testeditor.json"
 
 [node name="Controls" type="Spatial" parent="."]
 pause_mode = 2

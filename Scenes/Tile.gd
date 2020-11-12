@@ -82,7 +82,8 @@ func remove_outline():
 	pass
 
 func _on_Tile_mouse_entered():
-	add_outline()
+	if is_free():
+		add_outline()
 	pass # Replace with function body.
 
 

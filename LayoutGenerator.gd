@@ -12,12 +12,14 @@ var rngseed = 4242
 export var fixed_rngseed = 7715046466232329341
 export var use_seed:bool = true
 
+export var layout_json_name:String = "turtle.json"
+
 onready var RNG = RandomNumberGenerator.new()
 onready var gameboard = $"/root/Board/GameBoard"
 
 func load_json():
 	var file = File.new()
-	file.open("res://layout/turtle.json", file.READ)
+	file.open("res://layout/"+layout_json_name, file.READ)
 	var text_json = file.get_as_text()
 	var result_json = JSON.parse(text_json)
 	var result = {}
