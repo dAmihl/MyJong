@@ -10,7 +10,10 @@ func export_layout():
 		if !(layers.has(l)):
 			layers[l] = []
 		layers[l].append([node.position.x, node.position.y])
-	print(JSON.print(layers))
+	var layers_arr = []
+	for k in layers:
+		layers_arr.append(layers.get(k))
+	print(JSON.print(layers_arr))
 
 
 func _input(event):

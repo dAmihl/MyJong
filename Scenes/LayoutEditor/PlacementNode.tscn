@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/PlacementNode.gd" type="Script" id=1]
 [ext_resource path="res://assets/new_arraymesh3.tres" type="ArrayMesh" id=2]
+[ext_resource path="res://TileArea.tscn" type="PackedScene" id=3]
 
 [sub_resource type="SphereShape" id=1]
 radius = 0.5
@@ -24,6 +25,9 @@ visible = false
 mesh = ExtResource( 2 )
 material/0 = null
 material/1 = null
+
+[node name="Area" parent="." instance=ExtResource( 3 )]
+collision_layer = 1
 
 [connection signal="input_event" from="." to="." method="_on_PlacementNode_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_PlacementNode_mouse_entered"]
