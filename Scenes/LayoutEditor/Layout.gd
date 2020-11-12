@@ -3,13 +3,9 @@ extends Spatial
 func export_layout():
 	var export_str:String = ""
 	var layers = {}
-	for node in get_children():
-		if !node.is_tile_set:
-			continue
-		var l = node.layer
-		if !(layers.has(l)):
-			layers[l] = []
-		layers[l].append([node.position.x, node.position.y])
+	for l in get_children():
+		var lNum = l.layer
+		layers[lNum] = l.export_layer_array()
 	var layers_arr = []
 	for k in layers:
 		layers_arr.append(layers.get(k))

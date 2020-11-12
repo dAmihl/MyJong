@@ -30,6 +30,10 @@ func on_clicked():
 		if a == self:
 			continue
 		a.check_disabled()
+	for a in $Area.get_overlapping_areas():
+		if a == $Area:
+			continue
+		a.get_parent().check_disabled()
 	pass
 
 func set_disabled(d:bool = true):
