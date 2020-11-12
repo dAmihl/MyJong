@@ -8,18 +8,8 @@
 [ext_resource path="res://Levels/CanvasLayer.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/PauseMenu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://BoardCamera.tscn" type="PackedScene" id=8]
-
-[sub_resource type="ProceduralSky" id=1]
-sky_energy = 0.5
-ground_bottom_color = Color( 0.372549, 0.435294, 0.431373, 1 )
-ground_horizon_color = Color( 0.894118, 0.870588, 0.85098, 1 )
-
-[sub_resource type="Environment" id=2]
-background_mode = 1
-background_sky = SubResource( 1 )
-background_color = Color( 0.72549, 0.866667, 0.945098, 1 )
-ambient_light_color = Color( 1, 0.988235, 0.988235, 1 )
-ambient_light_energy = 0.5
+[ext_resource path="res://Levels/StandardEnv.tres" type="Environment" id=9]
+[ext_resource path="res://BoardLight.tscn" type="PackedScene" id=10]
 
 [sub_resource type="PlaneMesh" id=3]
 size = Vector2( 50, 50 )
@@ -62,7 +52,7 @@ script = ExtResource( 5 )
 [node name="LayoutGenerator" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.96185, 0, -7.36276 )
 script = ExtResource( 1 )
-use_seed = false
+fixed_rngseed = -6176454763619105792
 layout_json_name = "testeditor.json"
 
 [node name="Controls" type="Spatial" parent="."]
@@ -75,16 +65,12 @@ script = ExtResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, -7 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 2 )
+environment = ExtResource( 9 )
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.362666, 0.931919, 0, -0.931919, 0.362666, 0, 79.2429, 5.35862 )
-light_energy = 0.5
-shadow_enabled = true
-directional_shadow_mode = 0
+[node name="DirectionalLight" parent="." instance=ExtResource( 10 )]
 
 [node name="BoardMesh" type="CSGMesh" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.421515, 0, 9.91558 )

@@ -12,4 +12,4 @@ func export_layer_array() -> Array:
 
 func hide_handles(hide:bool = true):
 	for c in get_children():
-		c.toggle_handle(hide)
+		c.toggle_handle(!hide)

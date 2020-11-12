@@ -15,21 +15,17 @@ onready var layers = []
 var current_layer:int = 0
 
 func _ready():
-	spawn_placement_layer(0)
+	spawn_placement_nodes(0)
 	pass
 	
-func spawn_placement_layer(layerNum:int):
-	var curr_layer = add_layer(layerNum)
-	spawn_placement_nodes(curr_layer)
-
-func spawn_placement_nodes(layer:Spatial):
+func spawn_placement_nodes(layer:int):
 	for r in range(0,rows):
 		spawn_placement_nodes_row(r, layer)
 		if (r + 0.5 < rows):
 			spawn_placement_nodes_row(r+0.5, layer)
 	pass
 
-func spawn_placement_nodes_row(cur_row,layer:Spatial):
+func spawn_placement_nodes_row(cur_row,layer:int):
 	for c in range (0, cols):
 			place_node(cur_row, c, layer)
 			if (c + 0.5 < cols):
@@ -37,46 +33,9 @@ func spawn_placement_nodes_row(cur_row,layer:Spatial):
 				place_node(cur_row, c+0.5, layer)
 	pass
 
-func place_node(r, c, layer:Spatial):
+func place_node(r, c, layer:int):
 	var new_hs_node = placement_node_scn.instance()
 	new_hs_node.position = Vector2(r,c)
-	new_hs_node.layer = layer.layer
-	new_hs_node.translation = Vector3(r*nodes_distance_height, 0, c*nodes_distance_width)
-	layer.add_child(new_hs_node)
-
-func add_layer(layer):
-	var new_layer = layer_scn.instance()
-	new_layer.layer = layer
-	new_layer.translation.y = layer * nodes_distance_depth
-	$Layout.add_child(new_layer)
-	layers.append(new_layer)
-	return new_layer
-
-func next_layer():
-	disable_layer(current_layer)
-	current_layer += 1
-	if current_layer >= layers.size():
-		spawn_placement_layer(current_layer)
-		enable_layer(current_layer)
-	pass
-	
-func prev_layer():
-	if current_layer == 0:
-		return
-	else:
-		disable_layer(current_layer)
-		current_layer -= 1
-		enable_layer(current_layer)
-	pass
-
-func _input(event):
-	if event.is_action_pressed("editor_next_layer"):
-		next_layer()
-	if event.is_action_pressed("editor_prev_layer"):
-		prev_layer()
-
-func enable_layer(layerNum):
-	layers[current_layer].hide_handles(false)
-
-func disable_layer(layerNum):
-	layers[current_layer].hide_handles(true)
+	new_hs_node.layer = layer
+	new_hs_node.translation = Vector3(r*nodes_distance_height, layer*nodes_distance_depth, c*nodes_distance_width)
+	$PlacementGrid.add_child(new_hs_node)

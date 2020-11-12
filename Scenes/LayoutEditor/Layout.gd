@@ -1,17 +1,16 @@
 extends Spatial
 
-func export_layout():
-	var export_str:String = ""
-	var layers = {}
-	for l in get_children():
-		var lNum = l.layer
-		layers[lNum] = l.export_layer_array()
-	var layers_arr = []
-	for k in layers:
-		layers_arr.append(layers.get(k))
-	print(JSON.print(layers_arr))
+var layout_tile_scn = preload("res://Scenes/LayoutEditor/LayoutTile.tscn")
 
 
-func _input(event):
-	if event.is_action_pressed("export_layout"):
-		export_layout()
+		
+func on_place_node(node:Spatial):
+	print("Node clicked")
+	var new_tile = layout_tile_scn.instance()
+	new_tile.translation = node.translation
+	new_tile.position = node.position
+	new_tile.layer = node.layer
+	add_child(new_tile)
+	new_tile.connect("layout_tile_removed", $"../PlacementGrid", "on_remove_node")
+	pass
+
