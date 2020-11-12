@@ -54,3 +54,6 @@ func check_disabled():
 				self.set_disabled(true)
 				return
 	self.set_disabled(false)
+
+func toggle_handle(h:bool = true):
+	$Sphere.visible = h

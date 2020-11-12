@@ -9,3 +9,7 @@ func export_layer_array() -> Array:
 			continue
 		return_arr.append([node.position.x, node.position.y])
 	return return_arr
+
+func hide_handles(hide:bool = true):
+	for c in get_children():
+		c.toggle_handle(hide)

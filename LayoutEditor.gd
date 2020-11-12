@@ -11,7 +11,8 @@ var nodes_distance_depth:float = 1.1
 var placement_node_scn = preload("res://Scenes/LayoutEditor/PlacementNode.tscn")
 var layer_scn = preload("res://Scenes/LayoutEditor/Layer.tscn")
 
-var bGenerated:bool = false
+onready var layers = []
+var current_layer:int = 0
 
 func _ready():
 	spawn_placement_layer(0)
@@ -26,7 +27,6 @@ func spawn_placement_nodes(layer:Spatial):
 		spawn_placement_nodes_row(r, layer)
 		if (r + 0.5 < rows):
 			spawn_placement_nodes_row(r+0.5, layer)
-	bGenerated = true
 	pass
 
 func spawn_placement_nodes_row(cur_row,layer:Spatial):
@@ -49,4 +49,34 @@ func add_layer(layer):
 	new_layer.layer = layer
 	new_layer.translation.y = layer * nodes_distance_depth
 	$Layout.add_child(new_layer)
+	layers.append(new_layer)
 	return new_layer
+
+func next_layer():
+	disable_layer(current_layer)
+	current_layer += 1
+	if current_layer >= layers.size():
+		spawn_placement_layer(current_layer)
+		enable_layer(current_layer)
+	pass
+	
+func prev_layer():
+	if current_layer == 0:
+		return
+	else:
+		disable_layer(current_layer)
+		current_layer -= 1
+		enable_layer(current_layer)
+	pass
+
+func _input(event):
+	if event.is_action_pressed("editor_next_layer"):
+		next_layer()
+	if event.is_action_pressed("editor_prev_layer"):
+		prev_layer()
+
+func enable_layer(layerNum):
+	layers[current_layer].hide_handles(false)
+
+func disable_layer(layerNum):
+	layers[current_layer].hide_handles(true)
