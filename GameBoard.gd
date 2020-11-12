@@ -7,18 +7,20 @@ var paused: bool = false
 onready var gamestats = $"/root/Board/GameStatistics"
 signal game_win
 signal game_over
+signal clear_done
 
 func _ready():
 	gamestats.set_tiles_left(board.size())
+	print("Gameboard ready")
 
 func add_tile(tile, pos, layer):
 	board.append(tile)
-	add_child(tile)
+	call_deferred("add_child", tile)
 	pass
 
 func board_ready():
 	print("Number Tiles: "+ str(board.size()))
-	calculate_hints()
+#	calculate_hints()
 	unpause_board()
 	if (is_instance_valid(gamestats)):
 		gamestats.set_tiles_left(board.size())
@@ -52,15 +54,19 @@ func get_perfect_hint():
 func get_random_hint() -> Array:
 	calculate_hints()
 	if hints.size() == 0:
-		print("no hints")
 		return []
 	var hint_idx = randi() % hints.size()
 	var hint = hints[hint_idx]
 	var b = hint[0]
 	var b2 = hint[1]
+	return hint
+
+func get_smart_hint() -> Array:
+	var b = board[0]
+	var b2 = board[1]
 	b.hint_highlight()
 	b2.hint_highlight()
-	return hint
+	return [b, b2]
 
 func get_hint() -> Array:
 	calculate_hints()
@@ -95,7 +101,8 @@ func clear():
 	board.clear()
 	for c in get_children():
 		if c.is_in_group("tiles"):
-			self.remove_child(c)
+			c.free()
+	emit_signal("clear_done")
 
 func is_paused():
 	return paused
@@ -127,5 +134,5 @@ func on_win():
 	
 func on_no_moves():
 	print("No more moves!")
-	emit_signal("game_over")
+	#emit_signal("game_over")
 	pass

@@ -52,7 +52,7 @@ script = ExtResource( 5 )
 [node name="LayoutGenerator" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.96185, 0, -7.36276 )
 script = ExtResource( 1 )
-fixed_rngseed = -6176454763619105792
+fixed_rngseed = 8876109566294632448
 layout_json_name = "testeditor.json"
 
 [node name="Controls" type="Spatial" parent="."]
@@ -91,4 +91,5 @@ material = SubResource( 6 )
 [connection signal="stats_time_passed" from="GameStatistics" to="CanvasLayer/GUI" method="_on_GameStatistics_stats_time_passed"]
 [connection signal="pause_game" from="Controls" to="CanvasLayer" method="_on_Controls_pause_game"]
 [connection signal="unpause_game" from="Controls" to="CanvasLayer" method="_on_Controls_unpause_game"]
+[connection signal="game_over" from="GameBoard" to="CanvasLayer" method="_on_GameBoard_game_over"]
 [connection signal="game_win" from="GameBoard" to="CanvasLayer" method="_on_GameBoard_game_win"]

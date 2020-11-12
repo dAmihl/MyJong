@@ -5,6 +5,8 @@ onready var moves_data = find_node("MovesData")
 onready var time_data = find_node("TimeData")
 onready var hints_data = find_node("HintsData")
 
+onready var title = find_node("TitleLabel")
+
 func set_points(p):
 	points_data.text = str(p)
 	pass
@@ -32,3 +34,10 @@ func _on_QuitButton_pressed():
 func _on_NewButton_pressed():
 	get_tree().reload_current_scene()
 	pass # Replace with function body.
+
+
+func set_won(w:bool=true):
+	if w:
+		title.text = "All Clear!"
+	else:
+		title.text = "No Moves left!"

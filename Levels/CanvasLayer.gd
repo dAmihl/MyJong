@@ -58,4 +58,18 @@ func _on_GameBoard_game_win(points,time,hints,moves):
 	win_gui.set_time(time)
 	win_gui.set_hints(hints)
 	win_gui.set_moves(moves)
+	win_gui.set_won(true)
+	pass # Replace with function body.
+
+
+func _on_GameBoard_game_over(points,time,hints,moves):
+	self.remove_child($GUI)
+	self.remove_child($PauseMenu)
+	var win_gui = win_scn.instance()
+	self.add_child(win_gui)
+	win_gui.set_points(points)
+	win_gui.set_time(time)
+	win_gui.set_hints(hints)
+	win_gui.set_moves(moves)
+	win_gui.set_won(false)
 	pass # Replace with function body.
