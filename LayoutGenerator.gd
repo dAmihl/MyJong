@@ -49,7 +49,13 @@ func _ready():
 func draw_layout():
 	#distribute_random()
 	RNG.seed = rngseed
-	distribute_random_solvable()
+	while (distribute_random_solvable() == -1):
+		print("DistributeRandomSolvable failed. Trying new seed.")
+		RNG.randomize()
+		rngseed = RNG.seed
+		print("New Seed: "+str(rngseed))
+		gameboard.call_deferred("clear")
+		yield(gameboard, "clear_done")
 	gameboard.board_ready()
 	return
 	
@@ -219,7 +225,7 @@ func distribute_random_solvable():
 			
 			if edges.size() == 0 and available_layers.size() == 0:
 				print("ERROR!! NO EDGES! NO LAYERS LEFT! Something went terribly wrong")
-				return
+				return -1
 			
 			# (4) Choose random edge
 			var chosen_edge = edges[RNG.randi() % edges.size()]
@@ -252,6 +258,7 @@ func distribute_random_solvable():
 				type = available_second_types[randi()%available_second_types.size()]
 	
 	print("Generate finished")
+	return 0
 	pass
 
 
