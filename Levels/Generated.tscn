@@ -53,6 +53,7 @@ script = ExtResource( 5 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.96185, 0, -7.36276 )
 script = ExtResource( 1 )
 fixed_rngseed = 8876109566294632448
+use_seed = false
 layout_json_name = "testeditor.json"
 
 [node name="Controls" type="Spatial" parent="."]
