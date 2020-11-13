@@ -9,7 +9,7 @@ var tile_depth:float = 1.1
 
 var layout = []
 var rngseed = 4242
-export var fixed_rngseed = 7715046466232329341
+export var fixed_rngseed = -5352770736231847634
 export var use_seed:bool = true
 
 export var layout_json_name:String = "turtle.json"
@@ -165,6 +165,12 @@ func distribute_random_solvable():
 					var left_neighbour_found:bool = false
 					var right_neighbour_found:bool = false
 					
+					# If there is a layer switch, keep the distance to
+					# the previous chosen edge
+					if layer_switch and abs(previous_chosen_edge[1] - pos1[1]) < 2:
+						is_edge = false
+						break
+					
 					for pos2 in rows:
 						if left_neighbour_found and right_neighbour_found:
 							is_edge = false
@@ -180,11 +186,7 @@ func distribute_random_solvable():
 						if pos1[1] == pos2[1] + 1:
 							left_neighbour_found = true
 							continue
-						# If there is a layer switch, keep the distance to
-						# the previous chosen edge
-						if layer_switch and abs(previous_chosen_edge[1] - pos1[1]) < 2:
-							is_edge = false
-							break
+						
 					if left_neighbour_found and right_neighbour_found:
 						is_edge = false 
 						
