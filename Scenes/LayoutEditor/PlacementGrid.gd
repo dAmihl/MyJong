@@ -1,6 +1,6 @@
 extends Spatial
 
-func export_layout():
+func export_layout() -> String:
 	var export_str:String = ""
 	var layers = {}
 	for node in get_children():
@@ -13,8 +13,7 @@ func export_layout():
 	for k in layers:
 		layers_arr.append(layers.get(k))
 	print(JSON.print(layers_arr))
+	return JSON.print(layers_arr)
 
 
-func _input(event):
-	if event.is_action_pressed("export_layout"):
-		export_layout()
+

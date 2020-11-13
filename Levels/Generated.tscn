@@ -11,28 +11,28 @@
 [ext_resource path="res://Levels/StandardEnv.tres" type="Environment" id=9]
 [ext_resource path="res://BoardLight.tscn" type="PackedScene" id=10]
 
-[sub_resource type="PlaneMesh" id=3]
+[sub_resource type="PlaneMesh" id=1]
 size = Vector2( 50, 50 )
 subdivide_width = 32
 subdivide_depth = 32
 
-[sub_resource type="OpenSimplexNoise" id=4]
+[sub_resource type="OpenSimplexNoise" id=2]
 seed = 12334
 period = 95.6
 persistence = 1.0
 lacunarity = 2.22
 
-[sub_resource type="NoiseTexture" id=5]
+[sub_resource type="NoiseTexture" id=3]
 as_normalmap = true
 bump_strength = 10.4
-noise = SubResource( 4 )
+noise = SubResource( 2 )
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=4]
 albedo_color = Color( 0.133333, 0.592157, 0.411765, 1 )
 metallic = 0.1
 normal_enabled = true
 normal_scale = 1.0
-normal_texture = SubResource( 5 )
+normal_texture = SubResource( 3 )
 
 [node name="Board" type="Spatial"]
 
@@ -52,8 +52,7 @@ script = ExtResource( 5 )
 [node name="LayoutGenerator" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.96185, 0, -7.36276 )
 script = ExtResource( 1 )
-fixed_rngseed = 8876109566294632448
-use_seed = false
+fixed_rngseed = -3659223953690682880
 layout_json_name = "testeditor.json"
 
 [node name="Controls" type="Spatial" parent="."]
@@ -76,8 +75,8 @@ __meta__ = {
 [node name="BoardMesh" type="CSGMesh" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.421515, 0, 9.91558 )
 visible = false
-mesh = SubResource( 3 )
-material = SubResource( 6 )
+mesh = SubResource( 1 )
+material = SubResource( 4 )
 
 [connection signal="pause_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_pause_btn"]
 [connection signal="restart_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_restart_btn"]

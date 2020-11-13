@@ -75,17 +75,10 @@ func toggle_enabled(enabled:bool = true):
 	disabled = !enabled
 
 func elevate_layer():
-	layer += 1
-	translation.y = layer * nodes_distance_depth 
-	for t in $Tiles.get_children():
-		t.translation.y = (t.layer - layer) * nodes_distance_depth
-	pass
-
+	set_layer(layer + 1)
+	
 func decrease_layer():
-	layer = max(layer-1,0)
-	translation.y = layer * nodes_distance_depth 
-	for t in $Tiles.get_children():
-		t.translation.y = (t.layer - layer) * nodes_distance_depth
+	set_layer(max(layer-1,0))
 
 func remove_node():
 	$Tiles.remove_child($Tiles.get_child($Tiles.get_child_count()-1))
@@ -97,6 +90,31 @@ func place_node():
 	new_tile.position = self.position 
 	new_tile.layer = layer
 	$Tiles.add_child(new_tile)
+	pass
+	
+func place_node_with_layer(layerNum:int = 0):
+	var new_tile = layout_tile_scn.instance()
+	#new_tile.translation = self.translation
+	new_tile.position = self.position 
+	new_tile.layer = layerNum
+	$Tiles.add_child(new_tile)
+	pass
+	
+func update_layer():
+	# Only update those with children. Otherwise keep at 0
+	if $Tiles.get_child_count() == 0:
+		return
+	var max_layer = 0
+	for c in $Tiles.get_children():
+		if c.layer > max_layer:
+			max_layer = c.layer
+	set_layer(max_layer+1)
+	
+func set_layer(layerNum:int):
+	layer = layerNum
+	translation.y = layer * nodes_distance_depth 
+	for t in $Tiles.get_children():
+		t.translation.y = (t.layer - layer) * nodes_distance_depth
 	pass
 	
 func get_tiles():

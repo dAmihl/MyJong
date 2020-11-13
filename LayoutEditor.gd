@@ -16,7 +16,14 @@ var current_layer:int = 0
 
 func _ready():
 	spawn_placement_nodes(0)
+	load_layout()
 	pass
+	
+func _input(event):
+	if event.is_action_pressed("export_layout"):
+		$PlacementGrid.export_layout()
+	if event.is_action_pressed("save"):
+		save_layout()
 	
 func spawn_placement_nodes(layer:int):
 	for r in range(0,rows):
@@ -39,3 +46,49 @@ func place_node(r, c, layer:int):
 	new_hs_node.layer = layer
 	new_hs_node.translation = Vector3(r*nodes_distance_height, layer*nodes_distance_depth, c*nodes_distance_width)
 	$PlacementGrid.add_child(new_hs_node)
+	
+
+func save_layout(layoutName:String = "testlayout"):
+	var layoutstr:String = $PlacementGrid.export_layout()
+	var layoutFilePath = "user://"+layoutName+".layout"
+	var file = File.new()
+	file.open(layoutFilePath, File.WRITE)
+	file.store_string(layoutstr)
+	file.close()
+
+func load_layout(layoutName:String = "testlayout"):
+	var layoutFilePath = "user://"+layoutName+".layout"
+	var file = File.new()
+	file.open(layoutFilePath, File.READ)
+	var layoutstr = file.get_as_text()
+	file.close()
+	var result_json = JSON.parse(layoutstr)
+
+	if result_json.error == OK:  # If parse OK
+		var data = result_json.result
+		init_layout(data)
+	else:  # If parse has errors
+		print("Error: ", result_json.error)
+		print("Error Line: ", result_json.error_line)
+		print("Error String: ", result_json.error_string)
+
+func init_layout(data:Array):
+	var lNum = 0
+	for layer in data:
+		for n in layer:
+			var node = find_placement_node(Vector2(n[0], n[1]), lNum)
+			node.place_node_with_layer(lNum)
+			pass
+		lNum += 1
+	update_node_layers()
+
+func find_placement_node(pos:Vector2, layer:int)->Spatial:
+	for n in $PlacementGrid.get_children():
+		if n.position == pos:
+			return n
+	return null
+	
+func update_node_layers():
+	for n in $PlacementGrid.get_children():
+		n.update_layer()
+	

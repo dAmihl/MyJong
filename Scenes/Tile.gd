@@ -6,8 +6,9 @@ export var type:String setget set_type
 var bSelected = false
 
 var free_distance_threshold_lr = 0.5
-var free_distance_threshold_ud = 0.4
-var free_distance_threshold_topside = 1.0
+var free_distance_threshold_below = 0.3
+var free_distance_threshold_above = 0.4
+var free_distance_threshold_topside = 0.8
 
 func _ready():
 	set_texture(type)
@@ -22,9 +23,9 @@ func is_free() -> bool:
 		if collider==self:
 			continue
 		var dir_collision = self.translation.direction_to(collider.translation)
-		tile_left = tile_left or (dir_collision.z < -free_distance_threshold_lr and abs(dir_collision.y) < free_distance_threshold_ud)
-		tile_right = tile_right or (dir_collision.z > free_distance_threshold_lr and abs(dir_collision.y) < free_distance_threshold_ud)
-		tile_top = tile_top or (dir_collision.y > free_distance_threshold_ud and abs(dir_collision.z) < free_distance_threshold_topside)
+		tile_left = tile_left or (dir_collision.z < -free_distance_threshold_lr and abs(dir_collision.y) < free_distance_threshold_below)
+		tile_right = tile_right or (dir_collision.z > free_distance_threshold_lr and abs(dir_collision.y) < free_distance_threshold_below)
+		tile_top = tile_top or (dir_collision.y > free_distance_threshold_above and abs(dir_collision.z) <= free_distance_threshold_topside)
 		#print(dir_collision)
 		#print("Tile Top: "+str(tile_top))
 		#print("Tile Left: "+str(tile_left))
