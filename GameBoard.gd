@@ -134,5 +134,5 @@ func on_win():
 	
 func on_no_moves():
 	print("No more moves!")
-	#emit_signal("game_over")
+	emit_signal("game_over")
 	pass

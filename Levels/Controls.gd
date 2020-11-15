@@ -23,7 +23,7 @@ func _input(event):
 	if gameboard.paused:
 		return
 	if event.is_action_pressed("hint"):
-		var h = gameboard.get_smart_hint()
+		var h = gameboard.get_hint()
 	if event.is_action_pressed("autosolve"):
 		$"../LayoutGenerator".try_solve_bruteforce()
 	if event.is_action_pressed("restart"):

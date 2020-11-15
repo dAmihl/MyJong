@@ -10,6 +10,8 @@ var free_distance_threshold_below = 0.3
 var free_distance_threshold_above = 0.4
 var free_distance_threshold_topside = 0.8
 
+var layer:int = 0 setget set_layer
+
 func _ready():
 	set_texture(type)
 	pass
@@ -56,6 +58,17 @@ func remove():
 func set_type(t):
 	type = t
 	set_texture(t)
+
+func set_layer(layerNum:int):
+	layer = layerNum
+
+func set_layer_mat_color(numLayers:int):
+	var layerAlbedof = (float(layer)/float(numLayers)) * 0.3
+	layerAlbedof += 0.7
+	layerAlbedof = 1 - float(numLayers - layer)/20.0
+	var col:Color = Color(layerAlbedof, layerAlbedof, layerAlbedof, 1.0)
+	$MeshGroup/Tile.get_active_material(0).albedo_color = col
+	$MeshGroup/Symbol.modulate = col
 
 func set_texture(t):
 	var tex_path = TileType.type_texture_path(t)

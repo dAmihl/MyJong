@@ -1,0 +1,52 @@
+https://store.steampowered.com/app/539270/Mahjong/:
+
+Price regular: 10$
+
+Should be price point per reviews: around 2$
+
++ Background music , relaxing
++ multiple styles / graphics / backgrounds
+
+- loading screens irritating
++ options: sound off/music off, fullscreen/windows, colorblind
+
+- matching animation irritating
+- leadboards irritating / upload etc. takes time
+
++ players want to be quick to the next level
+
++ UNDO button!!
++ Lots of different layouts prefered
++ Quick Play Option
+
+- Menus slow
+- Music gets old
+
+- unlocking boards mostly irritating
++ a lot of people like the nostalgia ("grew up with mahjong" => Check out the old win95 version?!)
+
++ no time constraint
+- no time constraint, move limit or star rating
+
++ highlight matchable tiles / highlight free tiles
+
+- no shuffle
+
++ just like the old mahjong on windows 95 (=> Research what that was like..)
+
++ tilt to see depth of stack in 3d
+
++ rising difficulty curve
++ cycling backgrounds to choose from
+
++ STEAM TRADING CARDS
+
+- unnecessary flashiness!!
+- tile animation can be irritating
+
++ JUST MAHJONG!! NO FUZZ
+
+Many people prefer this option on steam to the rest, because its simply mahjong without all the fuzz. There seems to still be room for simplicity tho
+
+MAHJONG WORLD CONTEST:
+no wide screen support ( that should be a thing I guess)

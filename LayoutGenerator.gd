@@ -66,6 +66,9 @@ func draw_tile(pos, layerNum, type):
 	var pos_y = layerNum * tile_depth
 	new_tile.translation = Vector3(pos_x, pos_y, pos_z)
 	new_tile.set_type(type)
+	new_tile.set_layer(layerNum)
+	var num_layers = layout.size()
+	#new_tile.set_layer_mat_color(layout.size())
 	gameboard.add_tile(new_tile, pos, 0)
 	
 func distribute_random():

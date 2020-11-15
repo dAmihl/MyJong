@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Theme/DefaultTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/GUI.gd" type="Script" id=2]
@@ -7,7 +7,8 @@
 [ext_resource path="res://assets/ui/PNG/green_button01.png" type="Texture" id=5]
 [ext_resource path="res://assets/ui/PNG/green_button02.png" type="Texture" id=6]
 [ext_resource path="res://assets/ui/PNG/green_button00.png" type="Texture" id=7]
-[ext_resource path="res://assets/ui/PNG/green_panel.png" type="Texture" id=8]
+[ext_resource path="res://assets/ui/panel1.png" type="Texture" id=8]
+[ext_resource path="res://assets/ui/tiles_icon.png" type="Texture" id=9]
 
 [node name="GameGui" type="Control"]
 anchor_right = 1.0
@@ -50,164 +51,79 @@ margin_bottom = 1072.0
 mouse_filter = 2
 
 [node name="Left" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer"]
-margin_right = 136.0
+margin_right = 256.0
 margin_bottom = 1072.0
-size_flags_horizontal = 0
+alignment = 1
+
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left"]
+margin_right = 256.0
+margin_bottom = 265.0
 size_flags_vertical = 3
 
-[node name="Points" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left"]
-margin_right = 136.0
-margin_bottom = 265.0
-mouse_filter = 2
-size_flags_horizontal = 0
-size_flags_vertical = 3
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Points"]
-margin_right = 136.0
-margin_bottom = 265.0
-texture = ExtResource( 8 )
-expand = true
-
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Points"]
-margin_right = 136.0
-margin_bottom = 265.0
-mouse_filter = 2
-
-[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Points/CenterContainer"]
-margin_top = 84.0
-margin_right = 136.0
-margin_bottom = 180.0
-
-[node name="PointsData" type="Label" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Points/CenterContainer/HBoxContainer"]
-margin_right = 136.0
-margin_bottom = 46.0
-theme = ExtResource( 1 )
-text = "0"
-align = 1
-
-[node name="PointsLabel" type="Label" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Points/CenterContainer/HBoxContainer"]
-margin_top = 50.0
-margin_right = 136.0
-margin_bottom = 96.0
-theme = ExtResource( 1 )
-text = "Points"
-
-[node name="Time" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left"]
+[node name="TilesLeft" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left"]
 margin_top = 269.0
-margin_right = 136.0
+margin_right = 256.0
 margin_bottom = 534.0
 mouse_filter = 2
 size_flags_vertical = 3
 
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Time"]
-margin_right = 136.0
-margin_bottom = 265.0
-texture = ExtResource( 8 )
-expand = true
-
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Time"]
-margin_right = 136.0
-margin_bottom = 265.0
-mouse_filter = 2
-
-[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Time/CenterContainer"]
-margin_left = 18.0
-margin_top = 84.0
-margin_right = 117.0
-margin_bottom = 180.0
-
-[node name="TimeData" type="Label" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Time/CenterContainer/HBoxContainer"]
-margin_right = 99.0
-margin_bottom = 46.0
-theme = ExtResource( 1 )
-text = "0"
-align = 1
-
-[node name="TimeLabel" type="Label" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Time/CenterContainer/HBoxContainer"]
-margin_top = 50.0
-margin_right = 99.0
-margin_bottom = 96.0
-theme = ExtResource( 1 )
-text = "Time"
-
-[node name="Moves" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left"]
-margin_top = 538.0
-margin_right = 136.0
-margin_bottom = 803.0
-mouse_filter = 2
-size_flags_vertical = 3
-
-[node name="TextureRect3" type="TextureRect" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Moves"]
-margin_right = 136.0
-margin_bottom = 265.0
-texture = ExtResource( 8 )
-expand = true
-
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Moves"]
-margin_right = 136.0
-margin_bottom = 265.0
-mouse_filter = 2
-
-[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Moves/CenterContainer"]
-margin_left = 7.0
-margin_top = 84.0
-margin_right = 128.0
-margin_bottom = 180.0
-
-[node name="MovesData" type="Label" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Moves/CenterContainer/HBoxContainer"]
-margin_right = 121.0
-margin_bottom = 46.0
-theme = ExtResource( 1 )
-text = "0"
-align = 1
-
-[node name="MovesLabel" type="Label" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Moves/CenterContainer/HBoxContainer"]
-margin_top = 50.0
-margin_right = 121.0
-margin_bottom = 96.0
-theme = ExtResource( 1 )
-text = "Moves"
-
-[node name="TilesLeft" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left"]
-margin_top = 807.0
-margin_right = 136.0
-margin_bottom = 1072.0
-mouse_filter = 2
-size_flags_vertical = 3
-
 [node name="TextureRect4" type="TextureRect" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/TilesLeft"]
-margin_right = 136.0
+margin_right = 256.0
 margin_bottom = 265.0
 texture = ExtResource( 8 )
-expand = true
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/TilesLeft"]
-margin_right = 136.0
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/TilesLeft"]
+margin_right = 256.0
 margin_bottom = 265.0
-mouse_filter = 2
 
-[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/TilesLeft/CenterContainer"]
-margin_left = 11.0
-margin_top = 84.0
-margin_right = 125.0
-margin_bottom = 180.0
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/TilesLeft/MarginContainer"]
+margin_right = 256.0
+margin_bottom = 265.0
 
-[node name="TilesLeftData" type="Label" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/TilesLeft/CenterContainer/HBoxContainer"]
-margin_right = 114.0
-margin_bottom = 46.0
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/TilesLeft/MarginContainer/HBoxContainer"]
+margin_right = 61.0
+margin_bottom = 265.0
+size_flags_horizontal = 3
+
+[node name="TilesLeftLabel" type="TextureRect" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/TilesLeft/MarginContainer/HBoxContainer"]
+margin_left = 65.0
+margin_right = 126.0
+margin_bottom = 265.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+texture = ExtResource( 9 )
+
+[node name="TilesLeftData" type="Label" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/TilesLeft/MarginContainer/HBoxContainer"]
+margin_left = 130.0
+margin_right = 191.0
+margin_bottom = 265.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
 theme = ExtResource( 1 )
 text = "0"
-align = 1
+align = 2
 
-[node name="TilesLeftLabel" type="Label" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/TilesLeft/CenterContainer/HBoxContainer"]
-margin_top = 50.0
-margin_right = 114.0
-margin_bottom = 96.0
-theme = ExtResource( 1 )
-text = "Tiles"
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/TilesLeft/MarginContainer/HBoxContainer"]
+margin_left = 195.0
+margin_right = 256.0
+margin_bottom = 265.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left"]
+margin_top = 538.0
+margin_right = 256.0
+margin_bottom = 803.0
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left"]
+margin_top = 807.0
+margin_right = 256.0
+margin_bottom = 1072.0
+size_flags_vertical = 3
 
 [node name="center" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer"]
-margin_left = 140.0
+margin_left = 260.0
 margin_right = 1726.0
 margin_bottom = 1072.0
 mouse_filter = 2
@@ -217,11 +133,14 @@ size_flags_horizontal = 3
 margin_left = 1730.0
 margin_right = 1920.0
 margin_bottom = 1072.0
+alignment = 2
 
 [node name="Restart" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Right"]
+margin_top = 968.0
 margin_right = 190.0
-margin_bottom = 50.0
+margin_bottom = 1018.0
 mouse_default_cursor_shape = 2
+size_flags_horizontal = 0
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Right/Restart"]
 margin_right = 190.0
@@ -242,9 +161,9 @@ mouse_filter = 2
 texture = ExtResource( 4 )
 
 [node name="Pause" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Right"]
-margin_top = 54.0
+margin_top = 1022.0
 margin_right = 190.0
-margin_bottom = 104.0
+margin_bottom = 1072.0
 mouse_default_cursor_shape = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Right/Pause"]

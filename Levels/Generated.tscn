@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://LayoutGenerator.gd" type="Script" id=1]
 [ext_resource path="res://Levels/Controls.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://BoardCamera.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Levels/StandardEnv.tres" type="Environment" id=9]
 [ext_resource path="res://BoardLight.tscn" type="PackedScene" id=10]
+[ext_resource path="res://BoardCamera.gd" type="Script" id=11]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 50, 50 )
@@ -48,11 +49,14 @@ visible = false
 script = ExtResource( 5 )
 
 [node name="Camera" parent="." instance=ExtResource( 8 )]
+transform = Transform( -1.62921e-07, 0.906308, -0.422618, 0, 0.422618, 0.906308, 1, 1.47656e-07, -6.88532e-08, 0, 13, 10.051 )
+size = 40.0
+script = ExtResource( 11 )
 
 [node name="LayoutGenerator" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.96185, 0, -7.36276 )
 script = ExtResource( 1 )
-layout_json_name = "testeditor.json"
+use_seed = false
 
 [node name="Controls" type="Spatial" parent="."]
 pause_mode = 2
@@ -69,13 +73,13 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="DirectionalLight" parent="." instance=ExtResource( 10 )]
-
 [node name="BoardMesh" type="CSGMesh" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.421515, 0, 9.91558 )
 visible = false
 mesh = SubResource( 1 )
 material = SubResource( 4 )
+
+[node name="DirectionalLight" parent="." instance=ExtResource( 10 )]
 
 [connection signal="pause_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_pause_btn"]
 [connection signal="restart_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_restart_btn"]

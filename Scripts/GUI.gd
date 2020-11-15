@@ -20,19 +20,19 @@ func _on_GameStatistics_stats_hints_used_changed(h):
 
 
 func _on_GameStatistics_stats_moves_changed(m):
-	moves_data.text = str(m)
+	#moves_data.text = str(m)
 	pass # Replace with function body.
 
 
 func _on_GameStatistics_stats_points_changed(p):
-	points_data.text = str(p)
+	#points_data.text = str(p)
 	pass # Replace with function body.
 
 
 func _on_GameStatistics_stats_time_passed(t:int):
 	var minutes = t / 60
 	var seconds = t % 60
-	time_data.text = str(minutes)+":"+("%02d"%seconds)
+	#time_data.text = str(minutes)+":"+("%02d"%seconds)
 	pass # Replace with function body.
 
 
