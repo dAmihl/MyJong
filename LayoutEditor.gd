@@ -16,7 +16,7 @@ var current_layer:int = 0
 
 func _ready():
 	spawn_placement_nodes(0)
-	load_layout()
+	#load_layout()
 	pass
 	
 func _input(event):

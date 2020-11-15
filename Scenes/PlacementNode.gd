@@ -70,7 +70,7 @@ func check_available():
 		toggle_enabled(true)
 
 func toggle_enabled(enabled:bool = true):
-	$Sphere.visible = enabled
+	#$Sphere.visible = enabled
 	set_process_input(enabled)
 	disabled = !enabled
 

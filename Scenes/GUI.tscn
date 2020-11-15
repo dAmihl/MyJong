@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Theme/DefaultTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/GUI.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/ui/PNG/green_button00.png" type="Texture" id=7]
 [ext_resource path="res://assets/ui/panel1.png" type="Texture" id=8]
 [ext_resource path="res://assets/ui/tiles_icon.png" type="Texture" id=9]
+[ext_resource path="res://assets/ui/coin.png" type="Texture" id=10]
 
 [node name="GameGui" type="Control"]
 anchor_right = 1.0
@@ -57,38 +58,38 @@ alignment = 1
 
 [node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left"]
 margin_right = 256.0
-margin_bottom = 265.0
+margin_bottom = 175.0
 size_flags_vertical = 3
 
 [node name="TilesLeft" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left"]
-margin_top = 269.0
+margin_top = 179.0
 margin_right = 256.0
-margin_bottom = 534.0
+margin_bottom = 354.0
 mouse_filter = 2
 size_flags_vertical = 3
 
 [node name="TextureRect4" type="TextureRect" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/TilesLeft"]
 margin_right = 256.0
-margin_bottom = 265.0
+margin_bottom = 175.0
 texture = ExtResource( 8 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/TilesLeft"]
 margin_right = 256.0
-margin_bottom = 265.0
+margin_bottom = 175.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/TilesLeft/MarginContainer"]
 margin_right = 256.0
-margin_bottom = 265.0
+margin_bottom = 175.0
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/TilesLeft/MarginContainer/HBoxContainer"]
 margin_right = 61.0
-margin_bottom = 265.0
+margin_bottom = 175.0
 size_flags_horizontal = 3
 
 [node name="TilesLeftLabel" type="TextureRect" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/TilesLeft/MarginContainer/HBoxContainer"]
 margin_left = 65.0
 margin_right = 126.0
-margin_bottom = 265.0
+margin_bottom = 175.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
@@ -97,7 +98,7 @@ texture = ExtResource( 9 )
 [node name="TilesLeftData" type="Label" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/TilesLeft/MarginContainer/HBoxContainer"]
 margin_left = 130.0
 margin_right = 191.0
-margin_bottom = 265.0
+margin_bottom = 175.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 theme = ExtResource( 1 )
@@ -107,17 +108,73 @@ align = 2
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/TilesLeft/MarginContainer/HBoxContainer"]
 margin_left = 195.0
 margin_right = 256.0
-margin_bottom = 265.0
+margin_bottom = 175.0
+size_flags_horizontal = 3
+
+[node name="Coins" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left"]
+margin_top = 358.0
+margin_right = 256.0
+margin_bottom = 533.0
+mouse_filter = 2
+size_flags_vertical = 3
+
+[node name="TextureRect4" type="TextureRect" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Coins"]
+margin_right = 256.0
+margin_bottom = 175.0
+texture = ExtResource( 8 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Coins"]
+margin_right = 256.0
+margin_bottom = 175.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Coins/MarginContainer"]
+margin_right = 256.0
+margin_bottom = 175.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Coins/MarginContainer/HBoxContainer"]
+margin_right = 61.0
+margin_bottom = 175.0
+size_flags_horizontal = 3
+
+[node name="PointsLabel" type="TextureRect" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Coins/MarginContainer/HBoxContainer"]
+margin_left = 65.0
+margin_right = 126.0
+margin_bottom = 175.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+texture = ExtResource( 10 )
+
+[node name="PointsData" type="Label" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Coins/MarginContainer/HBoxContainer"]
+margin_left = 130.0
+margin_right = 191.0
+margin_bottom = 175.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+theme = ExtResource( 1 )
+text = "0"
+align = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left/Coins/MarginContainer/HBoxContainer"]
+margin_left = 195.0
+margin_right = 256.0
+margin_bottom = 175.0
 size_flags_horizontal = 3
 
 [node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left"]
-margin_top = 538.0
+margin_top = 537.0
 margin_right = 256.0
-margin_bottom = 803.0
+margin_bottom = 713.0
+size_flags_vertical = 3
+
+[node name="MarginContainer5" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left"]
+margin_top = 717.0
+margin_right = 256.0
+margin_bottom = 892.0
 size_flags_vertical = 3
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Center/HBoxContainer/Left"]
-margin_top = 807.0
+margin_top = 896.0
 margin_right = 256.0
 margin_bottom = 1072.0
 size_flags_vertical = 3

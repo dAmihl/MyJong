@@ -25,7 +25,7 @@ func _on_GameStatistics_stats_moves_changed(m):
 
 
 func _on_GameStatistics_stats_points_changed(p):
-	#points_data.text = str(p)
+	points_data.text = str(p)
 	pass # Replace with function body.
 
 
