@@ -70,7 +70,7 @@ func draw_tile(pos,  type):
 	new_tile.set_layer(layerNum)
 	var num_layers = layout.size()
 	#new_tile.set_layer_mat_color(layout.size())
-	gameboard.add_tile(new_tile, pos, 0)
+	gameboard.add_tile(new_tile)
 	
 func distribute_random():
 	var typeNumberTmp = TileType.TypeNumber.duplicate(true)

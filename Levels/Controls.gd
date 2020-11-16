@@ -7,6 +7,8 @@ var selection
 signal pause_game
 signal unpause_game
 
+var last_removed_tiles = []
+
 var audio_clicks = [
 	preload("res://assets/ui/Bonus/click1.ogg"), 
 	preload("res://assets/ui/Bonus/click2.ogg")
@@ -28,6 +30,8 @@ func _input(event):
 		$"../LayoutGenerator".try_solve_bruteforce()
 	if event.is_action_pressed("restart"):
 		restart_board()
+	if event.is_action_pressed("undo"):
+		undo()
 
 func tile_clicked(block):
 	if gameboard.is_paused():
@@ -66,12 +70,16 @@ func remove_block(block):
 	selection=null
 	return
 	
+func remove_tile_pair(tile1, tile2):
+	remove_block(tile1)
+	remove_block(tile2)
+	last_removed_tiles.append([tile1, tile2])
+	
 func eval_selection(sel1, sel2):
 	if (TileType.types_match(sel1.type, sel2.type)):
 		gamestats.add_move()
 		gamestats.add_points(150)
-		remove_block(sel1)
-		remove_block(sel2)
+		remove_tile_pair(sel1, sel2)
 		$AudioClick.stream = audio_clicks[1]
 		$AudioClick.play()
 	else:
@@ -98,3 +106,12 @@ func clear_selection():
 func restart_board():
 	selection = null
 	$"../LayoutGenerator".restart()
+	
+func undo():
+	if last_removed_tiles.size() > 0:
+		var last_pair = last_removed_tiles.back()
+		gameboard.undo(last_pair[0], last_pair[1])
+		last_removed_tiles.erase(last_pair)
+	else:
+		print("No Moves to undo!")
+

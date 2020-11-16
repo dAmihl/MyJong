@@ -9,11 +9,13 @@ signal game_win
 signal game_over
 signal clear_done
 
+
+
 func _ready():
 	gamestats.set_tiles_left(board.size())
 	print("Gameboard ready")
 
-func add_tile(tile, pos, layer):
+func add_tile(tile):
 	board.append(tile)
 	call_deferred("add_child", tile)
 	pass
@@ -30,6 +32,7 @@ func remove_tile(tile):
 	calculate_hints()
 	gamestats.set_tiles_left(board.size())
 	check_state()
+
 	
 func check_state():
 	if board.size() == 0:
@@ -130,3 +133,8 @@ func on_no_moves():
 	print("No more moves!")
 	#emit_signal("game_over", gamestats.points, gamestats.time_passed, gamestats.hints_used, gamestats.moves)
 	pass
+
+func undo(tile1, tile2):
+	add_tile(tile1)
+	add_tile(tile2)
+	gamestats.set_tiles_left(board.size())

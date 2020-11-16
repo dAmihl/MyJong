@@ -53,7 +53,8 @@ func deselected():
 	bSelected = false
 
 func remove():
-	queue_free()
+	deselected()
+	get_parent().remove_child(self)
 
 func set_type(t):
 	type = t
