@@ -72,4 +72,5 @@ func _on_GameBoard_game_over(points,time,hints,moves):
 	win_gui.set_hints(hints)
 	win_gui.set_moves(moves)
 	win_gui.set_won(false)
+	print("Game Over")
 	pass # Replace with function body.

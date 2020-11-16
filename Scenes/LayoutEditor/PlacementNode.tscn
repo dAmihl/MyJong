@@ -10,7 +10,7 @@ extents = Vector3( 1.10496, 0.218214, 0.658194 )
 resource_local_to_scene = true
 
 [sub_resource type="BoxShape" id=3]
-extents = Vector3( 1.703, 0.4772, 1.09193 )
+extents = Vector3( 1.46489, 0.4772, 0.914455 )
 
 [node name="PlacementNode" type="StaticBody"]
 collision_mask = 0

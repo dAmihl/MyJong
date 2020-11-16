@@ -14,6 +14,7 @@ var layout_tile_scn = preload("res://Scenes/LayoutEditor/LayoutTile.tscn")
 
 func _process(delta):
 	check_available()
+	
 	pass
 
 func _on_PlacementNode_mouse_entered():

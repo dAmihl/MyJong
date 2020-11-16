@@ -29,7 +29,6 @@ func remove_tile(tile):
 	board.erase(tile)
 	calculate_hints()
 	gamestats.set_tiles_left(board.size())
-	check_move()
 	check_state()
 	
 func check_state():
@@ -39,11 +38,6 @@ func check_state():
 	if hints.size() == 0:
 		on_no_moves()
 		return
-
-func check_move():
-	if hints.size() == 0:
-		#print("No Moves Left!!")
-		pass
 
 func get_perfect_hint():
 	var b = board[board.size()-1]
@@ -134,5 +128,5 @@ func on_win():
 	
 func on_no_moves():
 	print("No more moves!")
-	emit_signal("game_over")
+	#emit_signal("game_over", gamestats.points, gamestats.time_passed, gamestats.hints_used, gamestats.moves)
 	pass

@@ -149,8 +149,6 @@ func distribute_random_solvable():
 					previous_chosen_layer = null
 				current_layer = chosen_layer
 				
-				
-				
 				for pos1 in layoutTmp[current_layer]:
 					var is_edge:bool = true
 					var left_neighbour_found:bool = false
