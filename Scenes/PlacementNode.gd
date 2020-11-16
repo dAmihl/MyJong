@@ -29,7 +29,7 @@ func _on_PlacementNode_mouse_entered():
 func _on_PlacementNode_mouse_exited():
 	if disabled:
 		return
-	$Sphere.material.albedo_color = Color.white
+	$Sphere.material.albedo_color = Color(0,0,0,0.3)
 	$TileMesh.visible = false
 	pass # Replace with function body.
 
@@ -73,7 +73,7 @@ func check_available():
 		toggle_enabled(true)
 
 func toggle_enabled(enabled:bool = true):
-	#$Sphere.visible = enabled
+	$Sphere.visible = enabled
 	set_process_input(enabled)
 	disabled = !enabled
 

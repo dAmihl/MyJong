@@ -1,8 +1,8 @@
 tool
 extends Spatial
 
-var cols = 15
-var rows = 8
+var cols = 20
+var rows = 10
 
 var nodes_distance_width:float = 2.2
 var nodes_distance_height:float = 3.6
@@ -20,8 +20,16 @@ signal num_tiles_changed
 
 func _ready():
 	spawn_placement_nodes(0)
+	center_board_position()
 	pass
-	
+
+func center_board_position():
+	var pos_x = (float(rows) * nodes_distance_height) / 2.0
+	var pos_z = (float(cols) * nodes_distance_width) / 2.0
+	$PlacementGrid.translation.x = -pos_x
+	$PlacementGrid.translation.z = -pos_z
+	pass
+
 func _input(event):
 	if event.is_action_pressed("export_layout"):
 		$PlacementGrid.export_layout()

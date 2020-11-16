@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/PlacementNode.gd" type="Script" id=1]
 [ext_resource path="res://assets/new_arraymesh2.tres" type="ArrayMesh" id=2]
@@ -6,8 +6,13 @@
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1.10496, 0.218214, 0.658194 )
 
+[sub_resource type="CubeMesh" id=5]
+size = Vector3( 0.5, 0.5, 0.5 )
+
 [sub_resource type="SpatialMaterial" id=2]
 resource_local_to_scene = true
+flags_transparent = true
+albedo_color = Color( 0, 0, 0, 0.25098 )
 
 [sub_resource type="SpatialMaterial" id=4]
 flags_transparent = true
@@ -24,9 +29,9 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.381324, 0 )
 shape = SubResource( 1 )
 
-[node name="Sphere" type="CSGSphere" parent="."]
-visible = false
-radius = 0.2
+[node name="Sphere" type="CSGMesh" parent="."]
+transform = Transform( 0.707107, 0.5, 0.5, 0, 0.707107, -0.707107, -0.707107, 0.5, 0.5, 0, 0, 0 )
+mesh = SubResource( 5 )
 material = SubResource( 2 )
 
 [node name="TileMesh" type="MeshInstance" parent="."]

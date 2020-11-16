@@ -52,16 +52,22 @@ func _ready():
 func center_board_position():
 	var num_rows_max = 0
 	var num_cols_max = 0
+	# defines the smallest row/col index. e.g. the smallest tile position
+	var idx_rows_min = layout[0][0][0]
+	var idx_cols_min = layout[0][0][1]
+	
 	for layer in layout:
 		for tiles in layer:
 			if tiles[1] > num_cols_max:
 				num_cols_max = tiles[1]
 			if tiles[0] > num_rows_max:
 				num_rows_max = tiles[0]
-	print("Max rows:"+str(num_rows_max))
-	print("Max cols:"+str(num_cols_max))
-	var pos_x = (float(num_rows_max) * tile_height) / 2.0
-	var pos_z = (float(num_cols_max) * tile_width) / 2.0
+			if tiles[0] < idx_rows_min:
+				idx_rows_min = tiles[0]
+			if tiles[1] < idx_cols_min:
+				idx_cols_min = tiles[1]
+	var pos_x = (float(num_rows_max+idx_rows_min) * tile_height) / 2.0
+	var pos_z = (float(num_cols_max+idx_cols_min) * tile_width) / 2.0
 	gameboard.translation.x = -pos_x
 	gameboard.translation.z = -pos_z
 	pass
@@ -127,7 +133,7 @@ func distribute_random():
 		typeNumberTmp[type] -= num_blocks
 		if typeNumberTmp[type] <= 0:
 			typeNumberTmp.erase(type)
-	pass
+	return 0
 	
 func distribute_random_solvable():
 	var typeNumberTmp = TileType.TypeNumber.duplicate(true)
