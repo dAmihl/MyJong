@@ -12,12 +12,18 @@ var free_distance_threshold_topside = 0.8
 
 var layer:int = 0 setget set_layer
 
+var highlight_if_free:bool = false setget set_highlight_free
+
 signal tile_clicked
 signal tile_not_free_clicked
 
 func _ready():
 	set_texture(type)
 	pass
+
+func _process(delta):
+	if highlight_if_free:
+		is_free()
 
 func is_free() -> bool:
 	var overlap = $Area.get_overlapping_bodies()
@@ -35,7 +41,9 @@ func is_free() -> bool:
 		#print("Tile Top: "+str(tile_top))
 		#print("Tile Left: "+str(tile_left))
 		#print("Tile Right: "+str(tile_right))
-	return !tile_top && (!tile_left or !tile_right)
+	var bFree = !tile_top && (!tile_left or !tile_right)
+	highlight_free(bFree)
+	return bFree
 	pass
 
 func on_clicked():
@@ -76,6 +84,16 @@ func set_layer_mat_color(numLayers:int):
 	$MeshGroup/Tile.get_active_material(0).albedo_color = col
 	$MeshGroup/Symbol.modulate = col
 
+func highlight_free(bFree):
+	if !highlight_if_free:
+		return
+	var free_col:Color = Color(1.0, 1.0, 1.0, 1.0)
+	var modCol = 0.8
+	if !bFree:
+		free_col = Color(modCol, modCol, modCol, 1.0)
+	$MeshGroup/Tile.get_active_material(0).albedo_color = free_col
+	$MeshGroup/Symbol.modulate = free_col
+
 func set_texture(t):
 	var tex_path = TileType.type_texture_path(t)
 	if !has_node("MeshGroup"):
@@ -110,3 +128,8 @@ func _on_Tile_mouse_entered():
 func _on_Tile_mouse_exited():
 	remove_outline()
 	pass # Replace with function body.
+
+func set_highlight_free(new_val):
+	highlight_if_free = new_val
+	if !new_val: #reset to white
+		$MeshGroup/Tile.get_active_material(0).albedo_color = Color.white

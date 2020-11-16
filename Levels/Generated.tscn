@@ -46,17 +46,16 @@ script = ExtResource( 6 )
 visible = false
 
 [node name="Camera" parent="." instance=ExtResource( 8 )]
-transform = Transform( -1.62921e-07, 0.906308, -0.422618, 0, 0.422618, 0.906308, 1, 1.47656e-07, -6.88533e-08, -4.08535, 13, 8.65885 )
+transform = Transform( -1.62921e-07, 0.906308, -0.422618, 0, 0.422618, 0.906308, 1, 1.47656e-07, -6.88532e-08, 0, 13.602, 10.051 )
 script = ExtResource( 11 )
 
 [node name="GameStatistics" type="Spatial" parent="."]
 script = ExtResource( 5 )
 
 [node name="LayoutGenerator" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.96185, 0, -7.36276 )
 script = ExtResource( 1 )
 use_seed = false
-layout_json_name = "pyramini.json"
+highlight_free_tiles = true
 
 [node name="Controls" type="Spatial" parent="."]
 pause_mode = 2
@@ -65,7 +64,6 @@ script = ExtResource( 2 )
 [node name="AudioClick" type="AudioStreamPlayer" parent="Controls"]
 
 [node name="GameBoard" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, -7 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 9 )
@@ -81,6 +79,7 @@ material = SubResource( 4 )
 
 [node name="DirectionalLight" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 0.362666, 0.931919, 0, -0.931919, 0.362666, 0, 79.2429, 5.35862 )
+light_energy = 0.6
 
 [connection signal="pause_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_pause_btn"]
 [connection signal="restart_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_restart_btn"]

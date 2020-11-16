@@ -13,6 +13,7 @@ export var fixed_rngseed = -5352770736231847634
 export var use_seed:bool = true
 
 export var layout_json_name:String = "turtle.json"
+export var highlight_free_tiles:bool = false
 
 onready var RNG = RandomNumberGenerator.new()
 onready var gameboard = $"../GameBoard"
@@ -47,6 +48,24 @@ func _ready():
 	load_json()
 	pass # Replace with function body.
 
+# Center the board via the number of cols and rows generated
+func center_board_position():
+	var num_rows_max = 0
+	var num_cols_max = 0
+	for layer in layout:
+		for tiles in layer:
+			if tiles[1] > num_cols_max:
+				num_cols_max = tiles[1]
+			if tiles[0] > num_rows_max:
+				num_rows_max = tiles[0]
+	print("Max rows:"+str(num_rows_max))
+	print("Max cols:"+str(num_cols_max))
+	var pos_x = (float(num_rows_max) * tile_height) / 2.0
+	var pos_y = (float(num_cols_max) * tile_width) / 2.0
+	gameboard.translation.x = -pos_x
+	gameboard.translation.y = -pos_y
+	pass
+
 func draw_layout():
 	#distribute_random()
 	RNG.seed = rngseed
@@ -57,6 +76,7 @@ func draw_layout():
 		print("New Seed: "+str(rngseed))
 		gameboard.call_deferred("clear")
 		yield(gameboard, "clear_done")
+	center_board_position()
 	gameboard.board_ready()
 	return
 	
@@ -71,6 +91,7 @@ func draw_tile(pos,  type):
 	new_tile.set_layer(layerNum)
 	new_tile.connect("tile_clicked", controls, "tile_clicked")
 	new_tile.connect("tile_not_free_clicked", controls, "tile_not_free_clicked")
+	new_tile.set_highlight_free(highlight_free_tiles)
 	var num_layers = layout.size()
 	#new_tile.set_layer_mat_color(layout.size())
 	gameboard.add_tile(new_tile)

@@ -10,7 +10,6 @@ signal game_over
 signal clear_done
 
 
-
 func _ready():
 	gamestats.set_tiles_left(board.size())
 	print("Gameboard ready")
@@ -22,7 +21,6 @@ func add_tile(tile):
 
 func board_ready():
 	print("Number Tiles: "+ str(board.size()))
-#	calculate_hints()
 	unpause_board()
 	if (is_instance_valid(gamestats)):
 		gamestats.set_tiles_left(board.size())
@@ -32,7 +30,6 @@ func remove_tile(tile):
 	calculate_hints()
 	gamestats.set_tiles_left(board.size())
 	check_state()
-
 	
 func check_state():
 	if board.size() == 0:
