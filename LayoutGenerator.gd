@@ -59,8 +59,9 @@ func draw_layout():
 	gameboard.board_ready()
 	return
 	
-func draw_tile(pos, layerNum, type):
+func draw_tile(pos,  type):
 	var new_tile = block_scn.instance()
+	var layerNum = pos[2]
 	var pos_x:float = (pos[0] * tile_height)
 	var pos_z:float = (pos[1] * tile_width)
 	var pos_y = layerNum * tile_depth
@@ -97,7 +98,7 @@ func distribute_random():
 			var pos_idx = RNG.randi() % layoutTmp[current_layer].size()
 			var pos = layoutTmp[current_layer][pos_idx]
 			layoutTmp[current_layer].erase(pos)
-			draw_tile(pos, current_layer,type)
+			draw_tile([pos[0], pos[1], current_layer],type)
 		
 		typeNumberTmp[type] -= num_blocks
 		if typeNumberTmp[type] <= 0:
@@ -110,7 +111,7 @@ func distribute_random_solvable():
 	var current_layer = 0
 	
 	# While there are tile types left and we dont overshoot the available layers..
-	while(typeNumberTmp.size() > 0 && current_layer < layoutTmp.size()):
+	while(typeNumberTmp.size() > 0):
 		# (1) pick a remaining random type at random
 		var ixType = RNG.randi() % typeNumberTmp.keys().size()
 		var type = typeNumberTmp.keys()[ixType]
@@ -139,42 +140,22 @@ func distribute_random_solvable():
 				return
 			
 			var edges = []
-			while (edges.empty() and available_layers.size() > 0):
-				var chosen_layer = available_layers[RNG.randi()%available_layers.size()]
+			for chosen_layer in available_layers:
+				#var chosen_layer = available_layers[RNG.randi()%available_layers.size()]
 			
-				var layer_switch:bool = nBlock > 0 and chosen_layer != current_layer
 				if nBlock > 0:
 					previous_chosen_layer = current_layer
 				else:
 					previous_chosen_layer = null
 				current_layer = chosen_layer
-			
-				# (2) Choose random row on current layer
-				var rows = layoutTmp[current_layer]
-				var available_rows = []
-				for pos in rows:
-					if !available_rows.has(pos[0]):
-						available_rows.append(pos[0])
 				
-				var chosen_row = available_rows[RNG.randi() % available_rows.size()]
-				# (3) Get edges on chosen row, including half-steps (+- 0.5).
-				# Edge is a pos which has either nothing left or right
-				# (+) and has tiles on bottom
-				
-				for pos1 in rows:
-					if abs(pos1[0] - chosen_row) >= 1:
-						continue
+				for pos1 in layoutTmp[current_layer]:
 					var is_edge:bool = true
 					var left_neighbour_found:bool = false
 					var right_neighbour_found:bool = false
 					
-					# If there is a layer switch, keep the distance to
-					# the previous chosen edge
-					if layer_switch and abs(previous_chosen_edge[1] - pos1[1]) < 2:
-						is_edge = false
-						break
-					
-					for pos2 in rows:
+					# find neighbours on current layer
+					for pos2 in layoutTmp[current_layer]:
 						if left_neighbour_found and right_neighbour_found:
 							is_edge = false
 							break
@@ -192,6 +173,7 @@ func distribute_random_solvable():
 						
 					if left_neighbour_found and right_neighbour_found:
 						is_edge = false 
+						continue
 						
 					# (+) Check if tile has tiles on top if it is on lower layer.
 					# !! we are not building inside out, but outside in!!!
@@ -210,41 +192,42 @@ func distribute_random_solvable():
 								is_edge = false
 								break
 					if is_edge:
-						edges.append(pos1)
-				
-					
-				if edges.size() > 1 or available_layers.size() > 1:
-					for e in edges:
-						# if the second block is next to the previous chosen one
-						# dont use that; except its the only one
-						if nBlock > 0 and previous_chosen_layer == current_layer:
-							var delta_dist_x = abs(e[0] - previous_chosen_edge[0])
-							var delta_dist_y = abs(e[1] - previous_chosen_edge[1])
-							if (delta_dist_x <= 1.0 and
-								delta_dist_y <= 1.0 
-								and not (delta_dist_x == 1.0 and delta_dist_y == 1.0)):
-									edges.erase(e)
-				
-				if edges.size() == 0:
-					available_layers.erase(current_layer)
+						edges.append([pos1[0],pos1[1], current_layer])
 			
-			if edges.size() == 0 and available_layers.size() == 0:
+			# Edges now consists of all edges on all layers
+			if edges.size() > 1:
+				for e in edges:
+					# if the second block is next to the previous chosen one
+					# dont use that; except its the only one
+					if edges.size() == 1:
+						break
+					if nBlock > 0:
+						var delta_dist_x = abs(e[0] - previous_chosen_edge[0])
+						var delta_dist_y = abs(e[1] - previous_chosen_edge[1])
+						var delta_dist_layer = abs(e[2] - previous_chosen_edge[2])
+						if (delta_dist_x < 1.0 and
+							delta_dist_y <= 1.0 
+							and not (delta_dist_x == 1.0 and delta_dist_y == 1.0)
+							and delta_dist_layer == 0):
+								edges.erase(e)
+				
+			if edges.size() == 0:
 				print("ERROR!! NO EDGES! NO LAYERS LEFT! Something went terribly wrong")
 				return -1
-			
+
 			# (4) Choose random edge
 			var chosen_edge = edges[RNG.randi() % edges.size()]
 			previous_chosen_edge = chosen_edge
 			
 			# (5) Remove both pos from layout
-			layoutTmp[current_layer].erase(chosen_edge)
+			layoutTmp[chosen_edge[2]].erase([chosen_edge[0], chosen_edge[1]])
 			
 			typeNumberTmp[type] -= 1
 			if typeNumberTmp[type] <= 0:
 				typeNumberTmp.erase(type)
 			
 			# (6) Draw Tile 
-			draw_tile(chosen_edge, current_layer,type)
+			draw_tile(chosen_edge,type)
 			
 			# (7) If the Tile is in a group and has not another tile from the
 			# same type, we have to choose a tile from the same group for the 
@@ -277,7 +260,7 @@ func try_solve_bruteforce():
 		yield(get_tree().create_timer(1.0), "timeout")
 		while gameboard.board.size() > 0:
 			var hint = gameboard.get_random_hint()
-			#hint = gameboard.get_smart_hint()
+			hint = gameboard.get_smart_hint()
 			if hint.empty():
 				break
 			else:
