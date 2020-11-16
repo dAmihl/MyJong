@@ -79,7 +79,6 @@ mesh = SubResource( 1 )
 material = SubResource( 4 )
 
 [node name="DirectionalLight" parent="." instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 0.362666, 0.931919, 0, -0.931919, 0.362666, 0, 79.2429, 5.35862 )
 light_energy = 0.6
 
 [connection signal="hint_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_hint_btn"]

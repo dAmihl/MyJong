@@ -6,6 +6,8 @@ var layer:int = 0
 var is_tile_set:bool = false
 var disabled:bool = false
 
+signal tile_placed
+signal tile_removed
 
 var nodes_distance_width:float = 2.2
 var nodes_distance_height:float = 3.6
@@ -82,8 +84,10 @@ func decrease_layer():
 	set_layer(max(layer-1,0))
 
 func remove_node():
-	$Tiles.remove_child($Tiles.get_child($Tiles.get_child_count()-1))
-	decrease_layer()
+	if $Tiles.get_child_count() > 0:
+		$Tiles.remove_child($Tiles.get_child($Tiles.get_child_count()-1))
+		decrease_layer()
+		emit_signal("tile_removed")
 
 func place_node():
 	var new_tile = layout_tile_scn.instance()
@@ -91,6 +95,7 @@ func place_node():
 	new_tile.position = self.position 
 	new_tile.layer = layer
 	$Tiles.add_child(new_tile)
+	emit_signal("tile_placed")
 	pass
 	
 func place_node_with_layer(layerNum:int = 0):
@@ -99,6 +104,7 @@ func place_node_with_layer(layerNum:int = 0):
 	new_tile.position = self.position 
 	new_tile.layer = layerNum
 	$Tiles.add_child(new_tile)
+	emit_signal("tile_placed")
 	pass
 	
 func update_layer():

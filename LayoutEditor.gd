@@ -14,16 +14,17 @@ var layer_scn = preload("res://Scenes/LayoutEditor/Layer.tscn")
 onready var layers = []
 var current_layer:int = 0
 
+var num_tiles = 0
+
+signal num_tiles_changed
+
 func _ready():
 	spawn_placement_nodes(0)
-	#load_layout()
 	pass
 	
 func _input(event):
 	if event.is_action_pressed("export_layout"):
 		$PlacementGrid.export_layout()
-	if event.is_action_pressed("save"):
-		save_layout()
 	
 func spawn_placement_nodes(layer:int):
 	for r in range(0,rows):
@@ -45,19 +46,19 @@ func place_node(r, c, layer:int):
 	new_hs_node.position = Vector2(r,c)
 	new_hs_node.layer = layer
 	new_hs_node.translation = Vector3(r*nodes_distance_height, layer*nodes_distance_depth, c*nodes_distance_width)
+	new_hs_node.connect("tile_placed", self, "_on_numTiles_Added")
+	new_hs_node.connect("tile_removed", self, "_on_numTiles_Removed")
 	$PlacementGrid.add_child(new_hs_node)
 	
 
-func save_layout(layoutName:String = "testlayout"):
+func save_layout(layoutFilePath:String):
 	var layoutstr:String = $PlacementGrid.export_layout()
-	var layoutFilePath = "user://"+layoutName+".layout"
 	var file = File.new()
 	file.open(layoutFilePath, File.WRITE)
 	file.store_string(layoutstr)
 	file.close()
 
-func load_layout(layoutName:String = "testlayout"):
-	var layoutFilePath = "user://"+layoutName+".layout"
+func load_layout(layoutFilePath:String):
 	var file = File.new()
 	file.open(layoutFilePath, File.READ)
 	var layoutstr = file.get_as_text()
@@ -92,3 +93,24 @@ func update_node_layers():
 	for n in $PlacementGrid.get_children():
 		n.update_layer()
 	
+
+
+func _on_EditorGUI_save_file_selected(path):
+	save_layout(path)
+	pass # Replace with function body.
+
+
+func _on_EditorGUI_load_file_selected(path):
+	load_layout(path)
+	pass # Replace with function body.
+
+
+func _on_numTiles_Added():
+	num_tiles += 1
+	emit_signal("num_tiles_changed", num_tiles)
+	pass
+
+func _on_numTiles_Removed():
+	num_tiles -= 1
+	emit_signal("num_tiles_changed", num_tiles)
+	pass

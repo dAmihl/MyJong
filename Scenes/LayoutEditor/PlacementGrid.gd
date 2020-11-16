@@ -14,6 +14,3 @@ func export_layout() -> String:
 		layers_arr.append(layers.get(k))
 	print(JSON.print(layers_arr))
 	return JSON.print(layers_arr)
-
-
-
