@@ -149,10 +149,18 @@ func distribute_random_solvable():
 					previous_chosen_layer = null
 				current_layer = chosen_layer
 				
+				
+				
 				for pos1 in layoutTmp[current_layer]:
 					var is_edge:bool = true
 					var left_neighbour_found:bool = false
 					var right_neighbour_found:bool = false
+					
+					# keep distance to previous chosen tile
+					if nBlock > 0 and previous_chosen_edge:
+						if (abs(pos1[0] - previous_chosen_edge[0]) < 1
+						and abs(pos1[1] - previous_chosen_edge[1]) < 1):
+							continue
 					
 					# find neighbours on current layer
 					for pos2 in layoutTmp[current_layer]:
