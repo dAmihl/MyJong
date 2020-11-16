@@ -74,3 +74,13 @@ func _on_GameBoard_game_over(points,time,hints,moves):
 	win_gui.set_won(false)
 	print("Game Over")
 	pass # Replace with function body.
+
+
+func _on_GUI_hint_btn():
+	$"/root/Board/Controls".hint()
+	pass # Replace with function body.
+
+
+func _on_GUI_undo_btn():
+	$"/root/Board/Controls".undo()
+	pass # Replace with function body.

@@ -61,9 +61,9 @@ func center_board_position():
 	print("Max rows:"+str(num_rows_max))
 	print("Max cols:"+str(num_cols_max))
 	var pos_x = (float(num_rows_max) * tile_height) / 2.0
-	var pos_y = (float(num_cols_max) * tile_width) / 2.0
+	var pos_z = (float(num_cols_max) * tile_width) / 2.0
 	gameboard.translation.x = -pos_x
-	gameboard.translation.y = -pos_y
+	gameboard.translation.z = -pos_z
 	pass
 
 func draw_layout():

@@ -27,7 +27,7 @@ func board_ready():
 
 func remove_tile(tile):
 	board.erase(tile)
-	calculate_hints()
+	#calculate_hints()
 	gamestats.set_tiles_left(board.size())
 	check_state()
 	

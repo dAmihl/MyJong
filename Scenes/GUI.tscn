@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Theme/DefaultTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/GUI.gd" type="Script" id=2]
@@ -10,6 +10,20 @@
 [ext_resource path="res://assets/ui/panel1.png" type="Texture" id=8]
 [ext_resource path="res://assets/ui/tiles_icon.png" type="Texture" id=9]
 [ext_resource path="res://assets/ui/coin.png" type="Texture" id=10]
+[ext_resource path="res://assets/ui/icons/PNG/White/1x/rewind.png" type="Texture" id=11]
+[ext_resource path="res://assets/ui/icons/PNG/White/1x/question.png" type="Texture" id=12]
+
+[sub_resource type="InputEventAction" id=3]
+action = "hint"
+
+[sub_resource type="ShortCut" id=4]
+shortcut = SubResource( 3 )
+
+[sub_resource type="InputEventAction" id=1]
+action = "undo"
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
 
 [node name="GameGui" type="Control"]
 anchor_right = 1.0
@@ -39,6 +53,7 @@ __meta__ = {
 [node name="TopBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_right = 1920.0
 margin_bottom = 484.0
+mouse_filter = 2
 size_flags_vertical = 3
 alignment = 1
 
@@ -66,15 +81,15 @@ margin_bottom = 104.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="Left" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer"]
-margin_right = 861.0
-margin_bottom = 104.0
-size_flags_horizontal = 3
 alignment = 1
 
+[node name="Left" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer"]
+margin_right = 637.0
+margin_bottom = 104.0
+size_flags_horizontal = 3
+
 [node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Left"]
-margin_right = 861.0
+margin_right = 637.0
 margin_bottom = 23.0
 size_flags_vertical = 3
 
@@ -131,31 +146,33 @@ size_flags_horizontal = 3
 
 [node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Left"]
 margin_top = 27.0
-margin_right = 861.0
+margin_right = 637.0
 margin_bottom = 50.0
 size_flags_vertical = 3
 
 [node name="MarginContainer5" type="MarginContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Left"]
 margin_top = 54.0
-margin_right = 861.0
+margin_right = 637.0
 margin_bottom = 77.0
 size_flags_vertical = 3
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Left"]
 margin_top = 81.0
-margin_right = 861.0
+margin_right = 637.0
 margin_bottom = 104.0
 size_flags_vertical = 3
 
-[node name="center" type="MarginContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer"]
-margin_left = 865.0
-margin_right = 1726.0
+[node name="center" type="HBoxContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer"]
+margin_left = 641.0
+margin_right = 1278.0
 margin_bottom = 104.0
 mouse_filter = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 11
+alignment = 1
 
 [node name="TilesLeft" type="MarginContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/center"]
-margin_right = 256.0
+margin_left = 190.0
+margin_right = 446.0
 margin_bottom = 104.0
 mouse_filter = 2
 size_flags_horizontal = 0
@@ -204,58 +221,126 @@ margin_bottom = 104.0
 size_flags_horizontal = 3
 
 [node name="Right" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer"]
-margin_left = 1730.0
+margin_left = 1282.0
 margin_right = 1920.0
 margin_bottom = 104.0
-alignment = 2
+size_flags_horizontal = 3
 
-[node name="Restart" type="MarginContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right"]
+margin_right = 638.0
+margin_bottom = 104.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer"]
+margin_left = 127.0
+margin_right = 317.0
+margin_bottom = 104.0
+
+[node name="Hint" type="MarginContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer"]
 margin_right = 190.0
 margin_bottom = 50.0
-mouse_default_cursor_shape = 2
-size_flags_horizontal = 0
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/Restart"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer/Hint"]
 margin_right = 190.0
 margin_bottom = 50.0
 
-[node name="RestartButton" type="TextureButton" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/Restart/CenterContainer"]
+[node name="HintButton" type="TextureButton" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer/Hint/CenterContainer"]
 margin_right = 190.0
 margin_bottom = 49.0
+hint_tooltip = "Hint (H)"
+shortcut_in_tooltip = false
+shortcut = SubResource( 4 )
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 6 )
 texture_hover = ExtResource( 5 )
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/Restart/CenterContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer/Hint/CenterContainer"]
+margin_left = 70.0
+margin_right = 120.0
+margin_bottom = 50.0
+mouse_filter = 2
+texture = ExtResource( 12 )
+
+[node name="Undo" type="MarginContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer"]
+margin_top = 54.0
+margin_right = 190.0
+margin_bottom = 104.0
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer/Undo"]
+margin_right = 190.0
+margin_bottom = 50.0
+
+[node name="UndoButton" type="TextureButton" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer/Undo/CenterContainer"]
+margin_right = 190.0
+margin_bottom = 49.0
+hint_tooltip = "Undo (U)"
+shortcut_in_tooltip = false
+shortcut = SubResource( 2 )
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 5 )
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer/Undo/CenterContainer"]
+margin_left = 70.0
+margin_right = 120.0
+margin_bottom = 50.0
+mouse_filter = 2
+texture = ExtResource( 11 )
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer"]
+margin_left = 321.0
+margin_right = 511.0
+margin_bottom = 104.0
+
+[node name="Restart" type="MarginContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer2"]
+margin_right = 190.0
+margin_bottom = 50.0
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer2/Restart"]
+margin_right = 190.0
+margin_bottom = 50.0
+
+[node name="RestartButton" type="TextureButton" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer2/Restart/CenterContainer"]
+margin_right = 190.0
+margin_bottom = 49.0
+hint_tooltip = "Restart (R)"
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 5 )
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer2/Restart/CenterContainer"]
 margin_left = 70.0
 margin_right = 120.0
 margin_bottom = 50.0
 mouse_filter = 2
 texture = ExtResource( 4 )
 
-[node name="Pause" type="MarginContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right"]
+[node name="Pause" type="MarginContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer2"]
 margin_top = 54.0
 margin_right = 190.0
 margin_bottom = 104.0
 mouse_default_cursor_shape = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/Pause"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer2/Pause"]
 margin_right = 190.0
 margin_bottom = 50.0
 
-[node name="PauseButton" type="TextureButton" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/Pause/CenterContainer"]
+[node name="PauseButton" type="TextureButton" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer2/Pause/CenterContainer"]
 margin_right = 190.0
 margin_bottom = 49.0
+hint_tooltip = "Pause (ESC)"
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 6 )
 texture_hover = ExtResource( 5 )
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/Pause/CenterContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer2/Pause/CenterContainer"]
 margin_left = 70.0
 margin_right = 120.0
 margin_bottom = 50.0
 mouse_filter = 2
 texture = ExtResource( 3 )
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/Restart/CenterContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/Pause/CenterContainer/PauseButton" to="." method="_on_PauseButton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer/Hint/CenterContainer/HintButton" to="." method="_on_HintButton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer/Undo/CenterContainer/UndoButton" to="." method="_on_UndoButton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer2/Restart/CenterContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer2/Pause/CenterContainer/PauseButton" to="." method="_on_PauseButton_pressed"]

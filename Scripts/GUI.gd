@@ -14,6 +14,8 @@ onready var tiles_left_data = find_node("TilesLeftData")
 
 signal restart_btn
 signal pause_btn
+signal hint_btn
+signal undo_btn
 
 func _on_GameStatistics_stats_hints_used_changed(h):
 	pass # Replace with function body.
@@ -48,4 +50,14 @@ func _on_RestartButton_pressed():
 
 func _on_PauseButton_pressed():
 	emit_signal("pause_btn")
+	pass # Replace with function body.
+
+
+func _on_HintButton_pressed():
+	emit_signal("hint_btn")
+	pass # Replace with function body.
+
+
+func _on_UndoButton_pressed():
+	emit_signal("undo_btn")
 	pass # Replace with function body.

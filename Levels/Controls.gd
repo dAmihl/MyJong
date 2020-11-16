@@ -24,14 +24,8 @@ func _input(event):
 		return
 	if gameboard.paused:
 		return
-	if event.is_action_pressed("hint"):
-		var h = gameboard.get_hint()
 	if event.is_action_pressed("autosolve"):
 		$"../LayoutGenerator".try_solve_bruteforce()
-	if event.is_action_pressed("restart"):
-		restart_board()
-	if event.is_action_pressed("undo"):
-		undo()
 
 func tile_clicked(block):
 	if gameboard.is_paused():
@@ -114,4 +108,7 @@ func undo():
 		last_removed_tiles.erase(last_pair)
 	else:
 		print("No Moves to undo!")
+		
+func hint():
+	gameboard.get_hint()
 

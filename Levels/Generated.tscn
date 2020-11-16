@@ -46,7 +46,8 @@ script = ExtResource( 6 )
 visible = false
 
 [node name="Camera" parent="." instance=ExtResource( 8 )]
-transform = Transform( -1.62921e-07, 0.906308, -0.422618, 0, 0.422618, 0.906308, 1, 1.47656e-07, -6.88532e-08, 0, 13.602, 10.051 )
+transform = Transform( -1.62921e-07, 0.906308, -0.422618, 0, 0.422618, 0.906308, 1, 1.47656e-07, -6.88533e-08, -5, 13, 0 )
+size = 35.0
 script = ExtResource( 11 )
 
 [node name="GameStatistics" type="Spatial" parent="."]
@@ -81,8 +82,10 @@ material = SubResource( 4 )
 transform = Transform( 1, 0, 0, 0, 0.362666, 0.931919, 0, -0.931919, 0.362666, 0, 79.2429, 5.35862 )
 light_energy = 0.6
 
+[connection signal="hint_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_hint_btn"]
 [connection signal="pause_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_pause_btn"]
 [connection signal="restart_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_restart_btn"]
+[connection signal="undo_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_undo_btn"]
 [connection signal="new_game" from="CanvasLayer/PauseMenu" to="CanvasLayer" method="_on_PauseMenu_new_game"]
 [connection signal="quit_game" from="CanvasLayer/PauseMenu" to="CanvasLayer" method="_on_PauseMenu_quit_game"]
 [connection signal="restart_game" from="CanvasLayer/PauseMenu" to="CanvasLayer" method="_on_PauseMenu_restart_game"]
