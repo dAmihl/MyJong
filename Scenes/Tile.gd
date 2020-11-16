@@ -12,6 +12,9 @@ var free_distance_threshold_topside = 0.8
 
 var layer:int = 0 setget set_layer
 
+signal tile_clicked
+signal tile_not_free_clicked
+
 func _ready():
 	set_texture(type)
 	pass
@@ -37,10 +40,12 @@ func is_free() -> bool:
 
 func on_clicked():
 	if (is_free()):
-		$"/root/Board/Controls".tile_clicked(self)
+		emit_signal("tile_clicked", self)
+		#$"/root/Board/Controls".tile_clicked(self)
 	else:
 		$AnimationPlayer.play("NotFree")
-		$"/root/Board/Controls".tile_not_free_clicked(self)
+		emit_signal("tile_not_free_clicked", self)
+		#$"/root/Board/Controls".tile_not_free_clicked(self)
 	pass
 
 func selected():

@@ -4,7 +4,7 @@ var board = []
 var hints = []
 
 var paused: bool = false
-onready var gamestats = $"/root/Board/GameStatistics"
+onready var gamestats = $"../GameStatistics"
 signal game_win
 signal game_over
 signal clear_done

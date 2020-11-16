@@ -1,7 +1,7 @@
 extends Spatial
 
-onready var gameboard = $"/root/Board/GameBoard"
-onready var gamestats = $"/root/Board/GameStatistics"
+onready var gameboard = $"../GameBoard"
+onready var gamestats = $"../GameStatistics"
 var selection
 
 signal pause_game

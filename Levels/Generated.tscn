@@ -45,13 +45,12 @@ script = ExtResource( 6 )
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 7 )]
 visible = false
 
+[node name="Camera" parent="." instance=ExtResource( 8 )]
+transform = Transform( -1.62921e-07, 0.906308, -0.422618, 0, 0.422618, 0.906308, 1, 1.47656e-07, -6.88533e-08, -4.08535, 13, 8.65885 )
+script = ExtResource( 11 )
+
 [node name="GameStatistics" type="Spatial" parent="."]
 script = ExtResource( 5 )
-
-[node name="Camera" parent="." instance=ExtResource( 8 )]
-transform = Transform( -1.62921e-07, 0.906308, -0.422618, 0, 0.422618, 0.906308, 1, 1.47656e-07, -6.88532e-08, 0, 13, 10.051 )
-size = 40.0
-script = ExtResource( 11 )
 
 [node name="LayoutGenerator" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.96185, 0, -7.36276 )
@@ -81,6 +80,7 @@ mesh = SubResource( 1 )
 material = SubResource( 4 )
 
 [node name="DirectionalLight" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 0.362666, 0.931919, 0, -0.931919, 0.362666, 0, 79.2429, 5.35862 )
 
 [connection signal="pause_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_pause_btn"]
 [connection signal="restart_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_restart_btn"]

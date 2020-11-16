@@ -15,7 +15,8 @@ export var use_seed:bool = true
 export var layout_json_name:String = "turtle.json"
 
 onready var RNG = RandomNumberGenerator.new()
-onready var gameboard = $"/root/Board/GameBoard"
+onready var gameboard = $"../GameBoard"
+onready var controls = $"../Controls"
 
 signal restart_done
 
@@ -68,6 +69,8 @@ func draw_tile(pos,  type):
 	new_tile.translation = Vector3(pos_x, pos_y, pos_z)
 	new_tile.set_type(type)
 	new_tile.set_layer(layerNum)
+	new_tile.connect("tile_clicked", controls, "tile_clicked")
+	new_tile.connect("tile_not_free_clicked", controls, "tile_not_free_clicked")
 	var num_layers = layout.size()
 	#new_tile.set_layer_mat_color(layout.size())
 	gameboard.add_tile(new_tile)
