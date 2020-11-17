@@ -2,6 +2,7 @@ extends Control
 
 signal load_file_selected
 signal save_file_selected
+signal home_btn
 
 onready var numTilesData = find_node("TilesData")
 onready var saveButton = find_node("SaveButton")
@@ -37,4 +38,9 @@ func _on_LayoutEditor_num_tiles_changed(numTiles:int):
 	numberTiles = numTiles
 	numTilesData.text = str(numTiles)
 	saveButton.disabled = numberTiles % 2 == 1
+	pass # Replace with function body.
+
+
+func _on_HomeButton_pressed():
+	emit_signal("home_btn")
 	pass # Replace with function body.

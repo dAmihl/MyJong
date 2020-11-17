@@ -122,3 +122,8 @@ func _on_numTiles_Removed():
 	num_tiles -= 1
 	emit_signal("num_tiles_changed", num_tiles)
 	pass
+
+
+func _on_EditorGUI_home_btn():
+	SceneManager.change_scene("Levels/LayoutList.tscn")
+	pass # Replace with function body.

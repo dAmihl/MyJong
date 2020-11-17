@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Levels/LayoutList.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/PNG/green_button01.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/ui/PNG/green_button00.png" type="Texture" id=4]
 [ext_resource path="res://assets/ui/icons/PNG/White/1x/checkmark.png" type="Texture" id=5]
 [ext_resource path="res://Theme/DefaultTheme.tres" type="Theme" id=6]
+[ext_resource path="res://assets/ui/icons/PNG/White/1x/wrench.png" type="Texture" id=7]
 
 [node name="LayoutList" type="Control"]
 anchor_right = 1.0
@@ -26,6 +27,27 @@ __meta__ = {
 margin_right = 637.0
 margin_bottom = 1080.0
 size_flags_horizontal = 3
+
+[node name="Editor" type="CenterContainer" parent="HBoxContainer/Left"]
+margin_right = 637.0
+margin_bottom = 1080.0
+
+[node name="EditorButton" type="TextureButton" parent="HBoxContainer/Left/Editor"]
+margin_left = 223.0
+margin_top = 515.0
+margin_right = 413.0
+margin_bottom = 564.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 2 )
+
+[node name="Label" type="TextureRect" parent="HBoxContainer/Left/Editor"]
+margin_left = 293.0
+margin_top = 515.0
+margin_right = 343.0
+margin_bottom = 565.0
+mouse_filter = 2
+texture = ExtResource( 7 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 margin_left = 641.0
@@ -86,5 +108,6 @@ margin_right = 1920.0
 margin_bottom = 1080.0
 size_flags_horizontal = 3
 
+[connection signal="pressed" from="HBoxContainer/Left/Editor/EditorButton" to="." method="_on_EditorButton_pressed"]
 [connection signal="item_activated" from="HBoxContainer/VBoxContainer/ScrollContainer/ItemList" to="." method="_on_ItemList_item_activated"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Play/PlayButton" to="." method="_on_PlayButton_pressed"]

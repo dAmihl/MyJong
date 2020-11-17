@@ -47,3 +47,8 @@ func start_play_item_index(index:int):
 func _on_ItemList_item_activated(index):
 	start_play_item_index(index)
 	pass # Replace with function body.
+
+
+func _on_EditorButton_pressed():
+	SceneManager.change_scene("Levels/LayoutEditor.tscn")
+	pass # Replace with function body.
