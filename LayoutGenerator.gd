@@ -21,27 +21,18 @@ onready var controls = $"../Controls"
 
 signal restart_done
 
-func load_json():
-	var layoutPath = SceneManager.get_param("layout_path")
-	print(layoutPath)
-	if !layoutPath and !is_instance_valid(layoutPath):
+func load_layout():
+	var layoutData = SceneManager.get_param("layout_data")
+	if !layoutData and !is_instance_valid(layoutData):
 		# default layout
-		layoutPath = "res://layout/"+layout_json_name
-	print(layoutPath)
-	var file = File.new()
-	file.open(layoutPath, file.READ)
-	var text_json = file.get_as_text()
-	var result_json = JSON.parse(text_json)
-	var result = {}
-
-	if result_json.error == OK:  # If parse OK
-		var data = result_json.result
-		layout = data
-		draw_layout()
-	else:  # If parse has errors
-		print("Error: ", result_json.error)
-		print("Error Line: ", result_json.error_line)
-		print("Error String: ", result_json.error_string)
+		var layoutObj = LayoutManager.create_layout_from_file("res://layouts/", layout_json_name)
+		if is_instance_valid(layoutObj):
+			layout = layoutObj.layout_data
+		else:
+			print("Could not load fallback layout: "+str(layout_json_name))
+	else:
+		layout = layoutData
+	draw_layout()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -51,7 +42,7 @@ func _ready():
 	if use_seed:
 		rngseed = fixed_rngseed #unsolvable?
 	print("Seed:"+str(rngseed))
-	load_json()
+	load_layout()
 	pass # Replace with function body.
 
 # Center the board via the number of cols and rows generated
@@ -322,5 +313,5 @@ func try_solve_bruteforce():
 func restart():
 	gameboard.call_deferred("clear")
 	yield(gameboard, "clear_done")
-	load_json()
+	load_layout()
 	emit_signal("restart_done")

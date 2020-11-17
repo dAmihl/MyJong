@@ -1,6 +1,6 @@
 extends Control
 
-const layoutDirPath:String = "user://"
+const customLayoutDirPath:String = "user://"
 
 onready var item_list = find_node("ItemList")
 
@@ -9,23 +9,15 @@ func _ready():
 	pass
 
 func load_layouts():
-	dir_contents("user://")
+	var layouts = LayoutManager.load_preset_layouts()
+	for l in layouts:
+		add_layout(l)
 	pass
 
-func dir_contents(path):
-	var dir = Directory.new()
-	if dir.open(path) == OK:
-		dir.list_dir_begin(true, true)
-		var file_name = dir.get_next()
-		while file_name != "":
-			if dir.current_is_dir():
-				#print("Found directory: " + file_name)
-				pass
-			else:
-				item_list.add_item(file_name)
-			file_name = dir.get_next()
-	else:
-		print("An error occurred when trying to access the path.")
+func add_layout(l:LayoutManager.Layout):
+	item_list.add_item(l.layout_name)
+	item_list.set_item_metadata(item_list.get_item_count()-1, l)
+	pass
 
 
 func _on_PlayButton_pressed():
@@ -38,10 +30,10 @@ func _on_PlayButton_pressed():
 
 
 func start_play_item_index(index:int):
-	var first_layout_text = item_list.get_item_text(index)
-	var first_layout_metadata = item_list.get_item_metadata(index)
-	var layoutPath = layoutDirPath+first_layout_text
-	SceneManager.change_scene("Levels/Generated.tscn", {"layout_path":layoutPath})
+	var text = item_list.get_item_text(index)
+	var metadata:LayoutManager.Layout = item_list.get_item_metadata(index)
+	var layoutPath = metadata.layout_full_path
+	SceneManager.change_scene("Levels/Generated.tscn", {"layout_data":metadata.layout_data})
 	pass
 
 func _on_ItemList_item_activated(index):

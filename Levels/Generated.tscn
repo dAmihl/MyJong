@@ -56,7 +56,6 @@ script = ExtResource( 5 )
 [node name="LayoutGenerator" type="Spatial" parent="."]
 script = ExtResource( 1 )
 use_seed = false
-layout_json_name = "greatfleet"
 highlight_free_tiles = true
 
 [node name="Controls" type="Spatial" parent="."]
