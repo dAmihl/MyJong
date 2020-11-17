@@ -2,6 +2,8 @@ extends Control
 
 const layoutDirPath:String = "user://"
 
+onready var item_list = find_node("ItemList")
+
 func _ready():
 	load_layouts()
 	pass
@@ -20,14 +22,14 @@ func dir_contents(path):
 				#print("Found directory: " + file_name)
 				pass
 			else:
-				$HBoxContainer/ScrollContainer/ItemList.add_item(file_name)
+				item_list.add_item(file_name)
 			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access the path.")
 
 
 func _on_PlayButton_pressed():
-	var layouts = $HBoxContainer/ScrollContainer/ItemList.get_selected_items()
+	var layouts = item_list.get_selected_items()
 	if layouts.size() == 0:
 		return
 	var first_layout_idx = layouts[0]
@@ -36,8 +38,8 @@ func _on_PlayButton_pressed():
 
 
 func start_play_item_index(index:int):
-	var first_layout_text = $HBoxContainer/ScrollContainer/ItemList.get_item_text(index)
-	var first_layout_metadata = $HBoxContainer/ScrollContainer/ItemList.get_item_metadata(index)
+	var first_layout_text = item_list.get_item_text(index)
+	var first_layout_metadata = item_list.get_item_metadata(index)
 	var layoutPath = layoutDirPath+first_layout_text
 	SceneManager.change_scene("Levels/Generated.tscn", {"layout_path":layoutPath})
 	pass

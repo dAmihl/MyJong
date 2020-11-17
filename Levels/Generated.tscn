@@ -46,7 +46,7 @@ script = ExtResource( 6 )
 visible = false
 
 [node name="Camera" parent="." instance=ExtResource( 8 )]
-transform = Transform( -1.62921e-07, 0.906308, -0.422618, 0, 0.422618, 0.906308, 1, 1.47656e-07, -6.88533e-08, -5, 13, 0 )
+transform = Transform( -1.62921e-07, 0.906308, -0.422618, 0, 0.422618, 0.906308, 1, 1.47656e-07, -6.88533e-08, -7, 13, 0 )
 size = 40.0
 script = ExtResource( 11 )
 
