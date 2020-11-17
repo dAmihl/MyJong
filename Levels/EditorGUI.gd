@@ -2,6 +2,7 @@ extends Control
 
 signal load_file_selected
 signal home_btn
+signal clear_btn
 
 onready var numTilesData = find_node("TilesData")
 onready var saveButton = find_node("SaveButton")
@@ -24,10 +25,6 @@ func _on_SaveButton_pressed():
 	$SaveDialog.popup()
 	pass # Replace with function body.
 
-func _on_LoadDialog_file_selected(path):
-	emit_signal("load_file_selected",path)
-	pass # Replace with function body.
-
 func set_current_layout(l:LayoutManager.Layout):
 	$SaveDialog/MarginContainer/VBoxContainer/Name/InputName.text = l.layout_name
 	$SaveDialog/MarginContainer/VBoxContainer/Author/InputAuthor.text = l.author
@@ -41,4 +38,14 @@ func _on_LayoutEditor_num_tiles_changed(numTiles:int):
 
 func _on_HomeButton_pressed():
 	emit_signal("home_btn")
+	pass # Replace with function body.
+
+
+func _on_LoadDialog_load_layout(path):
+	emit_signal("load_file_selected",path)
+	pass # Replace with function body.
+
+
+func _on_ClearButton_pressed():
+	emit_signal("clear_btn")
 	pass # Replace with function body.

@@ -126,3 +126,8 @@ func set_layer(layerNum:int):
 	
 func get_tiles():
 	return $Tiles.get_children()
+	
+func clear():
+	for t in $Tiles.get_children():
+		t.queue_free()
+	set_layer(0)

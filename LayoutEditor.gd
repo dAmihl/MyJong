@@ -94,9 +94,16 @@ func update_node_layers():
 		n.update_layer()
 
 func _on_EditorGUI_load_file_selected(path):
+	clear()
 	load_layout(path)
 	pass # Replace with function body.
 
+func clear():
+	if $PlacementGrid.get_child_count() > 0:
+		for c in $PlacementGrid.get_children():
+			c.clear()
+	num_tiles = 0
+	emit_signal("num_tiles_changed", num_tiles)
 
 func _on_numTiles_Added():
 	num_tiles += 1
@@ -133,4 +140,9 @@ func _on_SaveDialog_save_layout(layout_name:String, layout_author:String, layout
 	file.open(layout_full_path, File.WRITE)
 	file.store_string(layout_to_save.to_dict_json())
 	file.close()
+	pass # Replace with function body.
+
+
+func _on_EditorGUI_clear_btn():
+	clear()
 	pass # Replace with function body.
