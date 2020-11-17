@@ -60,10 +60,14 @@ func place_node(r, c, layer:int):
 	
 
 func save_layout(layoutFilePath:String):
-	var layoutstr:String = $PlacementGrid.export_layout()
+	var layout_author = "Custom"
+	var layout_name = "Custom Layout"
+	var layout_data:Array = $PlacementGrid.export_layout()
+	var new_layout:LayoutManager.Layout = LayoutManager.Layout.new(
+		layoutFilePath, layout_data, layout_author, layout_name)
 	var file = File.new()
 	file.open(layoutFilePath, File.WRITE)
-	file.store_string(layoutstr)
+	file.store_string(new_layout.to_dict_json())
 	file.close()
 
 func load_layout(layoutFilePath:String):

@@ -27,6 +27,14 @@ class Layout:
 		
 	func set_layout_data(ld:Array):
 		layout_data = ld
+		
+	func to_dict_json() -> String:
+		var dict:Dictionary = {}
+		dict['Author'] = author
+		dict['LayoutName'] = layout_name
+		dict['LayoutData'] = layout_data
+		
+		return JSON.print(dict)
 
 
 func load_custom_layouts() -> Array:
