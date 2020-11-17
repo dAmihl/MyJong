@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Levels/LayoutList.gd" type="Script" id=1]
+[ext_resource path="res://assets/ui/PNG/green_button01.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/PNG/green_button02.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/PNG/green_button00.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/icons/PNG/White/1x/checkmark.png" type="Texture" id=5]
+
+[node name="LayoutList" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="MarginContainer" parent="HBoxContainer"]
+margin_right = 637.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer"]
+margin_left = 641.0
+margin_right = 1278.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+
+[node name="ItemList" type="ItemList" parent="HBoxContainer/ScrollContainer"]
+margin_right = 637.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Right" type="MarginContainer" parent="HBoxContainer"]
+margin_left = 1282.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+
+[node name="Play" type="CenterContainer" parent="HBoxContainer/Right"]
+margin_right = 638.0
+margin_bottom = 1080.0
+
+[node name="PlayButton" type="TextureButton" parent="HBoxContainer/Right/Play"]
+margin_left = 224.0
+margin_top = 515.0
+margin_right = 414.0
+margin_bottom = 564.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 2 )
+
+[node name="Label" type="TextureRect" parent="HBoxContainer/Right/Play"]
+margin_left = 294.0
+margin_top = 515.0
+margin_right = 344.0
+margin_bottom = 565.0
+texture = ExtResource( 5 )
+
+[connection signal="item_activated" from="HBoxContainer/ScrollContainer/ItemList" to="." method="_on_ItemList_item_activated"]
+[connection signal="pressed" from="HBoxContainer/Right/Play/PlayButton" to="." method="_on_PlayButton_pressed"]

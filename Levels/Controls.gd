@@ -7,7 +7,7 @@ var selection
 signal pause_game
 signal unpause_game
 
-var last_removed_tiles = []
+
 
 var audio_clicks = [
 	preload("res://assets/ui/Bonus/click1.ogg"), 
@@ -67,7 +67,7 @@ func remove_block(block):
 func remove_tile_pair(tile1, tile2):
 	remove_block(tile1)
 	remove_block(tile2)
-	last_removed_tiles.append([tile1, tile2])
+	gameboard.last_removed_tiles.append([tile1, tile2])
 	
 func eval_selection(sel1, sel2):
 	if (TileType.types_match(sel1.type, sel2.type)):
@@ -102,13 +102,8 @@ func restart_board():
 	$"../LayoutGenerator".restart()
 	
 func undo():
-	if last_removed_tiles.size() > 0:
-		var last_pair = last_removed_tiles.back()
-		gameboard.undo(last_pair[0], last_pair[1])
-		last_removed_tiles.erase(last_pair)
-	else:
-		print("No Moves to undo!")
-		
+	gameboard.undo()
+	
 func hint():
 	gameboard.get_hint()
 

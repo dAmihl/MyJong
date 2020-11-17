@@ -9,6 +9,7 @@ signal game_win
 signal game_over
 signal clear_done
 
+var last_removed_tiles = []
 
 func _ready():
 	gamestats.set_tiles_left(board.size())
@@ -93,6 +94,7 @@ func clear():
 	pause_board()
 	hints.clear()
 	board.clear()
+	last_removed_tiles.clear()
 	for c in get_children():
 		if c.is_in_group("tiles"):
 			c.free()
@@ -131,7 +133,14 @@ func on_no_moves():
 	#emit_signal("game_over", gamestats.points, gamestats.time_passed, gamestats.hints_used, gamestats.moves)
 	pass
 
-func undo(tile1, tile2):
-	add_tile(tile1)
-	add_tile(tile2)
-	gamestats.set_tiles_left(board.size())
+func undo():
+	if last_removed_tiles.size() > 0:
+		var last_pair = last_removed_tiles.back()
+		var tile1 = last_pair[0]
+		var tile2 = last_pair[1]
+		add_tile(tile1)
+		add_tile(tile2)
+		gamestats.set_tiles_left(board.size())
+		last_removed_tiles.erase(last_pair)
+	else:
+		print("No Moves to undo!")

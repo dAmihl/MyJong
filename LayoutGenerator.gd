@@ -22,8 +22,14 @@ onready var controls = $"../Controls"
 signal restart_done
 
 func load_json():
+	var layoutPath = SceneManager.get_param("layout_path")
+	print(layoutPath)
+	if !layoutPath and !is_instance_valid(layoutPath):
+		# default layout
+		layoutPath = "res://layout/"+layout_json_name
+	print(layoutPath)
 	var file = File.new()
-	file.open("res://layout/"+layout_json_name, file.READ)
+	file.open(layoutPath, file.READ)
 	var text_json = file.get_as_text()
 	var result_json = JSON.parse(text_json)
 	var result = {}

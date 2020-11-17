@@ -21,8 +21,12 @@ _global_script_class_icons={
 [application]
 
 config/name="MyJong"
-run/main_scene="res://Levels/Generated.tscn"
+run/main_scene="res://Levels/LayoutList.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+SceneManager="*res://Scripts/SceneManager.gd"
 
 [display]
 
