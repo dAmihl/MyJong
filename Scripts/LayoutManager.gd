@@ -71,7 +71,6 @@ func create_layout_from_file(filePath:String, fileName:String) -> Layout:
 func create_layout_from_fullpath(full_path:String) -> Layout:
 	var data:Dictionary = parse_layout_json(full_path)
 	if !data.has_all(["LayoutName", "LayoutData"]):
-		print(str(full_path)+ " does not contain every information needed.")
 		return null
 	var author = data["Author"]
 	var layoutName = data["LayoutName"]
@@ -102,13 +101,13 @@ func dir_contents(path) -> Array:
 func parse_layout_json(layoutPath:String) -> Dictionary:
 	var file = File.new()
 	file.open(layoutPath, file.READ)
-	print(file.get_path())
 	var text_json = file.get_as_text()
 	var result_json:JSONParseResult = JSON.parse(text_json)
 	var result:Dictionary = {}
 
-	if result_json.error == OK and result_json.result is Dictionary:  # If parse OK
-		result = result_json.result
+	if result_json.error == OK:
+		if result_json.result is Dictionary:  # If parse OK
+			result = result_json.result
 	else:  # If parse has errors
 		print("Error: ", result_json.error)
 		print("Error Line: ", result_json.error_line)
