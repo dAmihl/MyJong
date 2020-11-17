@@ -32,9 +32,16 @@ func _on_LoadDialogButton_pressed():
 	if layouts.size() == 0:
 		return
 	var index = layouts[0]
+	load_layout_by_index(index)
+	pass # Replace with function body.
+
+func load_layout_by_index(index):
 	var text = item_list.get_item_text(index)
 	var metadata:LayoutManager.Layout = item_list.get_item_metadata(index)
 	var layoutPath = metadata.layout_full_path
 	emit_signal("load_layout", layoutPath)
 	hide()
+
+func _on_ItemList_item_activated(index):
+	load_layout_by_index(index)
 	pass # Replace with function body.

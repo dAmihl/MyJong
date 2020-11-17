@@ -3,6 +3,7 @@ extends Control
 signal load_file_selected
 signal home_btn
 signal clear_btn
+signal new_btn
 
 onready var numTilesData = find_node("TilesData")
 onready var saveButton = find_node("SaveButton")
@@ -28,6 +29,12 @@ func _on_SaveButton_pressed():
 func set_current_layout(l:LayoutManager.Layout):
 	$SaveDialog/MarginContainer/VBoxContainer/Name/InputName.text = l.layout_name
 	$SaveDialog/MarginContainer/VBoxContainer/Author/InputAuthor.text = l.author
+	$MarginContainer/VBoxContainer/Top/MarginContainer/CenterContainer/CurrentLayoutName.text = l.layout_name
+
+func clear_current_layout():
+	$SaveDialog/MarginContainer/VBoxContainer/Name/InputName.text = ""
+	$SaveDialog/MarginContainer/VBoxContainer/Author/InputAuthor.text = "Default"
+	$MarginContainer/VBoxContainer/Top/MarginContainer/CenterContainer/CurrentLayoutName.text = ""
 
 func _on_LayoutEditor_num_tiles_changed(numTiles:int):
 	numberTiles = numTiles
@@ -48,4 +55,9 @@ func _on_LoadDialog_load_layout(path):
 
 func _on_ClearButton_pressed():
 	emit_signal("clear_btn")
+	pass # Replace with function body.
+
+
+func _on_NewButton_pressed():
+	emit_signal("new_btn")
 	pass # Replace with function body.

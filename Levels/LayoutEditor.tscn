@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Levels/StandardEnv.tres" type="Environment" id=1]
 [ext_resource path="res://LayoutEditor.gd" type="Script" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://assets/ui/PNG/grey_button02.png" type="Texture" id=16]
 [ext_resource path="res://Levels/LoadDialog.gd" type="Script" id=17]
 [ext_resource path="res://assets/ui/icons/PNG/White/1x/trashcanOpen.png" type="Texture" id=18]
+[ext_resource path="res://assets/ui/icons/PNG/White/1x/plus.png" type="Texture" id=19]
 
 [sub_resource type="InputEventAction" id=1]
 action = "save"
@@ -86,6 +87,7 @@ mouse_filter = 2
 margin_top = 5.0
 margin_right = 190.0
 margin_bottom = 54.0
+hint_tooltip = "Load Layout"
 texture_normal = ExtResource( 9 )
 texture_pressed = ExtResource( 7 )
 texture_hover = ExtResource( 8 )
@@ -143,7 +145,7 @@ mouse_filter = 2
 margin_top = 5.0
 margin_right = 190.0
 margin_bottom = 54.0
-hint_tooltip = "You need an even number of tiles to save the layout."
+hint_tooltip = "Clear"
 texture_normal = ExtResource( 9 )
 texture_pressed = ExtResource( 7 )
 texture_hover = ExtResource( 8 )
@@ -157,31 +159,73 @@ margin_bottom = 54.0
 mouse_filter = 2
 texture = ExtResource( 18 )
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top"]
+[node name="New" type="MarginContainer" parent="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top"]
 margin_left = 582.0
-margin_right = 1148.0
+margin_right = 772.0
+margin_bottom = 59.0
+mouse_filter = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top/New"]
+margin_right = 190.0
+margin_bottom = 59.0
+mouse_filter = 2
+
+[node name="NewButton" type="TextureButton" parent="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top/New/CenterContainer"]
+margin_top = 5.0
+margin_right = 190.0
+margin_bottom = 54.0
+hint_tooltip = "New"
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 8 )
+texture_disabled = ExtResource( 16 )
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top/New/CenterContainer"]
+margin_left = 70.0
+margin_top = 4.0
+margin_right = 120.0
+margin_bottom = 54.0
+mouse_filter = 2
+texture = ExtResource( 19 )
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top"]
+margin_left = 776.0
+margin_right = 1245.0
 margin_bottom = 59.0
 size_flags_horizontal = 3
 
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top/MarginContainer"]
+margin_right = 469.0
+margin_bottom = 59.0
+
+[node name="CurrentLayoutName" type="Label" parent="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top/MarginContainer/CenterContainer"]
+margin_left = 234.0
+margin_top = 6.0
+margin_right = 234.0
+margin_bottom = 52.0
+theme = ExtResource( 12 )
+
 [node name="Tiles" type="MarginContainer" parent="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top"]
-margin_left = 1152.0
+margin_left = 1249.0
 margin_right = 1718.0
 margin_bottom = 59.0
 size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top/Tiles"]
-margin_right = 566.0
+margin_right = 469.0
 margin_bottom = 59.0
+alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top/Tiles/HBoxContainer"]
-margin_right = 47.0
+margin_left = 197.0
+margin_right = 244.0
 margin_bottom = 59.0
 texture = ExtResource( 13 )
 
 [node name="TilesData" type="Label" parent="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top/Tiles/HBoxContainer"]
-margin_left = 51.0
+margin_left = 248.0
 margin_top = 6.0
-margin_right = 74.0
+margin_right = 271.0
 margin_bottom = 52.0
 theme = ExtResource( 12 )
 text = "0"
@@ -389,13 +433,16 @@ texture = ExtResource( 10 )
 [connection signal="clear_btn" from="CanvasLayer/EditorGUI" to="." method="_on_EditorGUI_clear_btn"]
 [connection signal="home_btn" from="CanvasLayer/EditorGUI" to="." method="_on_EditorGUI_home_btn"]
 [connection signal="load_file_selected" from="CanvasLayer/EditorGUI" to="." method="_on_EditorGUI_load_file_selected"]
+[connection signal="new_btn" from="CanvasLayer/EditorGUI" to="." method="_on_EditorGUI_new_btn"]
 [connection signal="pressed" from="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top/Load/CenterContainer/LoadButton" to="CanvasLayer/EditorGUI" method="_on_LoadButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top/Save/CenterContainer/SaveButton" to="CanvasLayer/EditorGUI" method="_on_SaveButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top/Clear/CenterContainer/ClearButton" to="CanvasLayer/EditorGUI" method="_on_ClearButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top/New/CenterContainer/NewButton" to="CanvasLayer/EditorGUI" method="_on_NewButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top/Home/CenterContainer/HomeButton" to="CanvasLayer/EditorGUI" method="_on_HomeButton_pressed"]
 [connection signal="about_to_show" from="CanvasLayer/EditorGUI/SaveDialog" to="CanvasLayer/EditorGUI/SaveDialog" method="_on_SaveDialog_about_to_show"]
 [connection signal="save_layout" from="CanvasLayer/EditorGUI/SaveDialog" to="." method="_on_SaveDialog_save_layout"]
 [connection signal="pressed" from="CanvasLayer/EditorGUI/SaveDialog/MarginContainer/VBoxContainer/CenterContainer/SaveDialogButton" to="CanvasLayer/EditorGUI/SaveDialog" method="_on_SaveDialogButton_pressed"]
 [connection signal="about_to_show" from="CanvasLayer/EditorGUI/LoadDialog" to="CanvasLayer/EditorGUI/LoadDialog" method="_on_LoadDialog_about_to_show"]
 [connection signal="load_layout" from="CanvasLayer/EditorGUI/LoadDialog" to="CanvasLayer/EditorGUI" method="_on_LoadDialog_load_layout"]
+[connection signal="item_activated" from="CanvasLayer/EditorGUI/LoadDialog/MarginContainer/VBoxContainer/ItemList" to="CanvasLayer/EditorGUI/LoadDialog" method="_on_ItemList_item_activated"]
 [connection signal="pressed" from="CanvasLayer/EditorGUI/LoadDialog/MarginContainer/VBoxContainer/CenterContainer/LoadDialogButton" to="CanvasLayer/EditorGUI/LoadDialog" method="_on_LoadDialogButton_pressed"]

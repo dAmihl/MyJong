@@ -146,3 +146,10 @@ func _on_SaveDialog_save_layout(layout_name:String, layout_author:String, layout
 func _on_EditorGUI_clear_btn():
 	clear()
 	pass # Replace with function body.
+
+
+func _on_EditorGUI_new_btn():
+	clear()
+	current_layout = null
+	$CanvasLayer/EditorGUI.clear_current_layout()
+	pass # Replace with function body.
