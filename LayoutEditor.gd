@@ -59,17 +59,6 @@ func place_node(r, c, layer:int):
 	$PlacementGrid.add_child(new_hs_node)
 	
 
-func save_layout(layoutFilePath:String):
-	var layout_author = "Custom"
-	var layout_name = "Custom Layout"
-	var layout_data:Array = $PlacementGrid.export_layout()
-	var new_layout:LayoutManager.Layout = LayoutManager.Layout.new(
-		layoutFilePath, layout_data, layout_author, layout_name)
-	var file = File.new()
-	file.open(layoutFilePath, File.WRITE)
-	file.store_string(new_layout.to_dict_json())
-	file.close()
-
 func load_layout(layoutFilePath:String):
 	var layout = LayoutManager.create_layout_from_fullpath(layoutFilePath)
 	if is_instance_valid(layout):
@@ -97,11 +86,6 @@ func update_node_layers():
 	for n in $PlacementGrid.get_children():
 		n.update_layer()
 
-func _on_EditorGUI_save_file_selected(path):
-	save_layout(path)
-	pass # Replace with function body.
-
-
 func _on_EditorGUI_load_file_selected(path):
 	load_layout(path)
 	pass # Replace with function body.
@@ -120,4 +104,17 @@ func _on_numTiles_Removed():
 
 func _on_EditorGUI_home_btn():
 	SceneManager.change_scene("Levels/LayoutList.tscn")
+	pass # Replace with function body.
+
+
+func _on_SaveDialog_save_layout(layout_name:String, layout_author:String, layout_desc:String):
+	var layout_file_name = layout_name.sha256_text()
+	var layout_full_path = LayoutManager.customLayoutDirPath+layout_file_name
+	var layout_data:Array = $PlacementGrid.export_layout()
+	var new_layout:LayoutManager.Layout = LayoutManager.Layout.new(
+		layout_full_path, layout_data, layout_author, layout_name)
+	var file = File.new()
+	file.open(layout_full_path, File.WRITE)
+	file.store_string(new_layout.to_dict_json())
+	file.close()
 	pass # Replace with function body.

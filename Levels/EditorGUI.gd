@@ -1,7 +1,6 @@
 extends Control
 
 signal load_file_selected
-signal save_file_selected
 signal home_btn
 
 onready var numTilesData = find_node("TilesData")
@@ -26,11 +25,6 @@ func _on_SaveButton_pressed():
 
 func _on_LoadDialog_file_selected(path):
 	emit_signal("load_file_selected",path)
-	pass # Replace with function body.
-
-
-func _on_SaveDialog_file_selected(path):
-	emit_signal("save_file_selected", path)
 	pass # Replace with function body.
 
 
