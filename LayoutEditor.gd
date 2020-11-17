@@ -67,19 +67,11 @@ func save_layout(layoutFilePath:String):
 	file.close()
 
 func load_layout(layoutFilePath:String):
-	var file = File.new()
-	file.open(layoutFilePath, File.READ)
-	var layoutstr = file.get_as_text()
-	file.close()
-	var result_json = JSON.parse(layoutstr)
-
-	if result_json.error == OK:  # If parse OK
-		var data = result_json.result
-		init_layout(data)
-	else:  # If parse has errors
-		print("Error: ", result_json.error)
-		print("Error Line: ", result_json.error_line)
-		print("Error String: ", result_json.error_string)
+	var layout = LayoutManager.create_layout_from_fullpath(layoutFilePath)
+	if is_instance_valid(layout):
+		init_layout(layout.layout_data)
+	else:
+		print("Error: File is damaged - "+str(layoutFilePath))
 
 func init_layout(data:Array):
 	var lNum = 0
@@ -100,8 +92,6 @@ func find_placement_node(pos:Vector2, layer:int)->Spatial:
 func update_node_layers():
 	for n in $PlacementGrid.get_children():
 		n.update_layer()
-	
-
 
 func _on_EditorGUI_save_file_selected(path):
 	save_layout(path)

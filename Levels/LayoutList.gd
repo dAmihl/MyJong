@@ -4,6 +4,9 @@ const customLayoutDirPath:String = "user://"
 
 onready var item_list = find_node("ItemList")
 
+var texIconPreset = preload("res://assets/ui/icons/PNG/White/1x/contrast.png")
+var texIconCustom = preload("res://assets/ui/icons/PNG/White/1x/gear.png")
+
 func _ready():
 	load_layouts()
 	pass
@@ -11,14 +14,16 @@ func _ready():
 func load_layouts():
 	var layouts = LayoutManager.load_preset_layouts()
 	for l in layouts:
-		add_layout(l)
-	pass
+		add_layout(l, texIconPreset)
+	
+	var customLayouts = LayoutManager.load_custom_layouts()
+	for l in customLayouts:
+		add_layout(l, texIconCustom)
 
-func add_layout(l:LayoutManager.Layout):
-	item_list.add_item(l.layout_name)
+func add_layout(l:LayoutManager.Layout, icon:Texture = texIconPreset):
+	item_list.add_item(l.layout_name, icon)
 	item_list.set_item_metadata(item_list.get_item_count()-1, l)
 	pass
-
 
 func _on_PlayButton_pressed():
 	var layouts = item_list.get_selected_items()

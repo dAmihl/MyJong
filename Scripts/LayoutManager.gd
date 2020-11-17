@@ -6,16 +6,14 @@ const presetLayoutDirPath:String = "res://layouts/"
 class Layout:
 	
 	var author:String = "default" setget set_author
-	var file_name:String = "default" setget set_file_name
 	var layout_name:String = "Default Layout" setget set_layout_name
 	var layout_full_path:String 
 	var layout_data:Array setget set_layout_data
 	
-	func _init(vLayoutFullPath:String, vFileName:String, vLayoutData:Array, 
+	func _init(vLayoutFullPath:String, vLayoutData:Array, 
 		vAuthor:String = "default",  vLayoutName:String = "CustomLayout"):
 		
 		author = vAuthor
-		file_name = vFileName
 		layout_name = vLayoutName
 		layout_full_path = vLayoutFullPath
 		layout_data = vLayoutData
@@ -23,9 +21,6 @@ class Layout:
 	
 	func set_author(a:String):
 		author = a
-		
-	func set_file_name(fn:String):
-		file_name = fn
 		
 	func set_layout_name(ln:String):
 		layout_name = ln
@@ -63,6 +58,9 @@ func load_layouts(rootPath:String) -> Array:
 # Create Layout instances from files
 func create_layout_from_file(filePath:String, fileName:String) -> Layout:
 	var full_path = filePath+fileName
+	return create_layout_from_fullpath(full_path)
+
+func create_layout_from_fullpath(full_path:String) -> Layout:
 	var data:Dictionary = parse_layout_json(full_path)
 	if !data.has_all(["LayoutName", "LayoutData"]):
 		print(str(full_path)+ " does not contain every information needed.")
@@ -70,9 +68,8 @@ func create_layout_from_file(filePath:String, fileName:String) -> Layout:
 	var author = data["Author"]
 	var layoutName = data["LayoutName"]
 	var layoutData = data["LayoutData"]
-	var new_layout = Layout.new(full_path, fileName, layoutData, author, layoutName)
+	var new_layout = Layout.new(full_path, layoutData, author, layoutName)
 	return new_layout
-
 
 # Load files from directory
 func dir_contents(path) -> Array:
@@ -97,6 +94,7 @@ func dir_contents(path) -> Array:
 func parse_layout_json(layoutPath:String) -> Dictionary:
 	var file = File.new()
 	file.open(layoutPath, file.READ)
+	print(file.get_path())
 	var text_json = file.get_as_text()
 	var result_json:JSONParseResult = JSON.parse(text_json)
 	var result:Dictionary = {}

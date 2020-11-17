@@ -200,8 +200,8 @@ window_title = "Open a File"
 resizable = true
 mode = 0
 access = 1
-current_dir = "user://"
-current_path = "user://"
+current_dir = "user://layouts"
+current_path = "user://layouts/"
 
 [node name="SaveDialog" type="FileDialog" parent="CanvasLayer/EditorGUI"]
 margin_left = 536.727
@@ -211,8 +211,8 @@ margin_bottom = 761.27
 window_title = "Save Layout"
 resizable = true
 access = 1
-current_dir = "user://"
-current_path = "user://"
+current_dir = "user://layouts"
+current_path = "user://layouts/"
 
 [connection signal="num_tiles_changed" from="." to="CanvasLayer/EditorGUI" method="_on_LayoutEditor_num_tiles_changed"]
 [connection signal="home_btn" from="CanvasLayer/EditorGUI" to="." method="_on_EditorGUI_home_btn"]
