@@ -16,6 +16,7 @@ signal restart_btn
 signal pause_btn
 signal hint_btn
 signal undo_btn
+signal home_btn
 
 func _on_GameStatistics_stats_hints_used_changed(h):
 	pass # Replace with function body.
@@ -60,4 +61,9 @@ func _on_HintButton_pressed():
 
 func _on_UndoButton_pressed():
 	emit_signal("undo_btn")
+	pass # Replace with function body.
+
+
+func _on_HomeButton_pressed():
+	emit_signal("home_btn")
 	pass # Replace with function body.

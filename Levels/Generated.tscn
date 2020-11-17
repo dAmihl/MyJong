@@ -83,6 +83,7 @@ material = SubResource( 4 )
 light_energy = 0.6
 
 [connection signal="hint_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_hint_btn"]
+[connection signal="home_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_home_btn"]
 [connection signal="pause_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_pause_btn"]
 [connection signal="restart_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_restart_btn"]
 [connection signal="undo_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_undo_btn"]

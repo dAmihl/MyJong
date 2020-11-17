@@ -84,3 +84,8 @@ func _on_GUI_hint_btn():
 func _on_GUI_undo_btn():
 	$"/root/Board/Controls".undo()
 	pass # Replace with function body.
+
+
+func _on_GUI_home_btn():
+	SceneManager.change_scene("Levels/LayoutList.tscn")
+	pass # Replace with function body.
