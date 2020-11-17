@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Levels/StandardEnv.tres" type="Environment" id=1]
 [ext_resource path="res://LayoutEditor.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://assets/ui/tiles_icon.png" type="Texture" id=13]
 [ext_resource path="res://assets/ui/icons/PNG/White/1x/home.png" type="Texture" id=14]
 [ext_resource path="res://Levels/SaveDialog.gd" type="Script" id=15]
+[ext_resource path="res://assets/ui/PNG/grey_button02.png" type="Texture" id=16]
 
 [sub_resource type="InputEventAction" id=1]
 action = "save"
@@ -52,18 +53,20 @@ __meta__ = {
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/EditorGUI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = -8.0
+margin_bottom = -36.0
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/EditorGUI/MarginContainer"]
-margin_right = 1920.0
-margin_bottom = 1080.0
+margin_right = 1912.0
+margin_bottom = 1044.0
 mouse_filter = 2
 
 [node name="Top" type="HBoxContainer" parent="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer"]
-margin_right = 1920.0
+margin_right = 1912.0
 margin_bottom = 59.0
 mouse_filter = 2
 
@@ -108,10 +111,12 @@ mouse_filter = 2
 margin_top = 5.0
 margin_right = 190.0
 margin_bottom = 54.0
+hint_tooltip = "You need an even number of tiles to save the layout."
 shortcut = SubResource( 2 )
 texture_normal = ExtResource( 9 )
 texture_pressed = ExtResource( 7 )
 texture_hover = ExtResource( 8 )
+texture_disabled = ExtResource( 16 )
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top/Save/CenterContainer"]
 margin_left = 70.0
@@ -123,18 +128,18 @@ texture = ExtResource( 11 )
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top"]
 margin_left = 388.0
-margin_right = 1055.0
+margin_right = 1051.0
 margin_bottom = 59.0
 size_flags_horizontal = 3
 
 [node name="Tiles" type="MarginContainer" parent="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top"]
-margin_left = 1059.0
-margin_right = 1726.0
+margin_left = 1055.0
+margin_right = 1718.0
 margin_bottom = 59.0
 size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top/Tiles"]
-margin_right = 667.0
+margin_right = 663.0
 margin_bottom = 59.0
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top/Tiles/HBoxContainer"]
@@ -151,8 +156,8 @@ theme = ExtResource( 12 )
 text = "0"
 
 [node name="Home" type="MarginContainer" parent="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top"]
-margin_left = 1730.0
-margin_right = 1920.0
+margin_left = 1722.0
+margin_right = 1912.0
 margin_bottom = 59.0
 mouse_filter = 2
 
@@ -179,15 +184,15 @@ texture = ExtResource( 14 )
 
 [node name="Center" type="HBoxContainer" parent="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer"]
 margin_top = 63.0
-margin_right = 1920.0
-margin_bottom = 569.0
+margin_right = 1912.0
+margin_bottom = 551.0
 mouse_filter = 2
 size_flags_vertical = 3
 
 [node name="Bottom" type="HBoxContainer" parent="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer"]
-margin_top = 573.0
-margin_right = 1920.0
-margin_bottom = 1080.0
+margin_top = 555.0
+margin_right = 1912.0
+margin_bottom = 1044.0
 mouse_filter = 2
 size_flags_vertical = 3
 
@@ -251,7 +256,8 @@ margin_left = 255.0
 margin_right = 507.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
-text = "Custom Layout"
+max_length = 20
+caret_blink = true
 
 [node name="Author" type="HBoxContainer" parent="CanvasLayer/EditorGUI/SaveDialog/MarginContainer/VBoxContainer"]
 margin_top = 28.0
@@ -291,9 +297,6 @@ margin_left = 255.0
 margin_right = 507.0
 margin_bottom = 189.0
 size_flags_horizontal = 3
-text = "Custom Layout
-
-"
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/EditorGUI/SaveDialog/MarginContainer/VBoxContainer"]
 margin_top = 249.0
@@ -304,9 +307,11 @@ margin_bottom = 299.0
 margin_left = 158.0
 margin_right = 348.0
 margin_bottom = 49.0
+disabled = true
 texture_normal = ExtResource( 9 )
 texture_pressed = ExtResource( 7 )
 texture_hover = ExtResource( 8 )
+texture_disabled = ExtResource( 16 )
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/EditorGUI/SaveDialog/MarginContainer/VBoxContainer/CenterContainer"]
 margin_left = 228.0
@@ -321,5 +326,6 @@ texture = ExtResource( 11 )
 [connection signal="pressed" from="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top/Save/CenterContainer/SaveButton" to="CanvasLayer/EditorGUI" method="_on_SaveButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/EditorGUI/MarginContainer/VBoxContainer/Top/Home/CenterContainer/HomeButton" to="CanvasLayer/EditorGUI" method="_on_HomeButton_pressed"]
 [connection signal="file_selected" from="CanvasLayer/EditorGUI/LoadDialog" to="CanvasLayer/EditorGUI" method="_on_LoadDialog_file_selected"]
+[connection signal="about_to_show" from="CanvasLayer/EditorGUI/SaveDialog" to="CanvasLayer/EditorGUI/SaveDialog" method="_on_SaveDialog_about_to_show"]
 [connection signal="save_layout" from="CanvasLayer/EditorGUI/SaveDialog" to="." method="_on_SaveDialog_save_layout"]
 [connection signal="pressed" from="CanvasLayer/EditorGUI/SaveDialog/MarginContainer/VBoxContainer/CenterContainer/SaveDialogButton" to="CanvasLayer/EditorGUI/SaveDialog" method="_on_SaveDialogButton_pressed"]

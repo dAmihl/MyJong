@@ -14,6 +14,8 @@ var layer_scn = preload("res://Scenes/LayoutEditor/Layer.tscn")
 onready var layers = []
 var current_layer:int = 0
 
+var current_layout:LayoutManager.Layout = null setget set_current_layout
+
 var num_tiles = 0
 
 signal num_tiles_changed
@@ -29,6 +31,10 @@ func center_board_position():
 	$PlacementGrid.translation.x = -pos_x
 	$PlacementGrid.translation.z = -pos_z
 	pass
+
+func set_current_layout(l:LayoutManager.Layout):
+	current_layout = l
+	$CanvasLayer/EditorGUI.set_current_layout(l)
 
 func _input(event):
 	if event.is_action_pressed("export_layout"):
@@ -63,6 +69,7 @@ func load_layout(layoutFilePath:String):
 	var layout = LayoutManager.create_layout_from_fullpath(layoutFilePath)
 	if is_instance_valid(layout):
 		init_layout(layout.layout_data)
+		set_current_layout(layout)
 	else:
 		print("Error: File is damaged - "+str(layoutFilePath))
 
@@ -108,13 +115,22 @@ func _on_EditorGUI_home_btn():
 
 
 func _on_SaveDialog_save_layout(layout_name:String, layout_author:String, layout_desc:String):
-	var layout_file_name = layout_name.sha256_text()
-	var layout_full_path = LayoutManager.customLayoutDirPath+layout_file_name
 	var layout_data:Array = $PlacementGrid.export_layout()
-	var new_layout:LayoutManager.Layout = LayoutManager.Layout.new(
-		layout_full_path, layout_data, layout_author, layout_name)
+	var layout_full_path
+	var layout_to_save:LayoutManager.Layout
+	if is_instance_valid(current_layout):
+		layout_full_path = current_layout.layout_full_path
+		current_layout.set_layout_data(layout_data)
+		layout_to_save = current_layout
+	else:
+		var layout_file_name = (layout_name+str(OS.get_unix_time())).sha256_text()
+		layout_full_path = LayoutManager.customLayoutDirPath+layout_file_name
+		var new_layout:LayoutManager.Layout = LayoutManager.Layout.new(
+			layout_full_path, layout_data, layout_author, layout_name)
+		layout_to_save = new_layout
+		set_current_layout(layout_to_save)
 	var file = File.new()
 	file.open(layout_full_path, File.WRITE)
-	file.store_string(new_layout.to_dict_json())
+	file.store_string(layout_to_save.to_dict_json())
 	file.close()
 	pass # Replace with function body.

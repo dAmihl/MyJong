@@ -12,7 +12,8 @@ var numberTiles = 0
 func _ready():
 	pass # Replace with function body.
 
-
+func _process(delta):
+	saveButton.disabled = numberTiles % 2 == 1 or numberTiles == 0
 
 func _on_LoadButton_pressed():
 	$LoadDialog.popup()
@@ -27,11 +28,14 @@ func _on_LoadDialog_file_selected(path):
 	emit_signal("load_file_selected",path)
 	pass # Replace with function body.
 
+func set_current_layout(l:LayoutManager.Layout):
+	$SaveDialog/MarginContainer/VBoxContainer/Name/InputName.text = l.layout_name
+	$SaveDialog/MarginContainer/VBoxContainer/Author/InputAuthor.text = l.author
 
 func _on_LayoutEditor_num_tiles_changed(numTiles:int):
 	numberTiles = numTiles
 	numTilesData.text = str(numTiles)
-	saveButton.disabled = numberTiles % 2 == 1
+	
 	pass # Replace with function body.
 
 
