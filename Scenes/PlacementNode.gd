@@ -63,23 +63,27 @@ func check_layer():
 	var num_neighbours_max_tiles:int = 0
 	var num_neighbours_max_layer:int = 0
 	var max_num_tiles = 0
-	var max_layer = 0
+	var max_layer = get_highest_tile_layer() 
 	for n in neighbours:
-		if n.has_tile_on_layer():
-			if n.layer > max_layer:
-				max_layer = n.layer
+		if n.has_tiles():
+			var n_layer = n.get_highest_tile_layer() + 1
+			if n_layer > max_layer:
+				max_layer = n_layer
 				num_neighbours_max_layer = 1
-			if n.layer == max_layer:
+			if n_layer == max_layer:
 				num_neighbours_max_layer += 1
 	
-	if max_layer >= layer:
+	# rise
+	if max_layer > get_highest_tile_layer():
 		if num_neighbours_max_layer > 1:
 			set_layer(max_layer)
 			toggle_enabled(true)
 		elif num_neighbours_max_layer == 1:
 			toggle_enabled(false)
+	# fall
 	else:
-		set_layer(max(max_layer, num_tiles()))
+		# stay above your highest tile
+		set_layer(max(max_layer, get_highest_tile_layer()+1))
 		toggle_enabled(true)
 
 func num_tiles():
@@ -95,6 +99,16 @@ func has_tile_on_layer() -> bool:
 		if t.layer == layer-1:
 			return true
 	return false
+	
+func get_highest_tile_layer() -> int:
+	if !has_tiles():
+		return -1
+	else:
+		var max_tile_layer = 0
+		for t in $Tiles.get_children():
+			if t.layer > max_tile_layer:
+				max_tile_layer = t.layer
+		return max_tile_layer
 
 func toggle_enabled(enabled:bool = true):
 	$Sphere.visible = enabled
@@ -111,13 +125,11 @@ func decrease_layer():
 
 func remove_node():
 	if $Tiles.get_child_count() > 0:
-		$Tiles.remove_child($Tiles.get_child($Tiles.get_child_count()-1))
-		var colliders = $Area.get_overlapping_areas()
-		for c in colliders:
-			c.get_parent().decrease_layer()
-			print(c)
-		decrease_layer()
-		emit_signal("tile_removed", self)
+		var c = $Tiles.get_child($Tiles.get_child_count()-1)
+		if c.layer == layer - 1:
+			$Tiles.remove_child(c)
+			decrease_layer()
+			emit_signal("tile_removed", self)
 
 func place_node():
 	var new_tile = layout_tile_scn.instance()
