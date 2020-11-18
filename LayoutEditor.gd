@@ -23,6 +23,7 @@ signal num_tiles_changed
 func _ready():
 	spawn_placement_nodes(0)
 	center_board_position()
+	init_nodes()
 	pass
 
 func center_board_position():
@@ -31,6 +32,11 @@ func center_board_position():
 	$PlacementGrid.translation.x = -pos_x
 	$PlacementGrid.translation.z = -pos_z
 	pass
+	
+func init_nodes():
+	for n in $PlacementGrid.get_children():
+		n.init()
+		pass
 
 func set_current_layout(l:LayoutManager.Layout):
 	current_layout = l
@@ -62,6 +68,8 @@ func place_node(r, c, layer:int):
 	new_hs_node.translation = Vector3(r*nodes_distance_height, layer*nodes_distance_depth, c*nodes_distance_width)
 	new_hs_node.connect("tile_placed", self, "_on_numTiles_Added")
 	new_hs_node.connect("tile_removed", self, "_on_numTiles_Removed")
+	new_hs_node.connect("tile_placed", $PlacementGrid, "_on_Tile_Placed")
+	new_hs_node.connect("tile_removed", $PlacementGrid, "_on_Tile_Removed")
 	$PlacementGrid.add_child(new_hs_node)
 	
 

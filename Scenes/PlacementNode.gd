@@ -14,14 +14,19 @@ var nodes_distance_height:float = 3.6
 var nodes_distance_depth:float = 1.1
 var layout_tile_scn = preload("res://Scenes/LayoutEditor/LayoutTile.tscn")
 
-func _process(delta):
-	check_available()
+var neighbours:Array = []
+
+func _ready():
+	pass
 	
+func init():
+	neighbours = get_parent().get_neighbours_of_node(self)
 	pass
 
 func _on_PlacementNode_mouse_entered():
 	if disabled:
 		return
+	print(layer)
 	$Sphere.material.albedo_color = Color.yellow
 	$TileMesh.visible = true
 	pass # Replace with function body.
@@ -45,32 +50,51 @@ func _on_PlacementNode_input_event(camera, event, click_position, click_normal, 
 func on_clicked():
 	if disabled:
 		return
-	#emit_signal("on_node_placed",self)
 	place_node()
 	elevate_layer()
 	pass
 
-func check_available():
-	var colliders = $Area.get_overlapping_bodies()
-	var colliders_same_layer = []
-	for c in colliders:
-		if c.layer == layer:
-			colliders_same_layer.append(c)
+func update_neighbours():
+	for n in neighbours:
+		n.check_layer()
+
+func check_layer():
 	
-	if colliders_same_layer.size() >= 2:
-		elevate_layer()
-		return
+	var num_neighbours_max_tiles:int = 0
+	var num_neighbours_max_layer:int = 0
+	var max_num_tiles = 0
+	var max_layer = 0
+	for n in neighbours:
+		if n.has_tile_on_layer():
+			if n.layer > max_layer:
+				max_layer = n.layer
+				num_neighbours_max_layer = 1
+			if n.layer == max_layer:
+				num_neighbours_max_layer += 1
 	
-	for c in colliders_same_layer:
-		var dPosition = c.position - position
-		if abs(dPosition.x) < 1 and abs(dPosition.y) < 1:
+	if max_layer >= layer:
+		if num_neighbours_max_layer > 1:
+			set_layer(max_layer)
+			toggle_enabled(true)
+		elif num_neighbours_max_layer == 1:
 			toggle_enabled(false)
-			return
-	
-	if colliders.size() - colliders_same_layer.size() > 0:
-		toggle_enabled(false)
 	else:
+		set_layer(max(max_layer, num_tiles()))
 		toggle_enabled(true)
+
+func num_tiles():
+	return $Tiles.get_child_count()
+	
+func has_tiles():
+	return num_tiles() > 0
+
+func has_tile_on_layer() -> bool:
+	if !has_tiles():
+		return false
+	for t in $Tiles.get_children():
+		if t.layer == layer-1:
+			return true
+	return false
 
 func toggle_enabled(enabled:bool = true):
 	$Sphere.visible = enabled
@@ -79,15 +103,21 @@ func toggle_enabled(enabled:bool = true):
 
 func elevate_layer():
 	set_layer(layer + 1)
+	update_neighbours()
 	
 func decrease_layer():
 	set_layer(max(layer-1,0))
+	update_neighbours()
 
 func remove_node():
 	if $Tiles.get_child_count() > 0:
 		$Tiles.remove_child($Tiles.get_child($Tiles.get_child_count()-1))
+		var colliders = $Area.get_overlapping_areas()
+		for c in colliders:
+			c.get_parent().decrease_layer()
+			print(c)
 		decrease_layer()
-		emit_signal("tile_removed")
+		emit_signal("tile_removed", self)
 
 func place_node():
 	var new_tile = layout_tile_scn.instance()
@@ -95,7 +125,7 @@ func place_node():
 	new_tile.position = self.position 
 	new_tile.layer = layer
 	$Tiles.add_child(new_tile)
-	emit_signal("tile_placed")
+	emit_signal("tile_placed", self)
 	pass
 	
 func place_node_with_layer(layerNum:int = 0):
@@ -104,18 +134,8 @@ func place_node_with_layer(layerNum:int = 0):
 	new_tile.position = self.position 
 	new_tile.layer = layerNum
 	$Tiles.add_child(new_tile)
-	emit_signal("tile_placed")
+	emit_signal("tile_placed", self)
 	pass
-	
-func update_layer():
-	# Only update those with children. Otherwise keep at 0
-	if $Tiles.get_child_count() == 0:
-		return
-	var max_layer = 0
-	for c in $Tiles.get_children():
-		if c.layer > max_layer:
-			max_layer = c.layer
-	set_layer(max_layer+1)
 	
 func set_layer(layerNum:int):
 	layer = layerNum

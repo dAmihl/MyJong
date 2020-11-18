@@ -6,10 +6,10 @@
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1.10496, 0.218214, 0.658194 )
 
-[sub_resource type="CubeMesh" id=5]
+[sub_resource type="CubeMesh" id=6]
 size = Vector3( 0.5, 0.5, 0.5 )
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="SpatialMaterial" id=7]
 resource_local_to_scene = true
 flags_transparent = true
 albedo_color = Color( 0, 0, 0, 0.25098 )
@@ -18,7 +18,7 @@ albedo_color = Color( 0, 0, 0, 0.25098 )
 flags_transparent = true
 albedo_color = Color( 1, 1, 1, 0.137255 )
 
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="BoxShape" id=5]
 extents = Vector3( 1.46489, 0.4772, 0.914455 )
 
 [node name="PlacementNode" type="StaticBody"]
@@ -31,8 +31,8 @@ shape = SubResource( 1 )
 
 [node name="Sphere" type="CSGMesh" parent="."]
 transform = Transform( 0.707107, 0.5, 0.5, 0, 0.707107, -0.707107, -0.707107, 0.5, 0.5, 0, 0, 0 )
-mesh = SubResource( 5 )
-material = SubResource( 2 )
+mesh = SubResource( 6 )
+material = SubResource( 7 )
 
 [node name="TileMesh" type="MeshInstance" parent="."]
 visible = false
@@ -47,7 +47,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
 [connection signal="input_event" from="." to="." method="_on_PlacementNode_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_PlacementNode_mouse_entered"]
