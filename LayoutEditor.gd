@@ -99,7 +99,8 @@ func find_placement_node(pos:Vector2, layer:int)->Spatial:
 	
 func update_node_layers():
 	for n in $PlacementGrid.get_children():
-		n.update_layer()
+		#n.update_layer()
+		pass
 
 func _on_EditorGUI_load_file_selected(path):
 	clear()
@@ -113,12 +114,12 @@ func clear():
 	num_tiles = 0
 	emit_signal("num_tiles_changed", num_tiles)
 
-func _on_numTiles_Added():
+func _on_numTiles_Added(tile):
 	num_tiles += 1
 	emit_signal("num_tiles_changed", num_tiles)
 	pass
 
-func _on_numTiles_Removed():
+func _on_numTiles_Removed(tile):
 	num_tiles -= 1
 	emit_signal("num_tiles_changed", num_tiles)
 	pass

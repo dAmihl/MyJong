@@ -146,6 +146,7 @@ func place_node_with_layer(layerNum:int = 0):
 	new_tile.position = self.position 
 	new_tile.layer = layerNum
 	$Tiles.add_child(new_tile)
+	elevate_layer()
 	emit_signal("tile_placed", self)
 	pass
 	
