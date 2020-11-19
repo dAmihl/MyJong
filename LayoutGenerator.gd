@@ -71,16 +71,27 @@ func center_board_position():
 
 func draw_layout():
 	#distribute_random()
+	var max_num_tries = 10
+	var num_tries = 0
+	var result:bool = true
 	RNG.seed = rngseed
 	while (distribute_random_solvable() == -1):
+		num_tries += 1
+		if num_tries >= max_num_tries:
+			result = false
+			break
 		print("DistributeRandomSolvable failed. Trying new seed.")
 		RNG.randomize()
 		rngseed = RNG.seed
 		print("New Seed: "+str(rngseed))
 		gameboard.call_deferred("clear")
 		yield(gameboard, "clear_done")
-	center_board_position()
-	gameboard.board_ready()
+	if result:
+		center_board_position()
+		gameboard.board_ready()
+	else:
+		print("Could not generate a solvable distribution.")
+		SceneManager.change_scene("Levels/LayoutList.tscn")
 	return
 	
 func draw_tile(pos,  type):

@@ -26,7 +26,6 @@ func init():
 func _on_PlacementNode_mouse_entered():
 	if disabled:
 		return
-	print(layer)
 	$Sphere.material.albedo_color = Color.yellow
 	$TileMesh.visible = true
 	pass # Replace with function body.
