@@ -59,32 +59,16 @@ func update_neighbours():
 		n.check_layer()
 
 func check_layer():
-	
-	var num_neighbours_max_tiles:int = 0
-	var num_neighbours_max_layer:int = 0
-	var max_num_tiles = 0
-	var max_layer = get_highest_tile_layer() 
+	# get the highest neighbour tile
+	# and set the layer of this node to the maximum of the highest neighbour
+	#  and itself
+	var max_tiled_layer = -1
 	for n in neighbours:
-		if n.has_tiles():
-			var n_layer = n.get_highest_tile_layer() + 1
-			if n_layer > max_layer:
-				max_layer = n_layer
-				num_neighbours_max_layer = 1
-			if n_layer == max_layer:
-				num_neighbours_max_layer += 1
-	
-	# rise
-	if max_layer > get_highest_tile_layer():
-		if num_neighbours_max_layer > 1:
-			set_layer(max_layer)
-			toggle_enabled(true)
-		elif num_neighbours_max_layer == 1:
-			toggle_enabled(false)
-	# fall
-	else:
-		# stay above your highest tile
-		set_layer(max(max_layer, get_highest_tile_layer()+1))
-		toggle_enabled(true)
+		var n_layer = n.get_highest_tile_layer() 
+		if n_layer > max_tiled_layer:
+			max_tiled_layer = n_layer
+	set_layer(max(max_tiled_layer+1, get_highest_tile_layer()+1))
+	return
 
 func num_tiles():
 	return $Tiles.get_child_count()
