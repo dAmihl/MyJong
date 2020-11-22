@@ -29,9 +29,9 @@ script = ExtResource( 6 )
 visible = false
 
 [node name="Camera" parent="." instance=ExtResource( 8 )]
-transform = Transform( -1.62921e-07, 0.906308, -0.422618, 0, 0.422618, 0.906308, 1, 1.47656e-07, -6.88533e-08, -60, 120, 0 )
+transform = Transform( -1.62921e-07, 0.906308, -0.422618, 0, 0.422618, 0.906308, 1, 1.47656e-07, -6.88533e-08, -57, 120, 0 )
 projection = 0
-fov = 15.0
+fov = 17.0
 size = 40.0
 near = 100.0
 far = 200.0
@@ -52,7 +52,7 @@ script = ExtResource( 2 )
 [node name="AudioClick" type="AudioStreamPlayer" parent="Controls"]
 
 [node name="GameBoard" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 9 )

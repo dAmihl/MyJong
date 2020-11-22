@@ -16,11 +16,11 @@ noise = SubResource( 3 )
 
 [resource]
 shader = ExtResource( 1 )
-shader_param/deep_color = Color( 0.513726, 0.764706, 0.92549, 1 )
+shader_param/deep_color = Color( 0.329412, 0.6, 0.772549, 1 )
 shader_param/shallow_color = Color( 1, 1, 1, 1 )
 shader_param/refraction_speed = 0.25
 shader_param/refraction_strength = 1.0
-shader_param/foam_amount = 3.0
+shader_param/foam_amount = 1.0
 shader_param/foam_cutoff = 1.0
 shader_param/foam_color = Color( 1, 1, 1, 1 )
 shader_param/displacement_strength = 0.25
