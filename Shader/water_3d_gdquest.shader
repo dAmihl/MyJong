@@ -1,11 +1,15 @@
 shader_type spatial;
-render_mode unshaded;
+//render_mode unshaded;
 
 uniform vec4 deep_color : hint_color;
 uniform vec4 shallow_color : hint_color = vec4(1);
 
 uniform float refraction_speed = 0.25;
 uniform float refraction_strength = 1.0;
+
+uniform vec2 amplitude = vec2(0.2, 0.1);
+uniform vec2 frequency = vec2(3.0, 2.5);
+uniform vec2 time_factor = vec2(2.0, 3.0);
 
 uniform float foam_amount = 1.0;
 uniform float foam_cutoff = 1.0;
@@ -21,9 +25,22 @@ uniform sampler2D refraction_noise : hint_normal;
 uniform sampler2D foam_noise : hint_black_albedo;
 uniform sampler2D displacement_noise : hint_black;
 
+float height(vec2 pos, float time){
+	float displacement = textureLod(displacement_noise, pos + (time * movement_direction) * refraction_speed, 0.0).r * 2.0 - 1.0;
+	return displacement * displacement_strength;
+}
+
+float height2(vec2 pos, float time){
+	return (amplitude.x * sin(pos.x * frequency.x + time * time_factor.x)) * (amplitude.y * sin(pos.y * frequency.y + time * time_factor.y));
+}
+
 void vertex() {
-	float displacement = textureLod(displacement_noise, UV + (TIME * movement_direction) * refraction_speed, 0.0).r * 2.0 - 1.0;
-	VERTEX.y += displacement * displacement_strength;
+	float displacement = height2(VERTEX.xz, TIME);
+	VERTEX.y += displacement;
+	
+	TANGENT = normalize(vec3(0.0,height2(VERTEX.xz + vec2(0.0, 0.2), TIME) - height2(VERTEX.xz + vec2(0.0, -0.2), TIME), 0.4));
+	BINORMAL = normalize(vec3(0.4,height2(VERTEX.xz + vec2(0.2, 0.0), TIME) - height2(VERTEX.xz + vec2(-0.2, 0.0), TIME), 0.0));
+	NORMAL = cross(TANGENT, BINORMAL);
 }
 
 void fragment() {
