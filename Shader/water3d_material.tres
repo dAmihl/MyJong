@@ -1,0 +1,30 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=2]
+
+[ext_resource path="res://Shader/water_3d_gdquest.shader" type="Shader" id=1]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+seed = 1337
+
+[sub_resource type="NoiseTexture" id=2]
+noise = SubResource( 1 )
+
+[sub_resource type="OpenSimplexNoise" id=3]
+seed = 123
+
+[sub_resource type="NoiseTexture" id=4]
+noise = SubResource( 3 )
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/deep_color = Color( 0.513726, 0.764706, 0.92549, 1 )
+shader_param/shallow_color = Color( 1, 1, 1, 1 )
+shader_param/refraction_speed = 0.25
+shader_param/refraction_strength = 1.0
+shader_param/foam_amount = 3.0
+shader_param/foam_cutoff = 1.0
+shader_param/foam_color = Color( 1, 1, 1, 1 )
+shader_param/displacement_strength = 0.25
+shader_param/depth_distance = 1.0
+shader_param/movement_direction = Vector2( 0.2, 0 )
+shader_param/foam_noise = SubResource( 4 )
+shader_param/displacement_noise = SubResource( 2 )

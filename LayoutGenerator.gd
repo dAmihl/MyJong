@@ -106,7 +106,7 @@ func draw_tile(pos,  type):
 	new_tile.connect("tile_clicked", controls, "tile_clicked")
 	new_tile.connect("tile_not_free_clicked", controls, "tile_not_free_clicked")
 	new_tile.set_highlight_free(highlight_free_tiles)
-	var num_layers = layout.size()
+	#var num_layers = layout.size()
 	#new_tile.set_layer_mat_color(layout.size())
 	gameboard.add_tile(new_tile)
 	
