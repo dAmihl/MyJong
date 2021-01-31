@@ -68,3 +68,13 @@ func _on_EditorButton_pressed():
 
 func _on_GamemodeList_item_activated(index):
 	pass # Replace with function body.
+
+
+func _on_SettingsButton_pressed():
+	SceneManager.change_scene("Levels/Settings.tscn")
+	pass # Replace with function body.
+
+
+func _on_ExitButton_pressed():
+	get_tree().quit()
+	pass # Replace with function body.

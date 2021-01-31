@@ -55,6 +55,7 @@ pause_mode = 2
 script = ExtResource( 2 )
 
 [node name="AudioClick" type="AudioStreamPlayer" parent="Controls"]
+bus = "SFX"
 
 [node name="GameBoard" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50 )
@@ -83,6 +84,7 @@ material/0 = SubResource( 2 )
 stream = ExtResource( 14 )
 volume_db = -10.0
 autoplay = true
+bus = "Music"
 
 [connection signal="hint_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_hint_btn"]
 [connection signal="home_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_home_btn"]

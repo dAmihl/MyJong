@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Levels/LayoutList.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/PNG/green_button01.png" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://assets/ui/icons/PNG/White/1x/checkmark.png" type="Texture" id=5]
 [ext_resource path="res://Theme/DefaultTheme.tres" type="Theme" id=6]
 [ext_resource path="res://assets/ui/icons/PNG/White/1x/wrench.png" type="Texture" id=7]
+[ext_resource path="res://assets/ui/icons/PNG/White/1x/gear.png" type="Texture" id=8]
+[ext_resource path="res://assets/ui/icons/PNG/White/1x/door.png" type="Texture" id=9]
 
 [node name="LayoutList" type="Control"]
 anchor_right = 1.0
@@ -133,7 +135,54 @@ margin_right = 1920.0
 margin_bottom = 1080.0
 size_flags_horizontal = 3
 
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Right"]
+margin_right = 638.0
+margin_bottom = 1080.0
+alignment = 2
+
+[node name="Editor2" type="CenterContainer" parent="HBoxContainer/Right/VBoxContainer"]
+margin_top = 976.0
+margin_right = 638.0
+margin_bottom = 1026.0
+
+[node name="SettingsButton" type="TextureButton" parent="HBoxContainer/Right/VBoxContainer/Editor2"]
+margin_left = 224.0
+margin_right = 414.0
+margin_bottom = 49.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 2 )
+
+[node name="Label" type="TextureRect" parent="HBoxContainer/Right/VBoxContainer/Editor2"]
+margin_left = 294.0
+margin_right = 344.0
+margin_bottom = 50.0
+mouse_filter = 2
+texture = ExtResource( 8 )
+
+[node name="Editor3" type="CenterContainer" parent="HBoxContainer/Right/VBoxContainer"]
+margin_top = 1030.0
+margin_right = 638.0
+margin_bottom = 1080.0
+
+[node name="ExitButton" type="TextureButton" parent="HBoxContainer/Right/VBoxContainer/Editor3"]
+margin_left = 224.0
+margin_right = 414.0
+margin_bottom = 49.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 2 )
+
+[node name="Label" type="TextureRect" parent="HBoxContainer/Right/VBoxContainer/Editor3"]
+margin_left = 294.0
+margin_right = 344.0
+margin_bottom = 50.0
+mouse_filter = 2
+texture = ExtResource( 9 )
+
 [connection signal="item_activated" from="HBoxContainer/Left/ScrollContainer2/GamemodeList" to="." method="_on_GamemodeList_item_activated"]
 [connection signal="item_activated" from="HBoxContainer/VBoxContainer/ScrollContainer/ItemList" to="." method="_on_ItemList_item_activated"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Editor/EditorButton" to="." method="_on_EditorButton_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Play/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/Right/VBoxContainer/Editor2/SettingsButton" to="." method="_on_SettingsButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/Right/VBoxContainer/Editor3/ExitButton" to="." method="_on_ExitButton_pressed"]
