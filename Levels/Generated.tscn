@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://LayoutGenerator.gd" type="Script" id=1]
 [ext_resource path="res://Levels/Controls.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://BoardCamera.gd" type="Script" id=11]
 [ext_resource path="res://Shader/water3d_material.tres" type="Material" id=12]
 [ext_resource path="res://assets/fremd/water.jpg" type="Texture" id=13]
+[ext_resource path="res://assets/fremd/exploration_song.ogg" type="AudioStream" id=14]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 50, 100 )
@@ -77,6 +78,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016, -3.60521, -0.011 )
 visible = false
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = -10.0
+autoplay = true
 
 [connection signal="hint_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_hint_btn"]
 [connection signal="home_btn" from="CanvasLayer/GUI" to="CanvasLayer" method="_on_GUI_home_btn"]

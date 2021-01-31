@@ -18,6 +18,10 @@ var audio_locked = [
 	preload("res://assets/ui/Bonus/rollover2.ogg")
 ]
 
+var audio_clear = [
+	preload("res://assets/fremd/life_pickup.ogg")
+]
+
 func _input(event):
 	if event.is_action_pressed("pause"):
 		pause_game()
@@ -74,7 +78,7 @@ func eval_selection(sel1, sel2):
 		gamestats.add_move()
 		gamestats.add_points(150)
 		remove_tile_pair(sel1, sel2)
-		$AudioClick.stream = audio_clicks[1]
+		$AudioClick.stream = audio_clear[0]
 		$AudioClick.play()
 	else:
 		deselect_block(sel1)

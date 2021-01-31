@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/exploration_song.ogg-2bd46a9db996f9e384ce87a514a7eeb2.oggstr"
+
+[deps]
+
+source_file="res://assets/fremd/exploration_song.ogg"
+dest_files=[ "res://.import/exploration_song.ogg-2bd46a9db996f9e384ce87a514a7eeb2.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
