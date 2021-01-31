@@ -1,17 +1,23 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Tile.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/CustomTile.gd" type="Script" id=3]
 
 [sub_resource type="SpatialMaterial" id=1]
 resource_local_to_scene = true
+
+[sub_resource type="SpatialMaterial" id=2]
+resource_local_to_scene = true
 albedo_color = Color( 0, 0, 0, 1 )
 
 [node name="Tile" instance=ExtResource( 2 )]
 script = ExtResource( 3 )
 
-[node name="Outline" parent="MeshGroup/Tile" index="0"]
+[node name="Tile" parent="MeshGroup" index="0"]
 material/0 = SubResource( 1 )
+
+[node name="Outline" parent="MeshGroup/Tile" index="0"]
+material/0 = SubResource( 2 )
 
 [node name="Symbol" parent="MeshGroup" index="1"]
 transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -0.765207, -0.0931555, -0.0171484 )

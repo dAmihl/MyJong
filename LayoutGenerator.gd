@@ -32,7 +32,18 @@ func load_layout():
 			print("Could not load fallback layout: "+str(layout_json_name))
 	else:
 		layout = layoutData
-	draw_layout()
+	
+	var gamemode:GameModeManager.GameMode = SceneManager.get_param("gamemode")
+	if (!gamemode and !is_instance_valid(gamemode)):
+		print("Could not load game mode.")
+		print("Assuming random.")
+		draw_layout_random()
+	elif gamemode.gamemode_gentype == gamemode.GenType.RANDOM:
+		print("Mode Random.")
+		draw_layout_random()
+	elif gamemode.gamemode_gentype == gamemode.GenType.SOLVABLE:
+		print("Mode Solvable")
+		draw_layout_solvable()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -68,8 +79,13 @@ func center_board_position():
 	gameboard.translation.x = -pos_x
 	gameboard.translation.z = -pos_z
 	pass
+	
+func draw_layout_random():
+	distribute_random()
+	center_board_position()
+	gameboard.board_ready()
 
-func draw_layout():
+func draw_layout_solvable():
 	#distribute_random()
 	var max_num_tries = 10
 	var num_tries = 0

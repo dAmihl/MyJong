@@ -28,6 +28,7 @@ config/icon="res://icon.png"
 
 SceneManager="*res://Scripts/SceneManager.gd"
 LayoutManager="*res://Scripts/LayoutManager.gd"
+GameModeManager="*res://Scripts/GameModeManager.gd"
 
 [display]
 

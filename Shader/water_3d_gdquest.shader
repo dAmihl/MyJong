@@ -3,6 +3,7 @@ shader_type spatial;
 
 uniform vec4 deep_color : hint_color;
 uniform vec4 shallow_color : hint_color = vec4(1);
+uniform sampler2D water_tex: hint_albedo;
 
 uniform float refraction_speed = 0.25;
 uniform float refraction_strength = 1.0;
@@ -58,7 +59,8 @@ void fragment() {
 	
 	float intersection = clamp(depth / foam_amount, 0, 1) * foam_cutoff;
 	
-	vec4 out_color = mix(shallow_color, deep_color, clamp((depth / depth_distance), 0, 1));
+	//vec4 out_color = mix(shallow_color, deep_color, clamp((depth / depth_distance), 0, 1));
+	vec4 out_color = mix(shallow_color, texture(water_tex, UV + (TIME * movement_direction) * refraction_speed).rgba, clamp((depth / depth_distance), 0, 1));
 	vec4 scene_color = texture(SCREEN_TEXTURE, uv);
 	out_color = mix(scene_color, out_color, out_color.a);
 	
