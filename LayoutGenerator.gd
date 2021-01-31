@@ -130,7 +130,7 @@ func distribute_random():
 	var typeNumberTmp = TileType.TypeNumber.duplicate(true)
 	var layoutTmp = layout.duplicate(true)
 	var current_layer = 0
-
+	RNG.seed = rngseed
 	while(typeNumberTmp.size() > 0 && current_layer < layoutTmp.size()):
 		#pick a type
 		var ixType = RNG.randi() % typeNumberTmp.keys().size()
