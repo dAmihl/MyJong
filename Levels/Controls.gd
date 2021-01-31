@@ -106,6 +106,7 @@ func restart_board():
 	$"../LayoutGenerator".restart()
 	
 func undo():
+	clear_selection()
 	gameboard.undo()
 	
 func hint():
