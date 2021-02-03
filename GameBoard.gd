@@ -135,6 +135,8 @@ func get_hint():
 		# could also be -1 for infinite
 		if num_hints_available > 0:
 			num_hints_available -= 1
+		if gamemode.hint_cost > 0:
+			gamestats.remove_points(gamemode.hint_cost)
 		return hint
 	else:
 		print("No Hint available.")
@@ -150,9 +152,12 @@ func undo():
 			add_tile(tile2)
 			gamestats.set_tiles_left(board.size())
 			last_removed_tiles.erase(last_pair)
+			
 			# could also be -1 for infinite
 			if num_undo_available > 0:
 				num_undo_available -= 1
+			if gamemode.undo_cost > 0:
+				gamestats.remove_points(gamemode.undo_cost)
 		else:
 			print("No Moves to undo!")
 			return
@@ -172,8 +177,12 @@ func shuffle():
 			b2.transform = t1
 			# could also be -1 for infinite
 		if num_shuffle_available > 0:
-				num_shuffle_available -= 1
+			num_shuffle_available -= 1
+		if gamemode.shuffle_cost > 0:
+			gamestats.remove_points(gamemode.shuffle_cost)
 	else:
 		print("No Shuffle available.")
 		return
-		
+
+func restart():
+	gamestats.clear_data()

@@ -103,6 +103,7 @@ func clear_selection():
 
 func restart_board():
 	selection = null
+	gameboard.restart()
 	$"../LayoutGenerator".restart()
 	
 func undo():

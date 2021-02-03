@@ -7,7 +7,7 @@ extends Control
 # Since Godot calls _ready bottom - top, GUI needs to be higher than e.g.
 # GameStatistics
 
-onready var points_data = find_node("PointsData")
+onready var score_data = find_node("ScoreData")
 onready var moves_data = find_node("MovesData")
 onready var time_data = find_node("TimeData")
 onready var tiles_left_data = find_node("TilesLeftData")
@@ -29,7 +29,7 @@ func _on_GameStatistics_stats_moves_changed(m):
 
 
 func _on_GameStatistics_stats_points_changed(p):
-	points_data.text = str(p)
+	score_data.text = str(p)
 	pass # Replace with function body.
 
 

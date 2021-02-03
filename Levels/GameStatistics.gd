@@ -23,6 +23,9 @@ func add_hint_used():
 
 func add_points(p:int):
 	set_points(points+p)
+	
+func remove_points(p:int):
+	set_points(points-p)
 
 func add_time_passed_second():
 	set_time_passed(time_passed+1)
