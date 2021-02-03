@@ -144,3 +144,14 @@ func undo():
 		last_removed_tiles.erase(last_pair)
 	else:
 		print("No Moves to undo!")
+
+func shuffle():
+	for b in board:
+		var randIndx = randi() % board.size()
+		var b2:StaticBody = board[randIndx]
+		if b == b2: continue
+		var t1 = b.transform
+		var t2 = b2.transform
+		b.transform = t2
+		b2.transform = t1
+		

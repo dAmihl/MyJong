@@ -111,4 +111,8 @@ func undo():
 	
 func hint():
 	gameboard.get_hint()
+	
+func shuffle():
+	clear_selection()
+	gameboard.shuffle()
 

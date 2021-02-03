@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Theme/DefaultTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/GUI.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/ui/icons/PNG/White/1x/rewind.png" type="Texture" id=11]
 [ext_resource path="res://assets/ui/icons/PNG/White/1x/question.png" type="Texture" id=12]
 [ext_resource path="res://assets/ui/icons/PNG/White/1x/home.png" type="Texture" id=13]
+[ext_resource path="res://assets/ui/icons/PNG/White/1x/share2.png" type="Texture" id=14]
 
 [sub_resource type="InputEventAction" id=1]
 action = "hint"
@@ -341,34 +342,61 @@ margin_bottom = 50.0
 mouse_filter = 2
 texture = ExtResource( 3 )
 
-[node name="Home" type="MarginContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer"]
 margin_left = 418.0
 margin_right = 608.0
 margin_bottom = 104.0
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/Home"]
+[node name="Home" type="MarginContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer3"]
 margin_right = 190.0
-margin_bottom = 104.0
+margin_bottom = 50.0
 
-[node name="HomeButton" type="TextureButton" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/Home/CenterContainer"]
-margin_top = 27.0
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer3/Home"]
 margin_right = 190.0
-margin_bottom = 76.0
+margin_bottom = 50.0
+
+[node name="HomeButton" type="TextureButton" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer3/Home/CenterContainer"]
+margin_right = 190.0
+margin_bottom = 49.0
 hint_tooltip = "Restart (R)"
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 6 )
 texture_hover = ExtResource( 5 )
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/Home/CenterContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer3/Home/CenterContainer"]
 margin_left = 70.0
-margin_top = 27.0
 margin_right = 120.0
-margin_bottom = 77.0
+margin_bottom = 50.0
 mouse_filter = 2
 texture = ExtResource( 13 )
+
+[node name="Shuffle" type="MarginContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer3"]
+margin_top = 54.0
+margin_right = 190.0
+margin_bottom = 104.0
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer3/Shuffle"]
+margin_right = 190.0
+margin_bottom = 50.0
+
+[node name="ShuffleButton" type="TextureButton" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer3/Shuffle/CenterContainer"]
+margin_right = 190.0
+margin_bottom = 49.0
+hint_tooltip = "Shuffle"
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 5 )
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer3/Shuffle/CenterContainer"]
+margin_left = 70.0
+margin_right = 120.0
+margin_bottom = 50.0
+mouse_filter = 2
+texture = ExtResource( 14 )
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer/Hint/CenterContainer/HintButton" to="." method="_on_HintButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer/Undo/CenterContainer/UndoButton" to="." method="_on_UndoButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer2/Restart/CenterContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer2/Pause/CenterContainer/PauseButton" to="." method="_on_PauseButton_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/Home/CenterContainer/HomeButton" to="." method="_on_HomeButton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer3/Home/CenterContainer/HomeButton" to="." method="_on_HomeButton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BottomBar/HBoxContainer/Right/HBoxContainer/VBoxContainer3/Shuffle/CenterContainer/ShuffleButton" to="." method="_on_ShuffleButton_pressed"]
