@@ -1,5 +1,12 @@
 {
 	"Author": "dAmihl",
 	"GamemodeName": "Classic Randomized",
-	"GamemodeGenType": 0
+	"GamemodeGenType": 0,
+	"ShuffleCost": 0,
+	"UndoCost": 0,
+	"HintCost": 0,
+	
+	"HintNumber": 3,
+	"ShuffleNumber": 3,
+	"UndoNumber": -1
 }

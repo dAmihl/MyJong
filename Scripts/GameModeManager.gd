@@ -3,8 +3,10 @@ extends Node
 const customGamemodeDirPath:String = "user://gamemodes/"
 const presetGamemodeDirPath:String = "res://gamemodes/"
 
+############# CLASS GameMode ####################
 class GameMode:
 	
+	#### CLASS GenType #####
 	class GenType:
 		const RANDOM = 0
 		const SOLVABLE = 1
@@ -16,6 +18,7 @@ class GameMode:
 				return "Solvable"
 			else: 
 				return "Unknown"
+	#### CLASS END #####
 	
 	var author:String = "default" setget set_author
 	
@@ -23,13 +26,29 @@ class GameMode:
 	var gamemode_full_path:String 
 	var gamemode_gentype: int = GenType.SOLVABLE setget set_gamemode_gentype
 	
+	var shuffle_cost: int = 0
+	var undo_cost: int = 0
+	var hint_cost: int = 0
+	
+	var hint_number: int = -1 # -1 = infinite
+	var shuffle_number: int = -1 # -1 = infinite
+	var undo_number: int = -1 # -1 = infinite
+	
 	func _init(vGameModeFullPath:String, vGenType:int, 
-		vAuthor:String = "default",  vGameModeName:String = "Custom Gamemode"):
+		vAuthor:String = "default",  vGameModeName:String = "Custom Gamemode",
+		vShuffleCost:int = 0, vUndoCost:int = 0, vHintCost:int = 0,
+		vHintNumber:int = 0, vShuffleNumber:int = 0, vUndoNumber:int = 0):
 		
 		author = vAuthor
 		gamemode_name = vGameModeName
 		gamemode_full_path = vGameModeFullPath
 		gamemode_gentype = vGenType
+		shuffle_cost = vShuffleCost
+		undo_cost = vUndoCost
+		hint_cost = vHintCost
+		hint_number = vHintNumber
+		shuffle_number = vShuffleNumber
+		undo_number = vUndoNumber
 		pass
 	
 	func set_author(a:String):
@@ -46,9 +65,16 @@ class GameMode:
 		dict['Author'] = author
 		dict['GamemodeName'] = gamemode_name
 		dict['GamemodeGentype'] = gamemode_gentype
+		dict['ShuffleCost'] = shuffle_cost
+		dict['UndoCost'] = undo_cost
+		dict['HintCost'] = hint_cost
+		dict['HintNumber'] = hint_number
+		dict['ShuffleNumber'] = shuffle_number
+		dict['UndoNumber'] = undo_number
 		
 		return JSON.print(dict)
 
+############# CLASS END ####################
 
 func load_custom_gamemodes() -> Array:
 	var custom_modes = load_gamemodes(customGamemodeDirPath)
@@ -88,7 +114,13 @@ func create_gamemode_from_fullpath(full_path:String) -> GameMode:
 	var author = data["Author"]
 	var gamemodeName = data["GamemodeName"]
 	var gamemodeGenType = data["GamemodeGenType"]
-	var new_mode = GameMode.new(full_path, gamemodeGenType, author, gamemodeName)
+	var shuffle_cost = data["ShuffleCost"]
+	var undo_cost = data["UndoCost"]
+	var hint_cost = data["HintCost"]
+	var hint_number = data["HintNumber"]
+	var shuffle_number = data["ShuffleNumber"]
+	var undo_number = data["UndoNumber"]
+	var new_mode = GameMode.new(full_path, gamemodeGenType, author, gamemodeName,shuffle_cost, undo_cost, hint_cost, hint_number, shuffle_number, undo_number)
 	return new_mode
 
 # Load files from directory
@@ -126,3 +158,7 @@ func parse_layout_json(layoutPath:String) -> Dictionary:
 		print("Error Line: ", result_json.error_line)
 		print("Error String: ", result_json.error_string)
 	return result
+
+func createDefaultGamemode() -> GameMode:
+	var newGm = GameMode.new("Default", GameMode.GenType.RANDOM, "Default", "Default") 
+	return newGm

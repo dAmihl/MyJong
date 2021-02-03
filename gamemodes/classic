@@ -1,5 +1,12 @@
 {
 	"Author": "dAmihl",
 	"GamemodeName": "Classic Solvable",
-	"GamemodeGenType": 1
+	"GamemodeGenType": 1,
+	"ShuffleCost": 0,
+	"UndoCost": 0,
+	"HintCost": 0,
+	
+	"HintNumber": -1,
+	"ShuffleNumber": 0,
+	"UndoNumber": -1
 }

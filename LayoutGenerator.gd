@@ -37,6 +37,7 @@ func load_layout():
 	if (!gamemode and !is_instance_valid(gamemode)):
 		print("Could not load game mode.")
 		print("Assuming random.")
+		gamemode = GameModeManager.createDefaultGamemode()
 		draw_layout_random()
 	elif gamemode.gamemode_gentype == gamemode.GenType.RANDOM:
 		print("Mode Random.")
@@ -44,6 +45,7 @@ func load_layout():
 	elif gamemode.gamemode_gentype == gamemode.GenType.SOLVABLE:
 		print("Mode Solvable")
 		draw_layout_solvable()
+	gameboard.set_gamemode(gamemode)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
