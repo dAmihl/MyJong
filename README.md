@@ -8,7 +8,7 @@
 - Choose between a completely random Tile placement or a _always-solvable_ Tile placement. Whatever helps you relax
 - Undo, Shuffle, Redo, etc. based on Game mode
 
-![Screenshot custom tile layout](docs/screen1.PNG)
+![Screenshot custom tile layout](docs/screen1.png)
 
 ### Assets:
 
